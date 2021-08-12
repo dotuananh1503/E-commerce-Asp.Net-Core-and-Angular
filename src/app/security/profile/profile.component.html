@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="wrapping__header__home">
+    <h2><a href="">Thông tin tài khoản</a></h2>
+  </div>
+  <div *ngIf="userSocial" class="Social__profile">
+    <div class="avaImg">
+      <img src="{{ userSocial.photoUrl }}" alt="" />
+    </div>
+    <form class="normal-form" [formGroup]="profileSocialForm">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 col-md-12">
+          <mat-form-field appearance="fill">
+            <input
+              formControlName="firstName"
+              matInput
+              placeholder="First Name"
+            />
+          </mat-form-field>
+          <mat-form-field id="lastName" appearance="fill">
+            <input
+              formControlName="lastName"
+              matInput
+              placeholder="Last Name"
+            />
+          </mat-form-field>
+          <mat-form-field style="width: 100%" appearance="fill">
+            <input formControlName="email" matInput placeholder="Email" />
+          </mat-form-field>
+        </div>
+      </div>
+      <!--  <button style="width: 100%" [disabled]="!profileForm.valid" type="submit" mat-raised-button color="primary">Save</button> -->
+    </form>
+  </div>
+</div>

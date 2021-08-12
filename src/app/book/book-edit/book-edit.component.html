@@ -1,0 +1,11 @@
+  
+<h2>Edit Movie</h2>
+
+<app-book-form
+[model]="model" 
+*ngIf="model"
+[nonSelectedGenres]="nonSelectedGenres"
+[selectedGenres]="selectedGenres"
+(onSaveChanges)="saveChanges($event)"></app-book-form>
+
+<mat-spinner *ngIf="!model"></mat-spinner>

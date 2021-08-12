@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <img class="imgBack" src="/assets/images/header_pagecontact2.jpg" alt=""/>
+</div>
+<div class="container">
+  <h2 style="text-align: center; margin-top: 30px;">Tất cả sản phẩm</h2>
+  <ul class="filter_list">
+      <li *ngFor="let item of checkBoxArray">
+          <input type="{{ item.type }}" value={{item.id}} (change)="onChange($event)"> {{ item.price1 | moneypipe }} - {{ item.price2 | moneypipe }}
+      </li>
+  </ul>
+  <div class="row">
+    <div *ngFor="let product of loadedProduct; let i = index" class="col-lg-3 col-md-6 col-sm-6 col-6">
+      <!-- <app-product-list></app-product-list> -->
+      <div class="card__item" *ngIf="product">
+        <div class="product__image">
+            <a [routerLink]="['/product-detail', product.id]" routerLinkActive="active">
+                <img src="{{ product.imagePath }}" height="300px"/>
+            </a>
+        </div>
+        <div class="product__detail">
+            <div class="box__product__detail">
+                <h3 class="product__name">
+                    <a href="">{{ product.productname }}</a>
+                </h3>
+                <div class="product__capcon">
+                    <p> {{ product.capacity }}/ {{ product.concentration }}</p>
+                </div>
+                <div class="product__price">
+                    <p> {{ product.price | moneypipe }}</p>
+                </div>
+                <button style="margin-top: 20px;" type="button" class="btn btn-sm btn-danger product-btn" (click)="handleAddToCart()">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+    </div>    
+    </div>
+  </div>
+</div>

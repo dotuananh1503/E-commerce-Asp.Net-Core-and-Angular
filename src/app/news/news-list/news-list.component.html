@@ -1,0 +1,9 @@
+<div class="wrapping__header__not__home">
+    <h2><a href="">Tin tức</a></h2>
+</div>
+<div class="blog__loop">
+    <app-news-item class="blog__posts row" *ngFor="let newsItem of newss; let i = index"
+    [newsItem]="newsItem"
+    [index]="i">
+    </app-news-item>
+</div>

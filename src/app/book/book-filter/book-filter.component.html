@@ -1,0 +1,61 @@
+<h2>Search Books</h2>
+
+<form [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Genre</mat-label>
+        <mat-select formControlName="genreId">
+            <mat-option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="categoryId">
+          <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Publishers</mat-label>
+        <mat-select formControlName="publisherId">
+            <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">{{publisher.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div>
+        <mat-checkbox formControlName="priceFilter1">0đ - 150000đ</mat-checkbox>
+    </div>
+
+    <div>
+        <mat-checkbox formControlName="priceFilter2">150000đ - 300000đ</mat-checkbox>
+    </div>
+
+    <div>
+        <mat-checkbox formControlName="priceFilter3">300000đ - 500000đ</mat-checkbox>
+    </div>
+
+    <div>
+        <mat-checkbox formControlName="priceFilter4">500000đ - 700000đ</mat-checkbox>
+    </div>
+
+
+    <div class="clear-container">
+        <button mat-flat-button (click)="clearForm()" color="warn">Clear</button>
+    </div>
+</form>
+<hr>
+
+<form [formGroup]="formSort">
+    <mat-form-field appearance="fill">
+        <mat-label>Sort</mat-label>
+        <mat-select formControlName="sortValue">
+            <mat-option *ngFor="let select of sortSelection" [value]="select.value">{{select.value}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+

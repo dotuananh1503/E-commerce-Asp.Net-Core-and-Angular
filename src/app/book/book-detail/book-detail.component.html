@@ -1,0 +1,35 @@
+<div *ngIf="book" style="display: flex">
+  <div>
+    <h2>{{ book.name }} ({{ releaseDate | date: 'dd/MM/yyyy' }})</h2>
+    <h2 *ngIf="releaseDate > today">Chưa phát hành</h2>
+    <mat-chip-list>
+      <mat-chip
+        *ngFor="let genre of book.genres"
+      >
+        {{ genre.name }}
+      </mat-chip>
+    </mat-chip-list>
+    | {{ releaseDate.toDateString() }} | Average: 0.0 | Your vote: 0.0
+
+    <div style="display: flex">
+      <span style="display: inline-block; margin-right: 1rem">
+        <img [src]="book.productImage" style="width: 225px; height: 315px" />
+      </span>
+    </div>
+
+    <div style="display: flex">
+          <span>{{book.categoryName}}</span><span>{{book.publisherName}}</span>
+      
+    </div>
+
+    <div style="display: flex; flex-direction: column;">
+        <div *ngFor = "let photo of book.photos">
+            <img [src]="photo.url" >
+        </div>
+  
+    </div>
+
+  </div>
+</div>
+
+<mat-spinner *ngIf="!book"></mat-spinner>

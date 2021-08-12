@@ -1,0 +1,30 @@
+<div class="content">
+  <h3>Đăng ký tài khoản</h3>
+  <form (submit)="register(form.value)" [formGroup]="form">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" formControlName="email" matInput />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Mật khẩu</mat-label>
+      <input type="password" formControlName="password" matInput />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Họ và tên</mat-label>
+      <input type="text" formControlName="displayname" matInput />
+    </mat-form-field>
+    <mat-radio-group class="full-width" formControlName="gender">
+      <mat-radio-button value="Nam">Nam</mat-radio-button>
+      <mat-radio-button style="margin-left: 20px" value="Nữ"
+        >Nữ</mat-radio-button
+      >
+    </mat-radio-group>
+    <a
+      class="textRegisterLoginAdmin"
+      style="cursor: pointer"
+      routerLink="/admin/login"
+      >Bạn đã có tài khoản? <strong>Đăng nhập ngay</strong></a
+    >
+    <button class="btnRegister" type="submit"><span>Đăng kí</span></button>
+  </form>
+</div>

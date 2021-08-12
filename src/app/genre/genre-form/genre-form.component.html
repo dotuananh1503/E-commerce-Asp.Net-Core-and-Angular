@@ -1,0 +1,9 @@
+<form (submit)="saveChanges()" [formGroup]="genreForm">
+  <mat-form-field appearance="outline">
+      <mat-label>Name*</mat-label>
+      <input formControlName="name" matInput />
+  </mat-form-field>
+  <div>
+      <button mat-flat-button color="primary" [disabled]="genreForm.invalid">Save Changes</button>
+  </div>
+</form>

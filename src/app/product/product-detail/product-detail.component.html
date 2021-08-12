@@ -1,0 +1,135 @@
+<div *ngIf="book" class="container">
+    <div class="row">
+          <div class="col-lg-5 col-md-12 col-sm-12">
+              <div class="product__image__holder">
+                  <div class="product__detail__image">
+                      <div class="product__side__image">
+                            <div *ngFor="let photo of book.photos"  class="product__side__img__holder">
+                                <img src="{{photo.url}}" >
+                            </div>
+                      </div>
+                      <div class="product__main__image">
+                          <img src="{{book.productImage}}" alt="">
+                      </div>
+                  </div>
+                  <div class="product__detail__button">
+                      <a class="product__detail__to__cart" (click)="addItemToCart()">Thêm vào giỏ hàng</a>
+                      <a class="product__detail__pre__order" href="">{{ releaseDate > today? 'Đặt mua' : 'Mua ngay'}}</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-12 col-sm-12">
+              <div class="product__info__holder">
+                  <div class="product__detail__name">
+                      {{book.name}}
+                  </div>
+                  <div class="product__info__wrapper">
+                      <div class="first__info">
+                          <div class="producer__info">
+                              <span>Nhà cung cấp: </span><span>{{book.publisherName}}</span>
+                          </div>
+                          <div class="author__info">
+                              <span>Tác giả: </span><span>{{book.author}}</span>
+                          </div>
+                      </div>
+                      <div class="second__info">
+                          <div class="publisher__info">
+                              <span>Nhà xuất bản: </span><span>{{book.publisherName}}</span>
+                          </div>
+                          <div class="cover__page__info">
+                              <span>Hình thức bìa: </span><span>{{book.cover}}</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="product__rating">
+                      <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                  </div>
+                  <div class="product__price__flavor">
+                      <p>{{book.price | moneypipe}}</p>
+                      <div class="price__flavor__icon">
+                          <i class="fas fa-heart"></i>
+                      </div>
+                  </div>
+                  <div class="product__address">
+                      <span>Giao hàng đến </span><span><strong>Phường 3, Quận 8</strong></span>
+                  </div>
+                  <div class="product__view__quantity__box">
+                    <div class="d-flex align-items-center">
+                      <i (click)="decrementItemQuantity()" class="fa fa-minus-circle text-warning mr-2"
+                          style="cursor: pointer; font-size: 2em;"></i>
+                      <span class="font-weight-bold" style="font-size: 1.5em;">
+                          {{quantity}}
+                      </span>
+                      <i (click)="incrementItemQuantity()" class="fa fa-plus-circle text-warning mx-2"
+                          style="cursor: pointer; font-size: 2em;"></i>
+                      </div>
+                  </div>
+                  <div class="product__order__policy">
+                      <h4>Ưu đãi dành cho người mua hàng trên website:</h4>
+                      <ul>
+                          <li>Sản phẩm được dùng thử nếu mua tại cửa hàng.</li>
+                          <li>Sản phẩm còn đủ tem mác, chưa qua sử dụng.</li>
+                          <li>Sản phẩm nguyên giá được đổi trong 30 ngày trên toàn hệ thống.</li>
+                          <li>Sản phẩm được giao hàng trên toàn quốc</li>                     
+                      </ul>
+                  </div>
+              </div>
+          </div>
+    </div>
+</div>
+<div *ngIf="book" class="container">
+  <hr>
+  <div class="wrapping__header__detail">
+      <h2><a href="">Thông tin sản phẩm</a></h2>
+  </div>
+  <table class="table">
+      <tbody>
+        <tr>
+          <td scope="row"><strong>Tên sản phẩm:</strong></td>
+          <td>{{ book.name }}</td>
+        </tr>        
+        <tr>
+          <td scope="row"><strong>Kích thước:</strong></td>
+          <td>{{ book.size }}</td>
+        </tr> 
+        <tr>
+          <td scope="row"><strong>Hình thức bìa:</strong></td>
+          <td>{{ book.cover }}</td>
+        </tr> 
+        <tr>
+          <td scope="row"><strong>Số trang:</strong></td>
+          <td>{{ book.pages }}</td>
+        </tr>      
+        <tr>
+          <td scope="row"><strong>Dịch giả:</strong></td>
+          <td>{{ book.translators }}</td>
+        </tr> 
+        <tr>
+          <td scope="row"><strong>Tác giả:</strong></td>
+          <td>{{ book.author }}</td>
+        </tr> 
+        <tr>
+          <td scope="row"><strong>Ngày phát hành:</strong></td>
+          <td>{{ book.releaseDate | date: 'dd/MM/yyyy' }}</td>
+        </tr>      
+        <tr>
+          <td scope="row"><strong>Thể loại:</strong></td>
+          <td>
+              <span style="margin: 0 10px 0 0;" *ngFor="let genre of book.genres">{{genre.name + ','}}</span>
+          </td>
+        </tr>      
+        <tr>
+          <td scope="row"><strong>Danh mục:</strong></td>
+          <td>{{ book.categoryName }}</td>
+        </tr>      
+        <tr>
+          <td scope="row"><strong>Nhà xuất bản:</strong></td>
+          <td>{{ book.publisherName }}</td>
+        </tr>        
+     </tbody>
+  </table>
+  <hr>
+  <div [innerHTML]="book.content" class="product__content__wrapper">
+      
+  </div>
+</div>

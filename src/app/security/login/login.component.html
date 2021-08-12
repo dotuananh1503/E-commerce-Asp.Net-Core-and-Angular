@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center">
+          <div class="wrapping__header__not__home">
+              <h2><a href="">Đăng nhập</a></h2>
+
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12">
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <div class="form-group">
+                <input type="email" 
+                       class="form-control" 
+                       id="email" 
+                       placeholder="Email" 
+                       name="email" 
+                       formControlName="email">
+            <span
+            *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+            class="help-block text-danger">Email không hợp lệ</span>
+              </div>
+              <div class="form-group">
+                <input type="password" 
+                       class="form-control" 
+                       id="password" 
+                       placeholder="Password" 
+                       name="password" 
+                       formControlName="password">
+                       <span
+                       *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
+                       class="help-block text-danger">Password không được để trống</span>
+              </div>
+              <a class="textRegisterLogin" style="cursor: pointer;" routerLink="/register">Bạn chưa có tài khoản? <strong>Đăng ký ngay</strong></a>
+              <div class="btn__register">
+                  <button type="submit"><span>Đăng nhập</span></button>
+              </div>
+          </form>
+          <div class="form-group">
+            <p *ngIf="errorMessage.length > 0" class="text-danger">
+                {{errorMessage}}</p>
+            
+            <p *ngIf="error.message.length > 0" class="text-danger">
+                {{error.message}} </p>
+        </div>
+        <button (click)="signInWithGoogle()" class='g-sign-in-button btn_google'>
+            <div class=content-wrapper>
+                <div class='logo-wrapper'>
+                    <i class="fab fa-google fa-2x"></i>
+                </div>
+                <span class='text-container'>
+                    <span>Sign in with Google</span>
+                 </span>
+            </div>
+        </button>
+        <br>
+        <button (click)="signInWithFB()" class="g-sign-in-button btn_facebook">
+            <div class=content-wrapper>
+                <div class='logo-wrapper'>
+                    <i class="fab fa-facebook-f fa-2x"></i>
+                </div>
+                <span class='text-container'>
+                    <span>Sign in with Facebook</span>
+                 </span>
+            </div>
+        </button>
+      </div>
+  </div>
+</div>

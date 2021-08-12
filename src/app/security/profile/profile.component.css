@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.avaImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avaImg img {
+    width: 100px;
+    border-radius: 100%;
+}
+
+#lastName {
+    margin-left: 20px;
+}
+
+form.normal-form{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}

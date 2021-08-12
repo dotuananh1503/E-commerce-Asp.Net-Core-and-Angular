@@ -1,0 +1,172 @@
+<div class="top__banner">
+  <h4>Miễn phí vận chuyển với đơn hàng trên 1000k</h4>
+</div>
+<div class="navbar__container">
+  <div class="container">
+    <div class="navbar__box">
+      <a style="cursor: pointer" routerLink="/" class="navbar__logo">
+        <img src="assets/images/logoHuWine.png" />
+      </a>
+      <div class="navbar__navigator show__on__mobile">
+        <a href="">
+          <img src="assets/images/icons/menu.png" alt="" />
+        </a>
+        <!--                     <div class="navbar__items-mobile">
+                  
+              </div> -->
+      </div>
+      <ul class="navbar__items">
+        <li><a routerLink="/">Trang chủ</a></li>
+        <li><a routerLink="/product-collector">Bộ sưu tập</a></li>
+        <li><a routerLink="/news">Tin tức</a></li>
+        <li><a routerLink="/about-us">Giới thiệu</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Liên hệ</a></li>
+      </ul>
+      <div class="navbar__icons">
+        <div class="search__action__box">
+          <a
+            class="icon__search"
+            (click)="onClickonicon()"
+            style="cursor: pointer"
+            ><img src="/assets/images/icons/search.png"
+          /></a>
+          <div class="navbar__searchbox">
+            <span class="box__triangle">
+              <svg viewBox="0 0 20 9">
+                <path
+                  d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                  fill="#ffffff"
+                ></path>
+              </svg>
+            </span>
+            <div class="site__nav__container">
+              <p class="titlebox">Tìm kiếm</p>
+              <div class="search-box">
+                <form action="" class="searchform">
+                  <div class="">
+                    <input type="hidden" name="type" value="product" />
+                    <input
+                      required=""
+                      id="inputSearchAuto"
+                      name="q"
+                      maxlength="40"
+                      autocomplete="off"
+                      class="searchinput input-search"
+                      type="text"
+                      size="20"
+                      placeholder="Tìm kiếm sản phẩm..."
+                      data-history="a"
+                    />
+                  </div>
+                  <button type="submit" class="btn__search">
+                    <svg
+                      version="1.1"
+                      class="svg-search"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      x="0px"
+                      y="0px"
+                      viewBox="0 0 24 27"
+                      style="enable-background: new 0 0 24 27"
+                      xml:space="preserve"
+                    >
+                      <path
+                        d="M10,2C4.5,2,0,6.5,0,12s4.5,10,10,10s10-4.5,10-10S15.5,2,10,2z M10,19c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S13.9,19,10,19z"
+                      ></path>
+                      <rect
+                        x="17"
+                        y="17"
+                        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -9.2844 19.5856)"
+                        width="4"
+                        height="8"
+                      ></rect>
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a [matMenuTriggerFor]="menu"
+          ><img src="/assets/images/icons/user.png"
+        /></a>
+        <mat-menu #menu="matMenu">
+          <div class="imgBox">
+            <!-- <img src="{{ user.photoURL }}" alt=""> -->
+            <img *ngIf="userSocial" src="{{ userSocial.photoUrl }}" alt="" />
+          </div>
+          <button *ngIf="userSocial" routerLink="/profile" mat-menu-item>
+            Xin chào: {{ userSocial.name }}
+          </button>
+          <button *ngIf="userSocial" routerLink="/admin" mat-menu-item>
+            Đến trang quản lý
+          </button>
+          <button routerLink="/register" *ngIf="!userSocial" mat-menu-item>
+            Đăng ký
+          </button>
+          <button routerLink="/login" *ngIf="!userSocial" mat-menu-item>
+            Đăng nhập
+          </button>
+          <button
+            *ngIf="userSocial"
+            (click)="authService.signOut()"
+            mat-menu-item
+          >
+            Logout
+          </button>
+        </mat-menu>
+        <a routerLink="/cart"
+          ><img id="cart" src="/assets/images/icons/shopping-cart.png" />
+          <span class="color: black;" *ngIf="(cart$ | async) as cart">{{cart.items.length}}</span>
+        </a>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="show__on__mobile">
+  <div class="search__action__box-mobile">
+    <form
+      [formGroup]="searchForm"
+      (ngSubmit)="onSearch()"
+      class="searchform__mobile"
+    >
+      <div class="wpo-search-inner">
+        <!-- <input type="hidden" name="type" value="product"> -->
+        <input
+          id="nameSearch"
+          name="nameSearch"
+          formControlName="nameSearch"
+          class="searchinput__mobile input-search"
+          type="text"
+          size="20"
+          placeholder="Tìm kiếm sản phẩm..."
+        />
+      </div>
+      <button type="submit" class="btn__search__mobile" id="btn-search-mobile">
+        <svg
+          version="1.1"
+          class="svg-search"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 24 27"
+          style="enable-background: new 0 0 24 27"
+          xml:space="preserve"
+        >
+          <path
+            d="M10,2C4.5,2,0,6.5,0,12s4.5,10,10,10s10-4.5,10-10S15.5,2,10,2z M10,19c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S13.9,19,10,19z"
+          ></path>
+          <rect
+            x="17"
+            y="17"
+            transform="matrix(0.7071 -0.7071 0.7071 0.7071 -9.2844 19.5856)"
+            width="4"
+            height="8"
+          ></rect>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>

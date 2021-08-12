@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDGiKOICB6hrEsI_s6HKzq2dx7yTuSCYzw",
+    authDomain: "ng-angular-huflit.firebaseapp.com",
+    databaseURL: "https://ng-angular-huflit-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "ng-angular-huflit",
+    storageBucket: "ng-angular-huflit.appspot.com",
+    messagingSenderId: "600204817354",
+    appId: "1:600204817354:web:e95cca214a84273be11533",
+    measurementId: "G-3RSBSF284M"
+  },
+  apiURL: 'https://localhost:44322/api'
 };
 
 /*

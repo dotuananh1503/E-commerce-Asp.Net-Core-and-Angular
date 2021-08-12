@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center">
+          <div class="wrapping__header__not__home">
+              <h2><a href="">Tạo tài khoản</a></h2>
+
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12">
+<!--           <form>
+              <div class="form-group">
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Họ">
+
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tên">
+
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-group">
+                  <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Số điện thoại">
+              </div>
+              <a class="textRegisterLogin" style="cursor: pointer;" routerLink="/login">Bạn đã có tài khoản? <strong>Đăng nhập ngay</strong></a>
+              <div class="btn__register">
+                  <button type="submit"><span>Đăng ký</span></button>
+              </div>
+          </form> -->
+          <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+            <div class="form-group">
+              <input type="email" 
+                     class="form-control" 
+                     id="email" 
+                     placeholder="Email" 
+                     name="email" 
+                     formControlName="email">
+              <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched" class="help-block text-danger">
+                  Nhập vào email hợp lệ
+              </span>
+            </div>
+            <div class="form-group">
+              <input type="password" 
+                     class="form-control" 
+                     id="password" 
+                     placeholder="Password" 
+                     name="password" 
+                     formControlName="password">
+              <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched" class="help-block text-danger">
+                  Mật khẩu phải có ít nhất 8 kí tự
+              </span>
+            </div>
+            <div class="form-group">
+                <input type="password" 
+                       class="form-control" 
+                       id="repassword" 
+                       placeholder="Confirm Password" 
+                       name="repassword" 
+                       formControlName="repassword">
+<!--                 <span  class="text-danger">
+                  Mật khẩu không trùng khớp
+                </span> -->
+              </div>
+              <div class="form-group">
+                <p *ngIf="errorMessage.length > 0" class="text-danger">
+                    {{errorMessage}}</p>
+                
+                <p *ngIf="error.message.length > 0" class="text-danger">
+                    {{error.message}} </p>
+            </div>
+            <a class="textRegisterLogin" style="cursor: pointer;" routerLink="/login">Bạn đã có tài khoản? <strong>Đăng nhập ngay</strong></a>
+            <div class="btn__register">
+                <button type="submit"><span>Đăng ký</span></button>
+            </div>
+        </form>
+        <div class="form-group">
+                <p *ngIf="message.length > 0" class="text-info">
+                    {{message}} </p>
+        </div>
+      </div>
+  </div>
+</div>

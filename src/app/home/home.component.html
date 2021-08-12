@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <img class="imgBack" src="/assets/images/queenwines-sigel-bg-1.jpg" alt="" />
+  <div class="carousel-caption d-none d-md-block">
+    <h5
+      class="animate__animated animate__fadeInDown titleHome"
+      style="animation-delay: 0.5s"
+    >
+      Thương hiệu số 1 Việt Nam
+    </h5>
+    <p
+      class="animate__animated animate__fadeInLeft contentHome"
+      style="animation-delay: 1s"
+    >
+      Chúng tôi tự hào là một trong những thương hiệu kinh doanh rượu vang và
+      xuất khẩu uy tín được người tiêu dùng tin yêu.
+    </p>
+  </div>
+</div>
+<div class="container">
+  <div class="wrapping__header__home">
+    <h2><a href="">Sản phẩm mới</a></h2>
+  </div>
+  <app-product-slide [books]="latestProducts"></app-product-slide>
+</div>
+<div class="container-fluid">
+  <div class="row no-gutters">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="block__banner">
+        <img src="/assets/images/block_home_category4_large0.jpg" alt="" />
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="block__banner">
+        <img src="/assets/images/block_home_category5_large0.jpg" alt="" />
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="block__banner">
+        <img src="/assets/images/block_home_category6_large0.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="wrapping__header__home">
+    <h2><a href="">Sản phẩm sắp ra mắt</a></h2>
+    <!--             <div class="view-all">
+          <a href="">Xem thêm</a>
+      </div> -->
+  </div>
+  <!--   <app-cart></app-cart> -->
+  <div></div>
+
+  <app-product-slide [books]="upcomingProducts"></app-product-slide>
+</div>
+<div class="news__letter">
+  <div class="container-fluid">
+    <div class="news_letter__content">
+      <h2>Đăng ký</h2>
+      <p>
+        Đăng ký nhận bản tin của HuWine để cập nhật những sản phẩm mới, nhận
+        thông tin ưu đãi đặc biệt và thông tin giảm giá khác.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="wrapping__header__home">
+  <h2><a href="">Bài viết nổi bật</a></h2>
+</div>
+<div class="container">
+  <div class="row">
+    <div
+      class="col-lg-4 col-md-6 col-sm-12"
+      *ngFor="let newsLatest of newsItemss; let i = index"
+      [newsLatest]="newsLatest"
+      [index]="i"
+    >
+      <div class="news__item">
+        <a
+          [routerLink]="['/news-detail', newsLatest.id]"
+          style="cursor: pointer"
+          class="news__features"
+        >
+          <img src="{{ newsLatest.imageNews }}" alt="" />
+        </a>
+        <div class="news__content">
+          <div class="news__info">
+            <span>{{ newsLatest.date }}</span>
+          </div>
+          <h3 class="news__title">
+            <a [routerLink]="['/news-detail', newsLatest.id]">{{
+              newsLatest.title
+            }}</a>
+          </h3>
+          <div class="news__desc">
+            <p innerHTML="{{ newsLatest.content | slice: 0:100 }}..."></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

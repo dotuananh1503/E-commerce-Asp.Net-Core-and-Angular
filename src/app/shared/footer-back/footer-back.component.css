@@ -1,0 +1,9 @@
+.main-footer__border
+{
+    position: relative;
+    bottom: 0px;
+    padding: 24px 0;
+    border-top: 1px dashed #e0d9d6;
+    border-bottom: none;
+    text-align: center;
+}

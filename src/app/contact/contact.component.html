@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <img class="imgBack" src="/assets/images/header_pagecontact2.jpg" alt=""/>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="display__map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4604880018023!2d106.6651761501495!3d10.775999862111085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3ae5901877%3A0x42c37972de865906!2zODI4IFPGsCBW4bqhbiBI4bqhbmgsIFBoxrDhu51uZyAxMiwgUXXhuq1uIDEwLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1621397669228!5m2!1sen!2s" width="600" height="900" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="wrapping__header__not__home">
+              <h2><a href="">Liên hệ</a></h2>
+          </div>
+
+          <div class="contact__content">
+              <ul class="list-info">
+                  <li>
+                      <p>Địa chỉ chúng tôi</p>
+                      <p><strong>Lầu 2, Tòa nhà CNTT, 828 Sư Vạn Hạnh, Phường 13, Quận 10, TP. HCM</strong></p>
+                  </li>
+                  <li>
+                      <p>Email chúng tôi</p>
+                      <p><strong>HuWine@gmail.com</strong></p>
+                  </li>
+                  <li>
+                      <p>Điện thoại</p>
+                      <p><strong>1900.099.099</strong></p>
+                  </li>
+                  <li>
+                      <p>Thời gian làm việc</p>
+                      <p><strong>Thứ 2 đến Thứ 6 từ 8h đến 18h; Thứ 7 và Chủ nhật từ 8h00 đến 17h00 </strong></p>
+                  </li>
+              </ul>
+          </div>
+          <div class="wrapping__header__not__home">
+              <h2><a href="">Gửi thắc mắc cho chúng tôi</a></h2>
+          </div>
+          <form [formGroup]="contactForm">
+            <div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" 
+                       #email
+                       id="email" 
+                       class="form-control"
+                       formControlName="email">
+              </div>
+              <div class="form-group">
+                <label for="content">Nội dung</label>
+                <textarea 
+                       style="resize: none;" 
+                       rows="5"
+                       #content
+                       id="content" 
+                       class="form-control"
+                       formControlName="content">
+                </textarea>
+              </div>
+            </div>
+            <div class="btn__register">
+                <button (click)="onSendContact()" type="submit"><span>Gửi liên hệ</span></button>
+            </div>
+          </form>
+      </div>
+  </div>
+</div>

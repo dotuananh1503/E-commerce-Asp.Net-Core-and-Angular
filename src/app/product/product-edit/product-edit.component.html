@@ -1,0 +1,140 @@
+<div class="container">
+    <div class="row">
+        <form [formGroup]="productForm">
+            <div class="row">
+              <div class="col-lg-6 col-md-12 col-sm-12">
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Tên sản phẩm</mat-label>
+                  <input type="text" #productname id="productname" formControlName="productname" matInput>
+                  <mat-error *ngIf="!productForm.get('productname').valid && productForm.get('productname').touched">Tên sản phẩm không được trống.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Xuất xứ</mat-label>
+                  <input type="text" #country id="country" formControlName="country" matInput>
+                  <mat-error *ngIf="!productForm.get('country').valid && productForm.get('country').touched">Xuất xứ không được trống.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Nồng độ</mat-label>
+                  <input type="text" #concentration id="concentration" formControlName="concentration" matInput>
+                  <mat-error *ngIf="!productForm.get('concentration').valid && productForm.get('concentration').touched">Nồng độ không được trống.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Dung tích</mat-label>
+                  <input type="text" #capacity id="capacity" formControlName="capacity" matInput>
+                  <mat-error *ngIf="!productForm.get('capacity').valid && productForm.get('capacity').touched">Dung tích không được trống.</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-12 col-sm-12">
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Thương hiệu</mat-label>
+                  <mat-select #brand id="brand" formControlName="brand">
+                    <mat-option *ngFor="let brand of brands" [value]="brand.value">
+                      {{brand.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Đóng chai</mat-label>
+                  <input type="text" #bottled id="bottled" formControlName="bottled" matInput>
+                  <mat-error *ngIf="!productForm.get('bottled').valid && productForm.get('bottled').touched">Đóng chai không được trống.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Hình ảnh</mat-label>
+                  <input type="text" #imagePath id="imagePath" formControlName="imagePath" matInput>
+                  <mat-error *ngIf="!productForm.get('imagePath').valid && productForm.get('imagePath').touched">Hình ảnh không được trống.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Giá tiền</mat-label>
+                  <input type="number" #price id="price" formControlName="price" matInput>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <ckeditor [editor]="Editor" class="full-width" #desc id="desc" formControlName="desc"></ckeditor>
+              </div>
+              <div class="btn__container">
+                <button [disabled]="!productForm.valid" class="btn btn-primary" (click)="onAddProducts()" type="button">{{ editmode? 'Update Product' : 'Add Product' }}</button>
+                <button class="btn btn-success" (click)="onFetchProducts()" type="button">Fetch</button>
+                <button class="btn btn-danger" (click)="onClearProducts()" type="button">Clear</button>
+              </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container-fluid">
+  <div class="search-div">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input class="full-width" matInput [(ngModel)]="searchKey" placeholder="Tìm kiếm" autocomplete="off" (keyup)="applyFilter()">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+        <mat-icon><i class="fas fa-times"></i></mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="row d-flex justify-content-center mat-elevation-z8">
+    <table mat-table [dataSource]="listdata" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="imagePath">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Hình ảnh</th>
+        <td mat-cell *matCellDef="let element"><img src="{{element.imagePath}}" width="80px" alt=""></td>
+      </ng-container>
+      <ng-container matColumnDef="productname">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Tên sản phẩm</th>
+        <td mat-cell *matCellDef="let element">{{element.productname}}</td>
+      </ng-container>
+      <ng-container matColumnDef="brand">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Thương hiệu</th>
+        <td mat-cell *matCellDef="let element">{{element.brand}}</td>
+      </ng-container>
+      <ng-container matColumnDef="desc">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Mô tả</th>
+        <td mat-cell *matCellDef="let element">{{element.desc | slice: 0:100}}</td>
+      </ng-container>
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Xuất xứ</th>
+        <td mat-cell *matCellDef="let element">{{element.country}}</td>
+      </ng-container>
+      <ng-container matColumnDef="concentration">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Nồng độ</th>
+        <td mat-cell *matCellDef="let element">{{element.concentration}}</td>
+      </ng-container>
+      <ng-container matColumnDef="capacity">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Dung tích</th>
+        <td mat-cell *matCellDef="let element">{{element.capacity}}</td>
+      </ng-container>
+      <ng-container matColumnDef="bottled">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Đóng chai</th>
+        <td mat-cell *matCellDef="let element">{{element.bottled}}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Giá</th>
+        <td mat-cell *matCellDef="let element">{{element.price | moneypipe}}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <tr mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEditItem(row.id)"><i class="fas fa-edit"></i></button>
+          <button mat-icon-button color="warn" (click)=" onDeleteItem(row.id)"><i class="fas fa-trash-alt"></i></button>
+        </tr>
+      </ng-container>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="11">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="11">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listdata!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listdata!=null && listdata.data.length==0)}"></mat-footer-row>
+    </table>
+    <mat-paginator style="margin-top: 10px" [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

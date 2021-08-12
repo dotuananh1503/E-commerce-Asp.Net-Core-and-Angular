@@ -1,1 +1,250 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~swiper/swiper-bundle";
+
+:root {
+  --text-color: #fff;
+  --text-hover-color: #e9be00;
+  --circle-color-1: #75ff81;
+  --circle-color-2: #ff6666;
+  --circle-color-3: #ff8e59;
+  --circle-color-4: #75b5ff;
+  --black: #000;
+  --white-smoke: #f0f0f0;
+  --almost-black: #272727;
+  --first-box-color: #00a023;
+  --second-box-color: #2c1dad;
+  --third-box-color: #f88400;
+  --gradient-color-1: rgba(0, 48, 203, 1);
+  --gradient-color-2: rgba(0, 150, 255, 1);
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #272727;
+  line-height: 1.1;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  display: block;
+  padding: 0;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.textRegisterLogin {
+  color: black;
+  text-decoration: none;
+}
+
+.textRegisterLogin:hover {
+  text-decoration: none;
+  color: black;
+}
+
+/*Chung*/
+
+.imgBack {
+  max-width: 100%;
+}
+
+.wrapping__header__home {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.wrapping__header__not__home {
+  padding: 40px 0;
+  text-align: left;
+}
+
+.wrapping__header__home h2,
+.wrapping__header__not__home h2 {
+  position: relative;
+  font-weight: bold;
+}
+
+.wrapping__header__home h2:before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 2;
+  background: #000000;
+}
+
+.wrapping__header__not__home h2:before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  bottom: -10px;
+  left: 0;
+  margin: 0 auto;
+  z-index: 2;
+  background: #000000;
+}
+
+.btn__register {
+  position: relative;
+  background-color: white;
+  transition: all 0.5s;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.btn__register button {
+  position: relative;
+  width: 180px;
+  height: 36px;
+  background-color: black;
+  margin-top: 16px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.btn__register button:hover {
+  border: 2px solid black;
+}
+
+.btn__register button:hover span {
+  color: black;
+}
+
+.btn__register button::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 36px;
+  left: -105%;
+  background-color: #ffffff;
+  transition: 0.3s;
+}
+
+.btn__register button:hover::before {
+  left: 0;
+}
+
+.btn__register button span {
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.form-group {
+  margin: 40px 0;
+}
+
+.form-control {
+  height: 55px;
+}
+
+.success_box {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*Responsive*/
+@media (min-width: 769px) {
+  .product__desc {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+  }
+  .sidebar__cart {
+    position: sticky;
+    top: 40px;
+  }
+  .show__on__mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .show__on__mobile {
+    visibility: visible;
+  }
+  .search__action__box {
+    visibility: hidden;
+  }
+  .navbar__logo {
+    order: 2;
+    /*         margin-left: 70px; */
+  }
+  .navbar__items {
+    order: 1;
+    flex-direction: column;
+    display: none;
+  }
+  .navbar__icons {
+    order: 3;
+  }
+  .navbar__items-mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 415px) {
+  .navbar__container {
+    padding: 20px 10px;
+  }
+  .navbar__box {
+    margin: 0 -15px;
+    flex-flow: row nowrap;
+  }
+  .navbar__icons,
+  .navbar__navigator {
+    margin: 0 0 0 -22px;
+  }
+  .navbar__logo {
+    padding: 0 5px;
+  }
+  .navbar__logo img {
+    max-width: 160px;
+  }
+}
