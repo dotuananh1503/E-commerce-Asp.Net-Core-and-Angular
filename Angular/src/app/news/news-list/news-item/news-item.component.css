@@ -1,0 +1,42 @@
+.blog__features img
+{   
+    max-width: 100%;
+}
+
+.blog__info
+{
+    margin: 15px 0;
+    text-align: left;
+}
+
+.blog__posts
+{
+    margin-bottom: 25px;
+}
+
+.blog__info span
+{
+    color: #999;
+}
+
+.blog__title 
+{
+    text-align: left;
+    position: relative;
+    font-size: 16px;
+}
+
+.blog__title a
+{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.blog__desc
+{
+    text-align: left;
+    line-height: 21px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}

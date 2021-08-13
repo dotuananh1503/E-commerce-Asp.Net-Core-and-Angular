@@ -1,0 +1,17 @@
+<!-- <mat-icon
+*ngFor="let i of maxRatingArr; let index = index"
+(mouseenter)="handleMouseEnter(index)"
+(mouseleave)="handleMouseLeave()"
+(click)="rate(index)"
+[ngClass]="{checked: selectedRate > index}"
+>star</mat-icon> -->
+
+<form [formGroup]="ratingForm">
+    <ngx-input-star-rating class="form-control" formControlName="rating"></ngx-input-star-rating>
+    <mat-form-field appearance="fill">
+        <mat-label>Comment</mat-label>
+        <input class="form-control" type="text" formControlName="comment" matInput />
+    </mat-form-field>
+    <br>
+    <button class="btnRegister" (click)="onSubmit()"><span>Đánh giá</span></button>
+</form>

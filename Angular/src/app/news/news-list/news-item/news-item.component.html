@@ -1,0 +1,18 @@
+<a [routerLink]="['/news-detail', newsItem.id]" routerLinkActive="active" class="col-lg-4 col-md-4 col-sm-12">
+  <div class="blog__features">
+      <img src="{{ newsItem.imageNews }}" alt=""/>
+  </div>
+</a>
+<div *ngIf="newsItem" class="col-lg-8 col-md-8 col-sm-12">
+  <div class="blog__content">
+      <h3 class="blog__title">
+          <a [routerLink]="['/news-detail', newsItem.id]" routerLinkActive="active">{{ newsItem.title }}</a>
+      </h3>
+      <div class="blog__info">
+          <span>Người viết: {{ newsItem.author }} / {{ newsItem.date | date: "dd-MM-yyyy" }}</span>
+      </div>
+      <div class="blog__desc">
+          <p innerHTML="{{ newsItem.content | slice: 0:300 }}..."></p>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.display__map
+{
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 40px;
+    height: auto;
+}
+
+.contact__content li
+{
+    margin-bottom: 30px;
+}

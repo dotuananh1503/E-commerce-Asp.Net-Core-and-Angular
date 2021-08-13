@@ -1,0 +1,19 @@
+.imgAbout{
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.imgAbout img
+{
+    height: 400px;
+}
+
+.contentAbout{
+    font-size: 16px;
+    text-indent: 50px;
+    text-align: justify;
+}

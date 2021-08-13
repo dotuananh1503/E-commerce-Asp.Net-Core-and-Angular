@@ -1,0 +1,230 @@
+.slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slider img {
+    margin-top: 70px;
+  }
+
+.titleHome {
+    font-size: 70px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contentHome {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.news__letter
+{
+    background-image: url('/assets/images/417971.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 60px 0;
+}
+
+.news_letter__content
+{
+    text-align: center;
+    max-width: 525px;
+    color: white;
+    margin: auto;
+}
+
+.news_letter__content h2
+{
+    font-size: 40px;
+    line-height: 60px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.news_letter__content p
+{
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 auto 20px;
+}
+
+.news__features img
+{   
+    width: 100%;
+    transition: transform .2s;
+}
+
+.news__info
+{
+    text-transform: uppercase;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.news__title 
+{
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+}
+
+.news__title a
+{
+    color: black;
+    text-decoration: none;
+}
+
+.news__title::after
+{
+    position: absolute;
+    content: "";
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50px;
+    height: 2px;
+    background: #000000;
+}
+
+.news__desc
+{
+    text-align: center;
+    line-height: 21px;
+    margin: 30px;
+}
+
+.home__status__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 200px;
+  }
+  
+  .home__status__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 10px;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+  }
+  
+  .home__status__content h2 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 0px;
+  }
+  
+  .home__status__content h2:nth-child(2) {
+    margin: 8px 0;
+  }
+  
+  .first-box {
+    background-color: var(--first-box-color);
+  }
+  
+  .second-box {
+    background-color: var(--second-box-color);
+  }
+  
+  .third-box {
+    background-color: var(--third-box-color);
+  }
+
+  .home__collection {
+    background-image: url("/assets/images/4253737.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 100px 0;
+    margin-top: 30px;
+  }
+  
+  .home__collection__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .home__collection__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    height: 100%;
+    padding: 12px;
+  }
+  
+  .home__collection__icon.manga-color {
+    background-color: var(--circle-color-1);
+  }
+  
+  .home__collection__icon.lightNovel-color {
+    background-color: var(--circle-color-2);
+  }
+  
+  .home__collection__icon.liturature-color {
+    background-color: var(--circle-color-3);
+  }
+  
+  .home__collection__icon.item-color {
+    background-color: var(--circle-color-4);
+  }
+  
+  .home__collection__icon i {
+    color: white;
+  }
+  
+  .home__collection__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 15px;
+  }
+  .home__collection__text {
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  
+  .manga-color {
+    color: var(--circle-color-1);
+  }
+  
+  .lightNovel-color {
+    color: var(--circle-color-2);
+  }
+  
+  .liturature-color {
+    color: var(--circle-color-3);
+  }
+  
+  .item-color {
+    color: var(--circle-color-4);
+  }
+  
+  .publisher__holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .publisher__image img {
+    height: 100%;
+  }

@@ -1,0 +1,29 @@
+img.img-thumbnail {
+  height: 200px;
+  min-width: 200px !important;
+  margin-bottom: 2px;
+}
+
+.nv-file-over {
+  border: dotted 3px red;
+}
+
+input[type="file"] {
+  color: transparent;
+  margin: 10px 0;
+}
+
+.product-image-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.button-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

@@ -1,0 +1,7 @@
+.container-form{
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgba(0,48,203,1) 0%, rgba(0,150,255,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

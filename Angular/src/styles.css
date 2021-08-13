@@ -1,0 +1,350 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~swiper/swiper-bundle";
+
+:root {
+  --text-color: #fff;
+  --text-hover-color: #e9be00;
+  --circle-color-1: #75ff81;
+  --circle-color-2: #ff6666;
+  --circle-color-3: #ff8e59;
+  --circle-color-4: #75b5ff;
+  --black: #000;
+  --white-smoke: #f0f0f0;
+  --almost-black: #272727;
+  --first-box-color: #00a023;
+  --second-box-color: #2c1dad;
+  --third-box-color: #f88400;
+  --gradient-color-1: rgba(0, 48, 203, 1);
+  --gradient-color-2: rgba(0, 150, 255, 1);
+}
+html {
+  scroll-behavior: smooth;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+ul {
+  list-style-type: none;
+  display: block;
+  padding: 0;
+}
+ul,
+p,
+label {
+  margin-bottom: 0;
+}
+a:hover {
+  text-decoration: none;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: var(--almost-black);
+  line-height: 1.1;
+  text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  text-decoration: none;
+  color: var(--black);
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.textRegisterLogin {
+  color: black;
+  text-decoration: none;
+}
+
+.textRegisterLogin:hover {
+  text-decoration: none;
+  color: black;
+}
+
+/*Chung*/
+
+.imgBack {
+  max-width: 100%;
+}
+
+.wrapping__header__home {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.wrapping__header__not__home {
+  padding: 40px 0;
+  text-align: left;
+}
+
+.wrapping__header__home h2,
+.wrapping__header__not__home h2 {
+  position: relative;
+  font-weight: bold;
+}
+
+.wrapping__header__home h2:before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 2;
+  background: #000000;
+}
+
+.wrapping__header__not__home h2:before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  bottom: -10px;
+  left: 0;
+  margin: 0 auto;
+  z-index: 2;
+  background: #000000;
+}
+
+.btn__register {
+  position: relative;
+  background-color: white;
+  transition: all 0.5s;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.btn__register button {
+  position: relative;
+  width: 180px;
+  height: 36px;
+  background-color: black;
+  margin-top: 16px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.btn__register button:hover {
+  border: 2px solid black;
+}
+
+.btn__register button:hover span {
+  color: black;
+}
+
+.btn__register button::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 36px;
+  left: -105%;
+  background-color: #ffffff;
+  transition: 0.3s;
+}
+
+.btn__register button:hover::before {
+  left: 0;
+}
+
+.btn__register button span {
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.form-group {
+  margin: 40px 0;
+}
+
+.form-control {
+  height: 55px;
+}
+
+.success_box {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive code start */
+@media screen and (max-width: 1250px) {
+  .wrapper nav {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  nav .content .links {
+    margin-left: 30px;
+  }
+  .content .links li a {
+    padding: 8px 13px;
+  }
+  .wrapper .search-box {
+    max-width: calc(100% - 100px);
+  }
+  .wrapper .search-box input {
+    padding: 0 100px 0 15px;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 992px) {
+  .content .links li a {
+    font-size: 13px;
+  }
+  .wrapper nav .user-wrapper .user-function {
+    font-size: 13px;
+  }
+  .wrapper nav .user-wrapper .user-function .first-span {
+    font-size: 11px;
+  }
+}
+
+@media screen and (min-width: 993px) and (max-width: 1260px) {
+  .content .links li a {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper .menu-icon {
+    display: block;
+  }
+  .wrapper nav .user-wrapper {
+    display: none;
+  }
+  .wrapper #show-menu:checked ~ .menu-icon i::before {
+    content: "\f00d";
+  }
+  nav .content .links {
+    display: block;
+    position: fixed;
+    background: linear-gradient(
+      90deg,
+      var(--gradient-color-1) 0%,
+      var(--gradient-color-2) 100%
+    );
+    height: 100%;
+    width: 100%;
+    top: 70px;
+    left: -100%;
+    margin-left: 0;
+    max-width: 350px;
+    overflow-y: auto;
+    padding-bottom: 100px;
+    transition: all 0.3s ease;
+  }
+  .content .links .user-warpper-mobile {
+    display: block;
+    background: var(--text-hover-color);
+    padding: 20px;
+    color: var(--text-color);
+  }
+  .content .links .user-warpper-mobile .user-icon-mobile {
+    margin-bottom: 20px;
+  }
+  .content .links .user-warpper-mobile .user-function-mobile span a {
+    color: var(--text-color);
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  nav #show-menu:checked ~ .content .links {
+    left: 0%;
+  }
+  .content .links li {
+    margin: 15px 20px;
+  }
+  .content .links li a,
+  .content .links li label {
+    line-height: 40px;
+    font-size: 20px;
+    display: block;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+  .content .links li a.desktop-link {
+    display: none;
+  }
+
+  /* dropdown responsive code start */
+  .content .links ul,
+  .content .links ul ul {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    background: none;
+    max-height: 0px;
+    overflow: hidden;
+  }
+  .content .links #show-features:checked ~ ul,
+  .content .links #show-services:checked ~ ul,
+  .content .links #show-items:checked ~ ul {
+    max-height: 100vh;
+  }
+  .content .links ul li {
+    margin: 7px 20px;
+  }
+  .content .links ul li a {
+    font-size: 18px;
+    line-height: 30px;
+    border-radius: 5px !important;
+  }
+  .product__detail__button {
+    flex-direction: column;
+  }
+  .product__detail__to__cart {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .table {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrapper nav {
+    padding: 0 10px;
+  }
+  .content .logo a {
+    font-size: 27px;
+  }
+  .wrapper .search-box {
+    max-width: calc(100% - 70px);
+  }
+  .wrapper .search-box .go-icon {
+    width: 30px;
+    right: 0;
+  }
+  .wrapper .search-box input {
+    padding-right: 30px;
+  }
+  .product__info__wrapper {
+    display: none;
+  }
+}

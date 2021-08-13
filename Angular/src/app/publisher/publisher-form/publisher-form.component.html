@@ -1,0 +1,18 @@
+
+<form (submit)="saveChanges()" [formGroup]="publisherForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Name*</mat-label>
+        <input formControlName="name" matInput />
+        <mat-error>The name field is required</mat-error>
+    </mat-form-field>
+
+    <h4>Select Picture</h4>
+
+    <app-input-img
+    [urlCurrentImage]="model?.picture"
+    (onImageSelected)="onImageSelected($event)"></app-input-img>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="publisherForm.invalid">Save Changes</button>
+    </div>
+</form>

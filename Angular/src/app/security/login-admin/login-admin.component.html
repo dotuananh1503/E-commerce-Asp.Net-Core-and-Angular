@@ -1,0 +1,15 @@
+<div class="content">
+  <h3>Đăng nhập</h3>
+  <form (submit)="login(form.value)" [formGroup]="form">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Tên đăng nhập</mat-label>
+      <input type="email" formControlName="email" matInput>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Mật khẩu</mat-label>
+      <input type="password" formControlName="password" matInput>
+    </mat-form-field>
+    <a class="textRegisterLoginAdmin" style="cursor: pointer;" routerLink="/admin/register">Bạn chưa có tài khoản? <strong>Đăng ký ngay</strong></a>
+    <button class="btnRegister" type="submit"><span>Đăng nhập</span></button>
+  </form>
+</div>

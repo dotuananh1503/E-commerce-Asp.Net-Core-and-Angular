@@ -1,0 +1,216 @@
+.body-warpper {
+  padding: 20px 0;
+  margin: 30px 0;
+  border-top: 1px solid rgb(182, 182, 182);
+  border-bottom: 1px solid rgb(182, 182, 182);
+}
+
+.product__image__holder {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .product__side__image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .product__side__img__holder{
+    margin-bottom: 10px;
+  }
+  .product__side__img__holder img{
+    width: 100px;
+    height: 100px;
+  }
+
+  .product__main__image{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .product__main__image img{
+    width: 350px;
+  }
+  .product__detail__image {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .product__detail__button {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .product__detail__button a {
+    width: 200px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+  .product__detail__to__cart {
+    border: 2px solid var(--gradient-color-1);
+    color: var(--gradient-color-1);
+    margin-right: 12px;
+  }
+  .product__detail__pre__order {
+    background-color: var(--gradient-color-1);
+    color: var(--text-color);
+  }
+  .product__detail__pre__order:hover {
+    color: var(--text-color);
+  }
+  .product__info__holder {
+    margin-top: 100px;
+  }
+  .product__detail__name {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .product__info__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .first__info,
+  .second__info,
+  .product__price__flavor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .producer__info span:nth-child(2),
+  .author__info span:nth-child(2),
+  .publisher__info span:nth-child(2),
+  .cover__page__info span:nth-child(2) {
+    font-weight: bold;
+  }
+  .product__rating {
+    margin-bottom: 20px;
+  }
+  .product__price__flavor p {
+    color: var(--gradient-color-1);
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .price__flavor__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  }
+  .fa-heart {
+    color: red;
+  }
+  .product__view__quantity__box {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .product__view__quantity__box label {
+    font-size: 1.2em;
+    font-weight: 650;
+    padding: 0 8px 0 0;
+    margin-bottom: 0;
+    text-align: left;
+    max-width: 200px;
+    min-width: 150px;
+  }
+  .product__view__quantity__box__block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    height: 32px;
+  }
+  a.btn__subtract__qty,
+  a.btn__add__qty {
+    padding: 0 8px 0 16px;
+    cursor: pointer;
+  }
+  #qty {
+    border: none !important;
+    width: 3em !important;
+    color: var(--black);
+    font-weight: 700;
+    font-size: 1.2em;
+    height: 100%;
+    text-align: center;
+  }
+  .product__order__policy h4 {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  .product__order__policy ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .product__order__policy ul li {
+    display: block;
+    line-height: 25px;
+    position: relative;
+    padding-left: 20px;
+    overflow: hidden;
+  }
+  
+  .product__order__policy ul li::before {
+    font-family: "Font Awesome";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content: "\f178";
+    font-size: 10px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+  }
+  .wrapping__header__detail {
+    text-align: left;
+    margin-top: 50px;
+  }
+  
+  .wrapping__header__detail h2 {
+    position: relative;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .table {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 900px) {
+    .product__detail__button {
+      flex-direction: column;
+    }
+    .product__detail__to__cart {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .table {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .product__info__wrapper {
+      display: none;
+    }
+  }

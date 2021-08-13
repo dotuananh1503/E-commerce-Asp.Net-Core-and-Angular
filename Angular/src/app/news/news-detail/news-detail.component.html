@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <img class="imgBack" src="/assets/images/header_pagecontact2.jpg" alt=""/>
+</div>
+<div class="container" *ngIf="newsItem">
+  <h3>{{ newsItem.title }}</h3>
+  <p class="newsAuthor">{{ newsItem.author }} / {{ newsItem.date | date: "dd-MM-yyyy" }}</p>
+  <img width="100%" src="{{ newsItem.imageNews }}" alt="">
+  <!--<p>Cuối tháng 5, adidas Falcon đã cho ra mắt nhiều phối màu đón chào mùa Hè khiến giới trẻ yêu thích không thôi. Tưởng chừng thương hiệu sẽ tiếp tục theo đuổi phong cách ombre cho hàng loạt mối màu nối tiếp, nhưng không, lần này thiết kế Falcon còn rực rỡ hơn trước.</p>
+  <p>Từ lúc ra mắt đến nay, đôi Falcon luôn gắng với những sắc màu nhạt mang phong cách retro. Nhưng gần đây, nhà “3 sọc” rất siêng năng trình làng nhiều phối màu sử dụng tông sắc nổi bật hơn. Đôi sneakers đang ngày càng nhận được nhiều sự quan tâm nhờ diện mạo chunky đậm chất retro. Để đón chào mùa Hè, thương hiệu cho ra mắt hai phối màu áp dụng phong cách color block vô cùng bắt mắt.</p>
+  Mỗi thiết kế đều sử dụng chất liệu da trơn, da lộn và lưới mesh quen thuộc. Mỗi lớp layers được tạo nên từ nhiều sắc màu nóng, nổi bật hơn. Đây cũng là lần đầu tiên, adidas Falcon được xuất hiện với vẻ ngoài độc đáo như vậy. Đặc biệt hơn là phần đế hai màu chưa từng có trước đây. Hai thiết kế dự sẽ được ra mắt vào đầu tháng 6 tại website và một số nhà bán lẻ.
+  <img width="100%" src="/assets/images/adidas-falcon-multi-EG1113-2.jpg" alt=""> -->
+  <div [innerHTML]="newsItem.content">
+
+  </div>
+  
+</div>

@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Danh sách đơn hàng
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="table table-responsive-sm table-light">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col">Ghi chú</th>
+            <th scope="col">Ngày tạo đơn</th>
+            <th scope="col">Phương thức thanh toán</th>
+            <th scope="col">Trạng thái đơn hàng</th>
+    <!--         <th scope="col">Cập nhật</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="loadedBill.length < 1">
+            <td colspan="5">Không có sản phẩm nào trong hệ thống</td>
+          </tr>
+          <tr *ngFor="let product of loadedBill; index as i">
+            <td scope="row">{{ product[0].customername }}</td>
+            <td>{{ product[0].address }}</td>
+            <td>{{ product[0].email }}</td>
+            <td>{{ product[0].totalPrice | moneypipe }}</td>
+            <td>{{ product[0].note }}</td>
+            <td id="row2">{{ product[0].dateCreate | date: "dd-MM-yyyy" }}</td>
+            <td id="row2">{{ product[0].checkmethod }}</td>
+            <td>{{ product[0].state }}</td>
+    <!--         <td id="row4" (click)="onEditItem(i)"><a class="text-danger"><i class="fas fa-edit"></i></a></td> -->
+          </tr>                   
+       </tbody>
+      </table>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Sản phẩm thuộc đơn hàng
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="table table-responsive-sm table-light">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">hình ảnh</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Đơn giá</th>
+            <th scope="col">Số lượng</th>
+
+    <!--         <th scope="col">Cập nhật</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="loadedProductFromBillss.length < 1">
+            <td colspan="5">Không có sản phẩm nào trong hệ thống</td>
+          </tr>               
+       </tbody>
+       <tbody>
+        <tr *ngFor="let products of loadedProductFromBillss; index as i">
+          <td scope="row"><img src="{{ products[0].productImagePath }}" width="80px" alt=""></td>
+          <td>{{ products[0].productName }}</td>
+          <td>{{ products[0].price }}</td>
+          <td>{{ products[0].qty }}</td>
+  <!--         <td id="row4" (click)="onEditItem(i)"><a class="text-danger"><i class="fas fa-edit"></i></a></td> -->
+        </tr>    
+       </tbody>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

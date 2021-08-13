@@ -1,0 +1,19 @@
+<app-generic-list [list]="books">
+  <ng-container content>
+    <swiper
+      [slidesPerView]="4"
+      [spaceBetween]="30"
+      [breakpoints]="breakpoints"
+      [loop]="true"
+      [autoplay]="true"
+      [navigation]="true"
+    >
+      <ng-container *ngFor="let book of books; let i = index">
+        <ng-template swiperSlide>
+          <app-product-slide-item [book]="book" [index]="i">
+          </app-product-slide-item>
+        </ng-template>
+      </ng-container>
+    </swiper>
+  </ng-container>
+</app-generic-list>

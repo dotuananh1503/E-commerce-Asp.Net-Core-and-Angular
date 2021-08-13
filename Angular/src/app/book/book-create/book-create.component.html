@@ -1,0 +1,9 @@
+<h2>Create Book</h2>
+
+<app-book-form
+*ngIf="nonSelectedGenres"
+[nonSelectedGenres]="nonSelectedGenres" 
+(onSaveChanges)="saveChanges($event)"
+></app-book-form>
+
+<mat-spinner *ngIf="!nonSelectedGenres"></mat-spinner>

@@ -1,0 +1,62 @@
+<div class="cart__wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="product__cart__left">
+                    <div *ngIf="(cart$ | async) === null">Không có sản phẩm nào trong giỏ hàng</div>
+                    <ng-container *ngIf="(cart$ | async)">
+                        <div class="item__product__cart" *ngFor="let item of (cart$ | async).items">
+                            <div class="cart__product__btn__remove">
+                                <i (click)="removeCartItem(item)" class="fas fa-trash-alt fa-2x text-danger"></i>
+                            </div>
+                            <div class="product__img__cart">
+                                <a href=""><img src="{{item.productImage}}" alt=""></a>
+                            </div>
+                            <div class="group__product__info">
+                                <div class="info__product__cart">
+                                  <h2 class="product__name__full__text">
+                                      <a href="">
+                                                  {{item.productName}}                     
+                                      </a>
+                                  </h2>
+                                  <div class="price__original">
+                                      <div><span class="price">{{item.price | moneypipe}}</span></div>
+                                  </div>
+                                  <div class="upcoming__date">
+                                     <div><span class="date">{{item.releaseDate > today? 'Dự kiến phát hành' : ''}}</span></div>
+                                  </div>
+                                </div>
+                                <div class="number__product__cart">
+                                    <div class="product__view__quantity__box">
+                                      <div class="d-flex align-items-center">
+                                        <i (click)="decrementItemQuantity(item)" class="fa fa-minus-circle text-warning mr-2"
+                                            style="cursor: pointer; font-size: 2em;"></i>
+                                        <span class="font-weight-bold" style="font-size: 1.5em;">
+                                            {{item.quantity}}
+                                        </span>
+                                        <i (click)="incrementItemQuantity(item)" class="fa fa-plus-circle text-warning mx-2"
+                                            style="cursor: pointer; font-size: 2em;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cart__price__total">
+                                      <p class="text__price__total">Thành Tiền</p>
+                                      <span class="cart__price">
+                                          <span class="price">{{ item.price * item.quantity | moneypipe}}</span>
+                                      </span>                                                                                                                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border__product"></div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="product__cart__right">
+                    <h2 class="order__summary__title">Mã giảm giá</h2>
+                </div>
+                <app-order-totals></app-order-totals>
+            </div>
+        </div>
+    </div>
+  </div>
