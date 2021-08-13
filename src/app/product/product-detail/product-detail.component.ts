@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Product } from '../product.model';
-import { ProductService } from '../product.service';
-import * as $ from 'jquery';
-import { CommentService } from '../product-comment/comment.service';
-import { MessengerService } from 'src/app/shared/messenger.service';
 import { BookService } from 'src/app/book/book.service';
 import { bookDTO } from 'src/app/book/book.model';
 import { CartService } from 'src/app/cart/cart.service';
-import { ICartItem } from 'src/app/cart/cart.model';
+import { ViewportScroller } from '@angular/common';
+import { SecurityService } from 'src/app/security/security.service';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -19,15 +17,17 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   id: number;
   quantity = 1;
-  comments = [];
   book: bookDTO;
+  relatedBook;
+  isAuthorized;
   releaseDate: Date;
   today: Date = new Date();
-  constructor(private productService: ProductService,
+  constructor(
     private route: ActivatedRoute,
-    private commentService: CommentService,
     private booksService: BookService,
-    private cartService: CartService
+    private cartService: CartService,
+    private viewportScroller: ViewportScroller,
+    public securityService: SecurityService
   ) { }
 
 
@@ -38,11 +38,15 @@ export class ProductDetailComponent implements OnInit {
         this.book = book;
         this.releaseDate = new Date(book.releaseDate);
       })
+      this.booksService.getRelatedProducts(params.id).subscribe((books) => {
+        this.relatedBook = books;
+      })
+      this.isAuthorized = this.securityService.isAuthenticated();
     })
-    this.commentService.fetchProducts().subscribe(res => {
-      this.comments = res;
-      console.log(this.comments)
-    })
+  }
+
+  public onClick(elementId: string): void {
+    this.viewportScroller.scrollToAnchor(elementId);
   }
 
   incrementItemQuantity() {
@@ -58,4 +62,5 @@ export class ProductDetailComponent implements OnInit {
   addItemToCart() {
     this.cartService.addItemToCart(this.book, this.quantity);
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import AOS from 'aos';
@@ -10,18 +10,17 @@ import AOS from 'aos';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] = [
-
-  ];
+  @Input()
+  books;
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     AOS.init();
-/*     this.productService.fetchProducts().subscribe(productData => {
-      this.products = productData;
-    }); */
+    /*     this.productService.fetchProducts().subscribe(productData => {
+          this.products = productData;
+        }); */
 
- /*    this.products = this.productService.getProducts(); */
+    /*    this.products = this.productService.getProducts(); */
   }
 
 }

@@ -4,16 +4,15 @@
       ><img src="{{ book.productImage }}" alt=""
     /></a>
   </div>
-  <div class="product__name">
-    <p>{{ book.name }}</p>
-  </div>
-  <div class="product__price">
-    <p>{{ book.price | moneypipe }}</p>
+  <div class="product__top">
+    <div class="product__name">
+      <p>{{ book.name }}</p>
+    </div>
+    <div class="product__price">
+      <p>{{ book.price | moneypipe }}</p>
+    </div>
   </div>
   <div class="product__add__to__cart">
-    <button (click)="addItemToCart()" class="btn btn-primary">
-      Thêm vào giỏ hàng
-    </button>
-    <a routerLink="/cart">Thêm vào giỏ</a>
+    <a (click)="addItemToCart()">Thêm vào giỏ</a>
   </div>
 </div>

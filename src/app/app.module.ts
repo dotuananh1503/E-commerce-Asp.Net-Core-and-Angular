@@ -21,15 +21,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartService } from './cart/cart.service';
 import { SucccessComponent } from './contact/succcess/succcess.component';
-import { environment } from '../environments/environment';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './security/profile/profile.component';
 import { SocialLoginModule } from 'angularx-social-login';
 import { CheckoutEditComponent } from './checkout/checkout-edit/checkout-edit.component';
 import { CheckoutService } from './checkout/checkout.service';
-import { CommentService } from './product/product-comment/comment.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BackLayoutComponent } from './_layout/back-layout/back-layout.component';
 import { FrontLayoutComponent } from './_layout/front-layout/front-layout.component';
@@ -62,25 +59,26 @@ import { CategoryUpdateComponent } from './category/category-update/category-upd
 import { LoginAdminComponent } from './security/login-admin/login-admin.component';
 import { RegisterAdminComponent } from './security/register-admin/register-admin.component';
 import { NonLayoutComponent } from './_layout/non-layout/non-layout.component';
-import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
 import { ChangePasswordComponent } from './security/change-password/change-password.component';
 import { JwtInterceptorService } from './security/jwt-interceptor.service';
 import { PhotoUploadComponent } from './utilities/photo-upload/photo-upload.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { ProductCommentComponent } from './product/product-comment/product-comment.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { FilterPipe } from './product/filter.pipe';
 import { MoneyPipe } from './product/money.pipe';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { ProductCollectorComponent } from './product/product-collector/product-collector.component';
-import { ProductItemComponent } from './product/product-list/product-item/product-item.component';
+import { ProductItemComponent } from './product/product-item/product-item.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductSlideComponent } from './product/product-slide/product-slide.component';
-import { SwiperComponent, SwiperModule } from 'swiper/angular';
+import { SwiperModule } from 'swiper/angular';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
 import { ProductSlideItemComponent } from './product/product-slide-item/product-slide-item.component';
 import { AddressComponent } from './security/address/address.component';
+import { RatingComponent } from './utilities/rating/rating.component';
+import { NgxInputStarRatingModule } from 'ngx-input-star-rating';
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -102,7 +100,6 @@ import { AddressComponent } from './security/address/address.component';
     MoneyPipe,
     FilterPipe,
     ProductDetailComponent,
-    ProductCommentComponent,
     NewsComponent,
     AboutComponent,
     CheckoutComponent,
@@ -136,7 +133,8 @@ import { AddressComponent } from './security/address/address.component';
     ChangePasswordComponent,
     PhotoUploadComponent,
     GenericListComponent,
-    AddressComponent
+    AddressComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
@@ -144,11 +142,12 @@ import { AddressComponent } from './security/address/address.component';
     CKEditorModule,
     AppRoutingModule,
     NewsModule,
+    NgxInputStarRatingModule,
+    RatingModule,
     FormsModule,
     ReactiveFormsModule,
     MatExpansionModule,
     MatStepperModule,
-    MatIconModule,
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
@@ -167,7 +166,7 @@ import { AddressComponent } from './security/address/address.component';
     SocialLoginModule,
     SwiperModule
   ],
-  providers: [ProductService, NewsService, CartService, CheckoutService, CommentService, CategoryServicce, {
+  providers: [ProductService, NewsService, CartService, CheckoutService, CategoryServicce, {
     provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true,
   }],
   bootstrap: [AppComponent]

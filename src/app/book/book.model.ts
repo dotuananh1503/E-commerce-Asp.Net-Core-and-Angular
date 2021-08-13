@@ -2,6 +2,7 @@ import { categoryDTO } from "src/app/category/category.model";
 import { genreDTO } from "src/app/genre/genre.model";
 import { publisherDTO } from "src/app/publisher/publisher.model";
 import { Photo } from "../utilities/photo.model";
+import { ratingForReturn } from "../utilities/rating.model";
 
 export interface bookCreationDTO {
     name: string;
@@ -37,6 +38,8 @@ export interface bookDTO {
     PublisherId: number;
     categoryName: string;
     publisherName: string;
+    averageVote: number;
+    ratings: ratingForReturn[];
     genresIds: number[];
     photos: Photo[];
 }

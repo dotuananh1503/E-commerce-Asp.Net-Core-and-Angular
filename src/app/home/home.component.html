@@ -1,22 +1,38 @@
-<div class="container-fluid">
-  <img class="imgBack" src="/assets/images/queenwines-sigel-bg-1.jpg" alt="" />
-  <div class="carousel-caption d-none d-md-block">
-    <h5
-      class="animate__animated animate__fadeInDown titleHome"
-      style="animation-delay: 0.5s"
-    >
-      Thương hiệu số 1 Việt Nam
-    </h5>
-    <p
-      class="animate__animated animate__fadeInLeft contentHome"
-      style="animation-delay: 1s"
-    >
-      Chúng tôi tự hào là một trong những thương hiệu kinh doanh rượu vang và
-      xuất khẩu uy tín được người tiêu dùng tin yêu.
-    </p>
+<div class="container">
+  <div class="slider">
+    <img src="/assets/images/psl_1_r1_slide_img_32.jpg" alt="">
   </div>
 </div>
 <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="home__status__box first-box">
+              <div class="home__status__content">
+                  <i class="fas fa-book-reader fa-2x"></i>
+                  <h2>Những bản Manga mới nhất</h2>
+                  <h2>1000+</h2>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="home__status__box second-box">
+              <div class="home__status__content">
+                  <i class="fas fa-user fa-2x"></i>
+                  <h2>Khách hàng thân thiết</h2>
+                  <h2>500+</h2>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="home__status__box third-box">
+              <div class="home__status__content">
+                  <i class="fas fa-heart fa-2x"></i>
+                  <h2>Thế giới của Light Novel</h2>
+                  <h2>100+</h2>
+              </div>
+          </div>
+      </div>
+    </div>
   <div class="wrapping__header__home">
     <h2><a href="">Sản phẩm mới</a></h2>
   </div>
@@ -44,24 +60,59 @@
 <div class="container">
   <div class="wrapping__header__home">
     <h2><a href="">Sản phẩm sắp ra mắt</a></h2>
-    <!--             <div class="view-all">
-          <a href="">Xem thêm</a>
-      </div> -->
   </div>
-  <!--   <app-cart></app-cart> -->
   <div></div>
 
   <app-product-slide [books]="upcomingProducts"></app-product-slide>
 </div>
-<div class="news__letter">
-  <div class="container-fluid">
-    <div class="news_letter__content">
-      <h2>Đăng ký</h2>
-      <p>
-        Đăng ký nhận bản tin của HuWine để cập nhật những sản phẩm mới, nhận
-        thông tin ưu đãi đặc biệt và thông tin giảm giá khác.
-      </p>
-    </div>
+<div class="home__collection">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="home__collection__wrapper">
+                  <div class="home__collection__icon manga-color">
+                      <i class="fas fa-book-open fa-2x"></i>
+                  </div>
+                  <div class="home__collection__content">
+                      <p class="home__collection__text manga-color">Manga</p>
+                      <p class="home__collection__text">200</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="home__collection__wrapper">
+                  <div class="home__collection__icon lightNovel-color">
+                      <i class="fas fa-book-open fa-2x"></i>
+                  </div>
+                  <div class="home__collection__content">
+                      <p class="home__collection__text lightNovel-color">Light Novel</p>
+                      <p class="home__collection__text">200</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="home__collection__wrapper">
+                  <div class="home__collection__icon liturature-color">
+                      <i class="fas fa-book-open fa-2x"></i>
+                  </div>
+                  <div class="home__collection__content">
+                      <p class="home__collection__text liturature-color">Văn học</p>
+                      <p class="home__collection__text">200</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="home__collection__wrapper">
+                  <div class="home__collection__icon item-color">
+                      <i class="fas fa-book-open fa-2x"></i>
+                  </div>
+                  <div class="home__collection__content">
+                      <p class="home__collection__text item-color">Vật phẩm</p>
+                      <p class="home__collection__text">200</p>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
 <div class="wrapping__header__home">
@@ -98,5 +149,65 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container">
+      <div class="wrapping__header__home">
+          <h2><a href="">Đối tác</a></h2>
+      </div>
+      <swiper
+      [slidesPerView]="4"
+      [spaceBetween]="30"
+      [breakpoints]="breakpoints"
+      [loop]="true"
+      [autoplay]="true"
+      [navigation]="true"
+    >
+      <ng-container>
+        <ng-template swiperSlide>
+          <div class="publisher__holder">
+            <div class="publisher__image">
+                <img src="/assets/images/plogo_1_r1_logo_img_12.jpg" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div class="publisher__holder">
+            <div class="publisher__image">
+                <img src="/assets/images/plogo_1_r1_logo_img_22.jpg" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div class="publisher__holder">
+            <div class="publisher__image">
+                <img src="/assets/images/plogo_1_r1_logo_img_32.jpg" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div class="publisher__holder">
+            <div class="publisher__image">
+                <img src="/assets/images/plogo_1_r1_logo_img_42.jpg" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div class="publisher__holder">
+            <div class="publisher__image">
+                <img src="/assets/images/plogo_1_r1_logo_img_52.jpg" alt="">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template swiperSlide>
+          <div class="publisher__holder">
+            <div class="publisher__image">
+                <img src="/assets/images/plogo_1_r1_logo_img_62.jpg" alt="">
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </swiper>
   </div>
 </div>

@@ -1,37 +1,72 @@
-<div class="container-fluid">
-  <img class="imgBack" src="/assets/images/header_pagecontact2.jpg" alt=""/>
-</div>
 <div class="container">
-  <h2 style="text-align: center; margin-top: 30px;">Tất cả sản phẩm</h2>
-  <ul class="filter_list">
-      <li *ngFor="let item of checkBoxArray">
-          <input type="{{ item.type }}" value={{item.id}} (change)="onChange($event)"> {{ item.price1 | moneypipe }} - {{ item.price2 | moneypipe }}
-      </li>
-  </ul>
-  <div class="row">
-    <div *ngFor="let product of loadedProduct; let i = index" class="col-lg-3 col-md-6 col-sm-6 col-6">
-      <!-- <app-product-list></app-product-list> -->
-      <div class="card__item" *ngIf="product">
-        <div class="product__image">
-            <a [routerLink]="['/product-detail', product.id]" routerLinkActive="active">
-                <img src="{{ product.imagePath }}" height="300px"/>
-            </a>
-        </div>
-        <div class="product__detail">
-            <div class="box__product__detail">
-                <h3 class="product__name">
-                    <a href="">{{ product.productname }}</a>
-                </h3>
-                <div class="product__capcon">
-                    <p> {{ product.capacity }}/ {{ product.concentration }}</p>
-                </div>
-                <div class="product__price">
-                    <p> {{ product.price | moneypipe }}</p>
-                </div>
-                <button style="margin-top: 20px;" type="button" class="btn btn-sm btn-danger product-btn" (click)="handleAddToCart()">Thêm vào giỏ hàng</button>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="filter__wrapper" style="margin-top: 100px;">
+                <h2>Search Books</h2>
+                <form [formGroup]="form">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input formControlName="name" matInput />
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="fill">
+                        <mat-label>Genre</mat-label>
+                        <mat-select formControlName="genreId">
+                            <mat-option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="fill">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="categoryId">
+                        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="fill">
+                        <mat-label>Publishers</mat-label>
+                        <mat-select formControlName="publisherId">
+                            <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">{{publisher.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Sort</mat-label>
+                        <mat-select formControlName="sortBy">
+                            <mat-option *ngFor="let select of sortSelection" [value]="select.value">{{select.value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+            
+                    <div>
+                        <mat-checkbox name="price" formControlName="priceFilter1">0đ - 150000đ</mat-checkbox>
+                    </div>
+            
+                    <div>
+                        <mat-checkbox name="price" formControlName="priceFilter2">150000đ - 300000đ</mat-checkbox>
+                    </div>
+            
+                    <div>
+                        <mat-checkbox name="price" formControlName="priceFilter3">300000đ - 500000đ</mat-checkbox>
+                    </div>
+            
+                    <div>
+                        <mat-checkbox name="price" formControlName="priceFilter4">500000đ - 700000đ</mat-checkbox>
+                    </div>
+            
+            
+                    <div class="clear-container">
+                        <button mat-flat-button (click)="clearForm()" color="warn">Clear</button>
+                    </div>
+                </form>
+                <hr>
+            
+                <label>Sort: </label>
+                <select (change)="onChangeValue($event)">
+                    <option *ngFor="let select of sortSelection" [value]="select.value">{{select.value}}</option>
+                </select>
             </div>
         </div>
-    </div>    
     </div>
-  </div>
+    <app-product-list [books]="books"></app-product-list>
 </div>
+

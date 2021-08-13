@@ -8,19 +8,18 @@ import { AuthService } from './shared/auth.service';
   providedIn: 'root'
 })
 export class AdminGuardGuard implements CanActivate {
-  constructor(private securityService: SecurityService, private router: Router){
- 
+  constructor(private securityService: SecurityService, private router: Router) {
+
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.securityService.getRole() === 'admin'){
+    if (this.securityService.getRole() === 'admin') {
       return true;
     }
-
-    this.router.navigate(['/admin/login']);      
+    this.router.navigate(['admin/login']);
     return false;
   }
-  
+
 }

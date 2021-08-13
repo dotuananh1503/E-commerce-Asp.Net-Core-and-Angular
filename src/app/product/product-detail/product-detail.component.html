@@ -42,7 +42,9 @@
                       </div>
                   </div>
                   <div class="product__rating">
-                      <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                    <a (click)="onClick('rating')">
+                        <star-rating value={{book.averageVote}} checkedcolor="gold" uncheckedcolor="gray" size="24px"></star-rating> ({{book.ratings.length}} đánh giá)
+                    </a>
                   </div>
                   <div class="product__price__flavor">
                       <p>{{book.price | moneypipe}}</p>
@@ -132,4 +134,34 @@
   <div [innerHTML]="book.content" class="product__content__wrapper">
       
   </div>
+</div>
+<div *ngIf="relatedBook" class="container-fluid body-wrapper">
+    <div class="container">
+        <div class="wrapping__header__detail">
+            <h2><a href="">Sản phẩm liên quan</a></h2>
+        </div>
+        <app-product-slide [books]="relatedBook"></app-product-slide>
+        <hr>
+        <div class="wrapping__header__detail">
+            <h2><a href="">Đánh giá sản phẩm</a></h2>
+        </div>
+        <div id="rating" *ngIf="book">
+            <section class="rating__wrapper" *ngFor="let rate of book.ratings">
+                <star-rating *ngIf="rate" value={{rate.rate}} checkedcolor="gold" uncheckedcolor="gray" size="24px"></star-rating>
+                bởi {{rate.userName}} - {{rate.comment}} 
+                <br>
+                lúc {{rate.ratingDate | date: 'dd/MM/yyyy'}}
+            </section>
+            <div *ngIf="!isAuthorized" class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    Chỉ có thành viên mới được thực hiện chức năng này. 
+                </div>
+            </div>
+            <div *ngIf="isAuthorized" class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <app-rating [bookId]="book.id"></app-rating>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

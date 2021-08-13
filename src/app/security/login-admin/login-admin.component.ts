@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { userCredentials, userLogin } from '../security.model';
 import { SecurityService } from '../security.service';
 
@@ -15,7 +16,7 @@ export class LoginAdminComponent implements OnInit {
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   form: FormGroup;
   model: userLogin;
@@ -36,8 +37,10 @@ export class LoginAdminComponent implements OnInit {
       .login(userCredentials)
       .subscribe((authenticationResponse) => {
         this.securityService.saveToken(authenticationResponse);
-        console.log("ĐĂNG NHẬP THÀNH CÔNG!!!")
+        Swal.fire("Success", "ĐĂNG NHẬP THÀNH CÔNG!!!", "success");
         this.router.navigate(['/categories']);
+      }, () => {
+        Swal.fire("Error", "ĐĂNG NHẬP THẤT BẠI", "error");
       });
   }
 

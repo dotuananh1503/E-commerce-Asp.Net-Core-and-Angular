@@ -16,14 +16,14 @@ export class AuthorizeViewComponent implements OnInit {
   @Input()
   role: string;
 
-  public isAuthorized(){
-    if (this.role){
+  public isAuthorized() {
+    if (this.role) {
       return this.securityService.getRole() === this.role;
-    } 
-    else{
+    }
+    else {
       return this.securityService.isAuthenticated();
     }
   }
-    
+
 
 }

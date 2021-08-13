@@ -76,12 +76,12 @@ const appRoutes: Routes = [
             { path: 'categories/create', component: CategoryEditComponent },
             { path: 'categories/update/:id', component: CategoryUpdateComponent },
             { path: 'publishers/create', component: PublisherCreateComponent },
-            { path: 'publishers', component: PublisherIndexComponent },
+            { path: 'publishers', component: PublisherIndexComponent, canActivate: [AdminGuardGuard] },
             { path: 'publishers/update/:id', component: PublisherEditComponent },
             { path: 'genres/create', component: GenreCreateComponent },
-            { path: 'genres', component: GenreIndexComponent },
+            { path: 'genres', component: GenreIndexComponent, canActivate: [AdminGuardGuard] },
             { path: 'genres/update/:id', component: GenreEditComponent },
-            { path: 'books/create', component: BookCreateComponent },
+            { path: 'books/create', component: BookCreateComponent, canActivate: [AdminGuardGuard] },
             { path: 'books/detail/:id', component: BookDetailComponent },
             { path: 'books', component: BookListComponent },
             { path: 'books/update/:id', component: BookEditComponent },
@@ -105,7 +105,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes)],
+    imports: [RouterModule.forRoot(appRoutes, { anchorScrolling: 'enabled' })],
     exports: [RouterModule]
 })
 

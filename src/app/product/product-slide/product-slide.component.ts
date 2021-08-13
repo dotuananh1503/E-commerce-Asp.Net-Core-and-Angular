@@ -23,7 +23,7 @@ export class ProductSlideComponent implements OnInit {
   ngOnInit() {
   }
 
-  breakpoints: {
+  breakpoints = {
     // when window width is >= 320px
     320: {
       slidesPerView: 1,
