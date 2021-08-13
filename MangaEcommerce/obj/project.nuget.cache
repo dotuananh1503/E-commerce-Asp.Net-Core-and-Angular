@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qTEKT1mPtepLmlsrmUU/MBICPQH9TUQ5lu129iA1cH7oerGQvxIt1IQpo3MWGmZwqnoDir7xqC+hg81lF3P83Q==",
+  "dgSpecHash": "0NfH7Lho2fh5BkJRF32GwgxC2mI/tS87D5eS6PcwuTKO3tTBAjqmgAhoXB1YiLBKedGqpL7ItG5n/+aOBbGI+A==",
   "success": true,
-  "projectFilePath": "D:\\Angular_Huflit\\MangaECommerce\\MangaEcommerce.csproj",
+  "projectFilePath": "D:\\Angular_Huflit\\E-commerce-Asp.Net-Core-and-Angular\\MangaEcommerce\\MangaEcommerce.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tuan Anh\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Tuan Anh\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

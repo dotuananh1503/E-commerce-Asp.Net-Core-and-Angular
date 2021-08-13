@@ -7882,11 +7882,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Angular_Huflit\\MangaECommerce\\MangaEcommerce.csproj",
+      "projectUniqueName": "D:\\Angular_Huflit\\E-commerce-Asp.Net-Core-and-Angular\\MangaEcommerce\\MangaEcommerce.csproj",
       "projectName": "MangaEcommerce",
-      "projectPath": "D:\\Angular_Huflit\\MangaECommerce\\MangaEcommerce.csproj",
+      "projectPath": "D:\\Angular_Huflit\\E-commerce-Asp.Net-Core-and-Angular\\MangaEcommerce\\MangaEcommerce.csproj",
       "packagesPath": "C:\\Users\\Tuan Anh\\.nuget\\packages\\",
-      "outputPath": "D:\\Angular_Huflit\\MangaECommerce\\obj\\",
+      "outputPath": "D:\\Angular_Huflit\\E-commerce-Asp.Net-Core-and-Angular\\MangaEcommerce\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

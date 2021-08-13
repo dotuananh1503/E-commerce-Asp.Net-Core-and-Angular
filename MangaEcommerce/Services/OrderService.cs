@@ -84,5 +84,12 @@ namespace MangaEcommerce.Services
             order.Status = OrderStatus.Accepted;
             return order;
         }
+
+        public async Task<Order> CancelOrderStatus(int id, string buyerEmail)
+        {
+            var order = await GetOrderByIdAsync(id, buyerEmail);
+            order.Status = OrderStatus.Canceled;
+            return order;
+        }
     }
 }
