@@ -92,6 +92,14 @@ namespace MangaEcommerce.Controllers
             return dto;
         }
 
+        [HttpGet("{id:int}/ratings")]
+        public async Task<ActionResult<List<RatingForReturnDTO>>> GetRatings(int id)
+        {
+            var ratings = await context.Ratings.Where(x => x.ProductId == id).ToListAsync();
+
+            return Ok(mapper.Map<List<Rating>, List<RatingForReturnDTO>>(ratings));
+        }
+
         [HttpGet("{id:int}/related")]
         public async Task<ActionResult<List<ProductDTO>>> GetRelatedProducts(int id)
         {

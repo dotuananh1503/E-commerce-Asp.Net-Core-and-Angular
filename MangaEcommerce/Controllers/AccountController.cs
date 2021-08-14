@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration;
 using MangaEcommerce.DatabaseContext;
 using MangaEcommerce.DTOs;
 using MangaEcommerce.Extensions;
@@ -16,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -160,9 +158,19 @@ namespace MangaEcommerce.Controllers
             }
         }
 
-        [HttpPut("user/addresses")]
+        [HttpGet("user/address/{id:int}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult<AddressDTO>> UpdateUserAddresses(AddressDTO addressDTO, int addressId)
+        public async Task<ActionResult<AddressDTO>> GetAddressById(int id)
+        {
+            var address = await context.Addresses.FirstOrDefaultAsync(x => x.Id == id);
+
+            var dto = mapper.Map<AddressDTO>(address);
+            return dto;
+        }
+
+        [HttpPut("user/address/{id:int}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<AddressDTO>> UpdateUserAddresses(int id, [FromForm] AddressCreationDTO addressCreationDTO)
         {
             var user = await userManager.FindByEmailWithAddressAsync(HttpContext.User);
             if (user == null)
@@ -171,11 +179,20 @@ namespace MangaEcommerce.Controllers
             }
             else
             {
-                var userAddress = await context.Addresses.FirstOrDefaultAsync(x => x.Id == addressId);
-                userAddress = mapper.Map(addressDTO, userAddress);
-                var result = await userManager.UpdateAsync(user);
-                if (result.Succeeded) return Ok(mapper.Map<Address, AddressDTO>(userAddress));
-                return BadRequest("Problem updating the user addresses");
+                addressCreationDTO.ApplicationUserId = user.Id;
+
+                var address = await context.Addresses.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (address == null)
+                {
+                    return NotFound();
+                }
+
+                address = mapper.Map(addressCreationDTO, address);
+
+                await context.SaveChangesAsync();
+
+                return Ok(mapper.Map<AddressDTO>(address));
             }
         }
 
@@ -193,6 +210,7 @@ namespace MangaEcommerce.Controllers
             {
                 addressCreationDTO.ApplicationUserId = user.Id;
                 var address = mapper.Map<Address>(addressCreationDTO);
+                if (!user.Addresses.Any(x => x.IsMainAddress)) address.IsMainAddress = true;
                 user.Addresses.Add(address);
                 var temp = await context.SaveChangesAsync() > 0;
                 if (temp)
@@ -200,9 +218,50 @@ namespace MangaEcommerce.Controllers
                     var addressToReturn = mapper.Map<AddressDTO>(address);
                     return Ok(addressToReturn);
                 }
-                return BadRequest("Could not add the photo");
+                return BadRequest("Could not add address");
             }
         }
+
+        [HttpPost("user/address/{id:int}/setMainAddress")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> SetMainAddress(int id)
+        {
+            var user = await userManager.FindByEmailWithAddressAsync(HttpContext.User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var address = await context.Addresses.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (address.IsMainAddress) return BadRequest("Đây đã là địa chỉ mặc định");
+
+                var currentMainAddress = await context.Addresses.FirstOrDefaultAsync(x => x.IsMainAddress);
+                if (currentMainAddress != null) currentMainAddress.IsMainAddress = false;
+
+                address.IsMainAddress = true;
+
+                await context.SaveChangesAsync();
+                return Ok();
+            }    
+        }
+
+        [HttpDelete("user/address/{id:int}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> DeleteAddress(int id)
+        {
+            var address = await context.Addresses.FirstOrDefaultAsync(x => x.Id == id);
+            if( address == null) 
+            {
+                return NotFound();
+            }
+
+            context.Remove(address);
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+
 
         private AuthenticationResponse BuildToken(UserCredentials userCredentials)
         {
