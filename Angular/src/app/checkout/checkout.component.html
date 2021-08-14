@@ -6,10 +6,20 @@
                     <div class="checkout__content">
                         <h5>Địa chỉ giao hàng</h5>
                         <hr>
-                        <div class="checkout__address" *ngFor="let address of addresses">
+                        <div class="checkout__address" *ngFor="let address of addresses; let i = index">
                             <input name="address" (change)="onSelected($event)" type="radio" [value]="address.id">
-                            {{address.firstName + ' ' + address.lastName}} | {{address.street}}, Phường {{address.ward}}, Quận {{address.district}}, {{address.city}}, {{address.country}} | {{address.phone}} 
+                            {{address.firstName + ' ' + address.lastName}} | {{address.street}}, Phường {{address.ward}}, Quận {{address.district}}, {{address.city}}, {{address.country}} | {{address.phone}}
+                            <button (click)="openDialog(address)" class="btn btn-success">Sửa địa chỉ</button> 
+                            <button *ngIf="!address.isMainAddress"
+                            [swal]="{
+                              title: 'Xác nhân!',
+                              text: 'Bạn có muốn xóa địa chỉ này?',
+                              showCancelButton: true
+                            }"
+                            (confirm)="onDeleteAddress(address.id)" 
+                             class="btn btn-danger">Xóa</button>
                         </div>
+                        <button (click)="openDialogCreate()" class="btn btn-primary">Thêm địa chỉ</button> 
                         <form style="display: none;" formGroupName="addressForm">
                             <mat-form-field appearance="fill">
                               <mat-label>First Name</mat-label>

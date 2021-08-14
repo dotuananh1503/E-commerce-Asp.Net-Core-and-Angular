@@ -79,6 +79,7 @@ import { AddressComponent } from './security/address/address.component';
 import { RatingComponent } from './utilities/rating/rating.component';
 import { NgxInputStarRatingModule } from 'ngx-input-star-rating';
 import { RatingModule } from 'ng-starrating';
+import { AddressFormComponent } from './security/address-form/address-form.component';
 
 @NgModule({
   declarations: [
@@ -134,6 +135,7 @@ import { RatingModule } from 'ng-starrating';
     PhotoUploadComponent,
     GenericListComponent,
     AddressComponent,
+    AddressFormComponent,
     RatingComponent
   ],
   imports: [
@@ -169,6 +171,7 @@ import { RatingModule } from 'ng-starrating';
   providers: [ProductService, NewsService, CartService, CheckoutService, CategoryServicce, {
     provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true,
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddressFormComponent]
 })
 export class AppModule { }

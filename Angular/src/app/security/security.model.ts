@@ -25,6 +25,18 @@ export interface userInfo {
 }
 
 export interface userAddress {
+    id: number;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    country: string;
+    street: string;
+    city: string;
+    ward: string;
+    district: string;
+}
+
+export interface userAddressCreation {
     firstName: string;
     lastName: string;
     phone: string;

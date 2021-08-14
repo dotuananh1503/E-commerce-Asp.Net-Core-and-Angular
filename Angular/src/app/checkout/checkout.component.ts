@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 import { ICart, ICartTotals } from '../cart/cart.model';
 import { CartService } from '../cart/cart.service';
-import { userAddress } from '../security/security.model';
+import { AddressFormComponent } from '../security/address-form/address-form.component';
+import { userAddress, userAddressCreation } from '../security/security.model';
 import { SecurityService } from '../security/security.service';
 import { AuthService } from '../shared/auth.service';
 import { IDeliveryMethod, IOrder, IPaymentMethod } from './checkout.model';
@@ -20,13 +23,14 @@ import { CheckoutService } from './checkout.service';
 export class CheckoutComponent implements OnInit {
 
   checkoutForm: FormGroup;
-  addresses: userAddress;
+  addresses;
   deliveryMethods: IDeliveryMethod[];
   paymentMethods: IPaymentMethod;
   cartTotals$: Observable<ICartTotals>;
   constructor(private checkoutService: CheckoutService, private toastService: ToastrService,
     private cartService: CartService, public authService: AuthService,
     private socialService: SocialAuthService,
+    public dialog: MatDialog,
     private securityService: SecurityService,
     private fb: FormBuilder) {
   }
@@ -41,9 +45,7 @@ export class CheckoutComponent implements OnInit {
     this.checkoutService.getPaymentMethods().subscribe(response => {
       this.paymentMethods = response;
     });
-    this.securityService.getUserAddresses().subscribe(response => {
-      this.addresses = response;
-    })
+    this.fetchAddress();
     this.cartTotals$ = this.cartService.cartTotal$;
   }
 
@@ -71,15 +73,49 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  fetchAddress() {
+    this.securityService.getUserAddresses().subscribe(response => {
+      this.addresses = response;
+    })
+  }
+
+  openDialog(address): void {
+    const dialogRef = this.dialog.open(AddressFormComponent, {
+      width: '600px',
+      data: {
+        address,
+        editmode: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchAddress();
+    });
+  }
+
+  openDialogCreate(): void {
+    const dialogRef = this.dialog.open(AddressFormComponent, {
+      width: '600px',
+      data: { editmode: false }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchAddress();
+    });
+  }
+
   onSelected(event) {
     var id = event.target.value;
     console.log(id);
-    this.getAddressFormValues(id - 1);
+    this.getAddressFormValues(id);
   }
 
-  getAddressFormValues(id: number) {
-    this.checkoutForm.get('addressForm').patchValue(this.addresses[id]);
-    console.log(this.checkoutForm.get('addressForm').value);
+  getAddressFormValues(addressId: number) {
+    var temp = this.addresses.filter(function (e: userAddress) {
+      return e.id == addressId
+    })
+    this.checkoutForm.get('addressForm').patchValue(temp[0]);
+    console.log(this.checkoutForm.get('addressForm').value)
   }
 
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
@@ -111,6 +147,16 @@ export class CheckoutComponent implements OnInit {
       orderNote: this.checkoutForm.get('noteForm').get('orderNote').value,
       shipToAddress: this.checkoutForm.get('addressForm').value
     };
+  }
+
+  onDeleteAddress(id) {
+    this.securityService.deleteAddressById(id).subscribe(() => {
+      Swal.fire("Success", "Xóa thành công!", "success");
+      this.fetchAddress();
+    }, err => {
+      console.log(err);
+      Swal.fire("Error", "Failed", "error");
+    })
   }
 
 }
