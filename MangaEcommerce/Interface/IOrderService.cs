@@ -10,6 +10,7 @@ namespace MangaEcommerce.Interface
     {
         Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, int paymentMethodId, string orderNote , string cartId, Address shippingAddress);
         Task<Order> UpdateOrderStatus(int id, string buyerEmail);
+        Task<Order> CancelOrderStatus(int id, string buyerEmail);
         Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail);
         Task<Order> GetOrderByIdAsync(int id, string buyerEmail);
         Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodAsync();

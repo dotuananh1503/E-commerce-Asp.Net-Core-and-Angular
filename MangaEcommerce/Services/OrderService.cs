@@ -28,6 +28,12 @@ namespace MangaEcommerce.Services
             foreach(var item in cart.Items)
             {
                 var productItem = await productRepository.GetProductByIdAsync(item.Id);
+                if(productItem.Quantity > 0)
+                {
+                    productItem.Quantity = productItem.Quantity - item.Quantity;
+                    productItem.SoldQuantity = productItem.SoldQuantity + item.Quantity;
+                    await context.SaveChangesAsync();
+                }    
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, item.ProductImage);
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
                 items.Add(orderItem);
@@ -88,7 +94,26 @@ namespace MangaEcommerce.Services
         public async Task<Order> CancelOrderStatus(int id, string buyerEmail)
         {
             var order = await GetOrderByIdAsync(id, buyerEmail);
-            order.Status = OrderStatus.Canceled;
+            if(order.Status == OrderStatus.Shipping
+                || order.Status == OrderStatus.PaymentFailed 
+                || order.Status == OrderStatus.PaymentReceived)
+            {
+                return null;
+            }
+            else
+            {
+                foreach (var orderItem in order.OrderItems)
+                {
+                    var product = await productRepository.GetProductByIdAsync(orderItem.ItemOrdered.ProductItemId);
+                    product.Quantity = product.Quantity + orderItem.Quantity;
+                    product.SoldQuantity = product.SoldQuantity - orderItem.Quantity;
+                    await context.SaveChangesAsync();
+                }
+                order.Status = OrderStatus.Canceled;
+                var result = await context.SaveChangesAsync() > 0;
+
+                if (result == false) return null;
+            }    
             return order;
         }
     }

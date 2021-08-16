@@ -56,6 +56,15 @@ namespace MangaEcommerce.Controllers
             return Ok(order);
         }
 
+        [HttpPut("{id:int}/cancel")]
+        public async Task<ActionResult<Order>> CancelOrder(int id)
+        {
+            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+            var order = await orderService.CancelOrderStatus(id, email);
+            if (order == null) return BadRequest("Đơn hàng này không thể hủy");
+            return Ok(order);
+        }
+
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<OrderDTO>>> GetOrdersForUser()
         {

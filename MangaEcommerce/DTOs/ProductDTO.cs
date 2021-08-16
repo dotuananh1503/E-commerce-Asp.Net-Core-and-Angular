@@ -19,6 +19,7 @@ namespace MangaEcommerce.DTOs
         public string Translators { get; set; }
         public string ProductImage { get; set; }
         public int Quantity { get; set; }
+        public int SoldQuantity { get; set; }
         public double AverageVote { get; set; }
         public string Content { get; set; }
         public string Author { get; set; }

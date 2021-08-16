@@ -19,6 +19,7 @@ namespace MangaEcommerce.Models
         public string Translators { get; set; }
         public string ProductImage { get; set; }
         public int Quantity { get; set; }
+        public int SoldQuantity { get; set; } = 0;
         public string Author { get; set; }
         public string Content { get; set; }
         public DateTime ReleaseDate { get; set; }

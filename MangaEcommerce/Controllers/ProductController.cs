@@ -44,6 +44,7 @@ namespace MangaEcommerce.Controllers
                 .Include(x => x.ProductGenres).ThenInclude(x => x.Genre)
                 .Include(x => x.Category)
                 .Include(x => x.Publisher)
+                .Include(x => x.Ratings)
                 .Include(x => x.Photos)
                 .OrderBy(x => x.ReleaseDate)
                 .Take(top)
@@ -54,14 +55,27 @@ namespace MangaEcommerce.Controllers
                 .Include(x => x.ProductGenres).ThenInclude(x => x.Genre)
                 .Include(x => x.Category)
                 .Include(x => x.Publisher)
+                .Include(x => x.Ratings)
                 .Include(x => x.Photos)
                 .OrderByDescending(x => x.ReleaseDate)
                 .Take(top)
                 .ToListAsync();
 
+            var averageVote = 0.0;
+
+            foreach(var product in upcomingProducts)
+            {
+                if (await context.Ratings.AnyAsync(x => x.ProductId == product.Id))
+                {
+                    averageVote = await context.Ratings.Where(x => x.ProductId == product.Id)
+                        .AverageAsync(x => x.Rate);
+                }
+            }
+
             var homeDTO = new HomeDTO();
             homeDTO.UpComingProducts = mapper.Map<List<ProductDTO>>(upcomingProducts);
             homeDTO.LatestProducts = mapper.Map<List<ProductDTO>>(latestProducts);
+
             return homeDTO;
         }
 
@@ -106,12 +120,14 @@ namespace MangaEcommerce.Controllers
             var product = await context.Products
                 .Include(x => x.ProductGenres).ThenInclude(x => x.Genre)
                 .Include(x => x.Category)
+                .Include(x => x.Ratings)
                 .Include(x => x.Photos)
                 .Include(x => x.Publisher)
                 .FirstOrDefaultAsync(x => x.Id == id);
             var productRelated = await context.Products
                 .Include(x => x.ProductGenres).ThenInclude(x => x.Genre)
                 .Include(x => x.Category)
+                .Include(x => x.Ratings)
                 .Include(x => x.Photos)
                 .Include(x => x.Publisher)
                 .Where(x => x.Id != product.Id && x.CategoryId == product.CategoryId).ToListAsync();
@@ -119,7 +135,19 @@ namespace MangaEcommerce.Controllers
             {
                 return NotFound();
             }
+
+            var averageVote = 0.0;
+            if (await context.Ratings.AnyAsync(x => x.ProductId == id))
+            {
+                averageVote = await context.Ratings.Where(x => x.ProductId == id)
+                    .AverageAsync(x => x.Rate);
+            }
+
             var dto = mapper.Map<List<ProductDTO>>(productRelated);
+            foreach(var products in dto)
+            {
+                products.AverageVote = averageVote;
+            }    
             return dto;
         }
 
@@ -130,6 +158,7 @@ namespace MangaEcommerce.Controllers
                 .Include(x => x.ProductGenres).ThenInclude(x => x.Genre)
                 .Include(x => x.Category)
                 .Include(x => x.Photos)
+                .Include(x => x.Ratings)
                 .Include(x => x.Publisher)
                 .AsQueryable();
             if(direction.Equals("nameatoz"))
@@ -178,6 +207,7 @@ namespace MangaEcommerce.Controllers
             var productsQueryable = context.Products
                 .Include(x => x.ProductGenres).ThenInclude(x => x.Genre)
                 .Include(x => x.Category)
+                .Include(x => x.Ratings)
                 .Include(x => x.Photos)
                 .Include(x => x.Publisher)
                 .AsQueryable();
@@ -266,7 +296,9 @@ namespace MangaEcommerce.Controllers
             var products = await productsQueryable
                 .OrderBy(x => x.Name).Paginate(filterProducsDTO.PaginationDTO)
                 .ToListAsync();
-            return mapper.Map<List<ProductDTO>>(products);
+
+            var dto = mapper.Map<List<ProductDTO>>(products);
+            return dto;
         }
 
         [HttpGet("PostGet")]

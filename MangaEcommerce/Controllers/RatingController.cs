@@ -1,4 +1,5 @@
-﻿using MangaEcommerce.DatabaseContext;
+﻿using AutoMapper;
+using MangaEcommerce.DatabaseContext;
 using MangaEcommerce.DTOs;
 using MangaEcommerce.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,12 +20,14 @@ namespace MangaEcommerce.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IMapper mapper;
 
         public RatingController(ApplicationDbContext context, 
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, IMapper mapper)
         {
             this.context = context;
             this.userManager = userManager;
+            this.mapper = mapper;
         }
 
         [HttpPost]
@@ -56,5 +59,31 @@ namespace MangaEcommerce.Controllers
             return NoContent();
         }
 
+        [HttpGet("product/{id:int}")]
+        public async Task<RatingValuePercentageDTO[]> GetRatingValuePerCentByProductId(int id)
+        {
+            var ratings = await context.Ratings
+                .Where(x => x.ProductId == id)
+                .ToArrayAsync();
+
+            var ratingValue = new RatingValuePercentageDTO[5];
+            var j = 5;
+            if(ratings.Length != 0)
+            {
+                for(int i = 0; i < ratingValue.Length; i++)
+                {
+                    var temp = await context.Ratings.Where(x => x.ProductId == id && x.Rate == j).ToArrayAsync();
+                    double percent = (temp.Length / (double)ratings.Length) * 100;
+                    ratingValue[i] = new RatingValuePercentageDTO()
+                    {
+                        Star = j,
+                        Value = percent
+                    };
+                    j--;
+                }    
+            }
+
+            return ratingValue;
+        }
     }
 }
