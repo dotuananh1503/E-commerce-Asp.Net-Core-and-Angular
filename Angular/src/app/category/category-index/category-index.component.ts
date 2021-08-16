@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -7,6 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 import { categoryCreationDTO } from '../category.model';
 import { CategoryServicce } from '../category.service';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoryEditComponent } from '../category-edit/category-edit.component';
+import { CategoryUpdateComponent } from '../category-update/category-update.component';
 
 @Component({
   selector: 'app-category-index',
@@ -18,34 +21,62 @@ export class CategoryIndexComponent implements OnInit {
 
 
   loadedCategory: categoryCreationDTO[] = [
-    
+
   ];
   listdata: MatTableDataSource<any>;
   searchKey: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['id', 'name','actions'];
+  displayedColumns: string[] = ['id', 'name', 'actions'];
   isFetching = false;
   page = 1;
   nameSearch: string = '';
   categoryForm: FormGroup;
-  constructor(private categoryService: CategoryServicce, private http: HttpClient, private toastr: ToastrService) { }
+  constructor(private categoryService: CategoryServicce,
+    private toastr: ToastrService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.categoryService.getCat().subscribe(productData => {
-      this.loadedCategory = productData;
-      this.listdata = new MatTableDataSource(this.loadedCategory);
+      this.listdata = new MatTableDataSource(productData);
       this.listdata.sort = this.sort;
       this.listdata.paginator = this.paginator;
     });
   }
 
-  showUpdateToastr(){
-    this.toastr.success("Cập nhật thành công","Thông báo");
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CategoryEditComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchCat();
+    });
   }
 
-  showCreateToastr(){
-    this.toastr.success("Thao tác thành công","Thông báo");
+  fetchCat() {
+    this.categoryService.getCat().subscribe((response) => {
+      this.listdata = new MatTableDataSource(response);
+    })
+  }
+
+  openUpdateDialog(element) {
+    const dialogRef = this.dialog.open(CategoryUpdateComponent, {
+      width: '400px',
+      data: {
+        element
+      }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchCat();
+    });
+  }
+
+  showUpdateToastr() {
+    this.toastr.success("Cập nhật thành công", "Thông báo");
+  }
+
+  showCreateToastr() {
+    this.toastr.success("Thao tác thành công", "Thông báo");
   }
 
   onSearchClear() {
@@ -57,12 +88,10 @@ export class CategoryIndexComponent implements OnInit {
     this.listdata.filter = this.searchKey.trim().toLowerCase();
   }
 
-  onDeleteItem(index){
-    if(confirm("Bạn có muốn xóa không?")){
-      this.categoryService.delete(index).subscribe(() => {
-          console.log("Bạn đã xóa thành công!!!");
-      })
-    }
+  onDeleteItem(index) {
+    this.categoryService.delete(index).subscribe(() => {
+      this.fetchCat();
+    })
   }
 
 

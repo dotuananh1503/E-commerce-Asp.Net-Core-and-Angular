@@ -20,7 +20,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartService } from './cart/cart.service';
-import { SucccessComponent } from './contact/succcess/succcess.component';
+import { SucccessComponent } from './succcess/succcess.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './security/profile/profile.component';
@@ -172,6 +172,7 @@ import { AddressFormComponent } from './security/address-form/address-form.compo
     provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true,
   }],
   bootstrap: [AppComponent],
-  entryComponents: [AddressFormComponent]
+  entryComponents: [AddressFormComponent, CategoryEditComponent, CategoryUpdateComponent,
+    PublisherCreateComponent, PublisherEditComponent, GenreCreateComponent, GenreEditComponent]
 })
 export class AppModule { }

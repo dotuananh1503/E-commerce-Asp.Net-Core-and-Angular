@@ -1,6 +1,6 @@
 <div class="container">
-<button mat-flat-button color="primary" routerLink="/publishers/create">Create new</button>
 <div class="search-div">
+  <button mat-flat-button color="primary" (click)="openDialog()">Create new</button>
   <mat-form-field class="search-form-field" floatLabel="never">
     <input class="full-width" matInput [(ngModel)]="searchKey" placeholder="Tìm kiếm" autocomplete="off" (keyup)="applyFilter()">
     <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
@@ -24,9 +24,15 @@
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
-      <tr mat-cell *matCellDef="let row">
-        <button mat-icon-button><a [routerLink]="['/publishers/update', row.id]"><i class="fas fa-edit"></i></a></button>
-        <button mat-icon-button color="warn" (click)=" onDeleteItem(row.id)"><i class="fas fa-trash-alt"></i></button>
+      <tr mat-cell *matCellDef="let element" class="action__rows">
+        <button mat-flat-button color="accent" (click)="openUpdateDialog(element)">Sửa</button>
+        <button mat-flat-button color="warn"           
+        [swal]="{
+          title: 'Xác nhân!',
+          text: 'Bạn có muốn xóa nhà xuất bản này này?',
+          showCancelButton: true
+        }"
+         (confirm)=" onDeleteItem(element.id)">Xóa</button>
       </tr>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,4 +1,3 @@
-import { AotSummaryResolver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BookService } from '../book/book.service';
@@ -42,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.bookService.getHomePageBooks().subscribe(homeDTO => {
       this.latestProducts = homeDTO.latestProducts;
       this.upcomingProducts = homeDTO.upComingProducts;
+      console.log(this.latestProducts);
     })
   }
   showToastr() {

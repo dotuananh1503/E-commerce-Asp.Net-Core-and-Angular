@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { GenreCreateComponent } from '../genre-create/genre-create.component';
+import { GenreEditComponent } from '../genre-edit/genre-edit.component';
 import { genreCreationDTO } from '../genre.model';
 import { GenresService } from '../genre.service';
 
@@ -14,34 +17,57 @@ import { GenresService } from '../genre.service';
 })
 export class GenreIndexComponent implements OnInit {
 
-  loadedGenres: genreCreationDTO[] = [
-    
-  ];
+
   listdata: MatTableDataSource<any>;
   searchKey: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['id', 'name','actions'];
+  displayedColumns: string[] = ['id', 'name', 'actions'];
   isFetching = false;
   page = 1;
   nameSearch: string = '';
-  constructor(private genresService: GenresService, private http: HttpClient, private toastr: ToastrService) { }
+  constructor(private genresService: GenresService, private toastr: ToastrService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.genresService.getAll().subscribe(productData => {
-      this.loadedGenres = productData;
-      this.listdata = new MatTableDataSource(this.loadedGenres);
-      this.listdata.sort = this.sort;
-      this.listdata.paginator = this.paginator;
+    this.fetchGenres();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(GenreCreateComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchGenres();
     });
   }
 
-  showUpdateToastr(){
-    this.toastr.success("Cập nhật thành công","Thông báo");
+  fetchGenres() {
+    this.genresService.getAll().subscribe((response) => {
+      this.listdata = new MatTableDataSource(response);
+      this.listdata.sort = this.sort;
+      this.listdata.paginator = this.paginator;
+    })
   }
 
-  showCreateToastr(){
-    this.toastr.success("Thao tác thành công","Thông báo");
+  openUpdateDialog(element) {
+    const dialogRef = this.dialog.open(GenreEditComponent, {
+      width: '400px',
+      data: {
+        element
+      }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchGenres();
+    });
+  }
+
+  showUpdateToastr() {
+    this.toastr.success("Cập nhật thành công", "Thông báo");
+  }
+
+  showCreateToastr() {
+    this.toastr.success("Thao tác thành công", "Thông báo");
   }
 
   onSearchClear() {
@@ -53,12 +79,10 @@ export class GenreIndexComponent implements OnInit {
     this.listdata.filter = this.searchKey.trim().toLowerCase();
   }
 
-  onDeleteItem(index){
-    if(confirm("Bạn có muốn xóa không?")){
-      this.genresService.delete(index).subscribe(() => {
-          console.log("Bạn đã xóa thành công!!!");
-      })
-    }
+  onDeleteItem(index) {
+    this.genresService.delete(index).subscribe(() => {
+      console.log("Bạn đã xóa thành công!!!");
+    })
   }
 
 }

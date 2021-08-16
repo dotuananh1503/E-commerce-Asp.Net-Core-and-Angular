@@ -11,10 +11,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="btn__container">
-              <button [disabled]="!categoryForm.valid" class="btn btn-primary" type="submit">Save Change</button>
-<!--               <button class="btn btn-success" (click)="onFetchNews()" type="button">Fetch</button>
-              <button class="btn btn-danger" (click)="onClearNews()" type="button">Clear</button> -->
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <button mat-flat-button color="primary" [disabled]="!categoryForm.valid" type="submit">Save Change</button>
             </div>
           </div>
       </form>

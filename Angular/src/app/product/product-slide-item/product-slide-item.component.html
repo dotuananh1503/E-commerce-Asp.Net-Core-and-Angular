@@ -8,6 +8,10 @@
     <div class="product__name">
       <p>{{ book.name }}</p>
     </div>
+    <div class="product__rating">
+  
+          <star-rating value={{book.averageVote}} checkedcolor="gold" uncheckedcolor="blue" size="24px"></star-rating>
+    </div>
     <div class="product__price">
       <p>{{ book.price | moneypipe }}</p>
     </div>

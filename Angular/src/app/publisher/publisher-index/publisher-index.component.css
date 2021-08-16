@@ -20,34 +20,19 @@ img
     cursor: pointer;
 }
 
-.btn__container {
-    width: 100%;
+.action__rows{
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-end;
-    margin-top: 20px;
+    margin: auto;
 }
 
-.mat-column-id, .mat-column-name, .mat-column-picture, .mat-column-actions{
-    border-right: 1px solid gainsboro;
-    padding: 10px;
-    text-align: center;
+.action__rows.ng-star-inserted{
+    height: 100%;
 }
 
-/* .mat-column-title {
-    width: 15%;
-}
-
-.mat-column-content {
-    width: 20%;
-} */
-
-.mat-column-actions, .mat-icon-button {
-    margin-top: 30px;
-} 
-
-.hide {
-    display: none;
+.action__rows button{
+    margin: 0 10px;
 }
 
 .search-div{
@@ -57,7 +42,8 @@ img
 }
 .search-form-field{
     width: 60%;
-    padding: 5px 10px;
+    margin-left: 10px;
+    padding: 0 10px;
     background-color: #f5f5f5;
     border-radius: 5px;
 }
@@ -71,7 +57,6 @@ img
     padding-bottom: 0px;
 }
 .search-form-field div.mat-form-field-suffix button{
-    height: 32px;
+    height: 10px;
     width: 32px;
 }
-

@@ -1,3 +1,40 @@
+.checkout__address{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.checkout__address__info label{
+    margin-left: 10px;
+}
+
+.checkout__address__edit{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 150px;
+}
+
+.checkout__address__edit span{
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-address{
+    color: var(--gradient-color-1);
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.checkout__delivery label{
+    font-weight: bold;
+    margin-left: 8px;
+}
+
 .cart__title
 {
     margin-top: 40px;
@@ -66,21 +103,6 @@
     position: absolute;
 }
 
-#row4,#row5,#row2
-{
-    font-size: 13px;
-}
-
-#row5
-{
-    display: inline-block;
-    font-weight: bold;
-    color: blue;
-}
-
-th{
-    font-size: 13px;
-}
 
 .checkout__wrapper{
     width: 100%;

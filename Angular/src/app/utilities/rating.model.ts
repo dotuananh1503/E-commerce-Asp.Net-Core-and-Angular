@@ -13,3 +13,8 @@ export interface ratingForReturn {
     userId: string;
     userName: string;
 }
+
+export interface ratingValuePercentage {
+    star: number;
+    value: number;
+}

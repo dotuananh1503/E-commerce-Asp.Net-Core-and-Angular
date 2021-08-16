@@ -1,5 +1,5 @@
 form {
-    max-width: 500px;
+    padding: 20px;
 }
 
 mat-form-field {
@@ -9,3 +9,5 @@ mat-form-field {
 button {
     margin-right: 1rem;
 }
+
+

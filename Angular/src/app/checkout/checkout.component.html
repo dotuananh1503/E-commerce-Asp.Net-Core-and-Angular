@@ -7,19 +7,23 @@
                         <h5>Địa chỉ giao hàng</h5>
                         <hr>
                         <div class="checkout__address" *ngFor="let address of addresses; let i = index">
-                            <input name="address" (change)="onSelected($event)" type="radio" [value]="address.id">
-                            {{address.firstName + ' ' + address.lastName}} | {{address.street}}, Phường {{address.ward}}, Quận {{address.district}}, {{address.city}}, {{address.country}} | {{address.phone}}
-                            <button (click)="openDialog(address)" class="btn btn-success">Sửa địa chỉ</button> 
-                            <button *ngIf="!address.isMainAddress"
-                            [swal]="{
-                              title: 'Xác nhân!',
-                              text: 'Bạn có muốn xóa địa chỉ này?',
-                              showCancelButton: true
-                            }"
-                            (confirm)="onDeleteAddress(address.id)" 
-                             class="btn btn-danger">Xóa</button>
+                            <div class="checkout__address__info">
+                              <input name="address" (change)="onSelected($event)" type="radio" [value]="address.id">
+                              <label for="">{{address.firstName + ' ' + address.lastName}}  <span style="margin: 0 6px">|</span>  {{address.street}}, Phường {{address.ward}}, Quận {{address.district}}, {{address.city}}, {{address.country}} <span style="margin: 0 6px">|</span> {{address.phone}}</label>
+                            </div>
+                            <div class="checkout__address__edit">
+                              <span (click)="openDialog(address)" class="text-success">Sửa địa chỉ</span> 
+                              <span *ngIf="!address.isMainAddress"
+                              [swal]="{
+                                title: 'Xác nhận!',
+                                text: 'Bạn có muốn xóa địa chỉ này?',
+                                showCancelButton: true
+                              }"
+                              (confirm)="onDeleteAddress(address.id)" 
+                               class="text-danger">Xóa</span>
+                            </div>
                         </div>
-                        <button (click)="openDialogCreate()" class="btn btn-primary">Thêm địa chỉ</button> 
+                        <span (click)="openDialogCreate()" class="add-address">Giao hàng đến địa chỉ khác</span> 
                         <form style="display: none;" formGroupName="addressForm">
                             <mat-form-field appearance="fill">
                               <mat-label>First Name</mat-label>
@@ -66,7 +70,7 @@
                         <h5>Phương thức vận chuyển</h5>
                         <hr>
                         <div class="checkout__delivery" *ngFor="let delivery of deliveryMethods">
-                            <input (click)="setShippingPrice(delivery)" formControlName="deliveryMethod" type="radio" name="deliveryMethod" [value]="delivery.id"> {{delivery.shortName}} - {{delivery.description}} - {{delivery.price | moneypipe}}
+                            <input (click)="setShippingPrice(delivery)" formControlName="deliveryMethod" type="radio" name="deliveryMethod" [value]="delivery.id"><label for="">{{delivery.description}}: {{delivery.price | moneypipe}}</label>
                         </div>
                     </div>
                     <div class="checkout__content" formGroupName="paymentMethodForm">

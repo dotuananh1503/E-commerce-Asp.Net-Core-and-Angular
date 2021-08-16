@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { categoryCreationDTO, categoryDTO } from '../category.model';
 import { CategoryServicce } from '../category.service';
 
@@ -10,25 +10,21 @@ import { CategoryServicce } from '../category.service';
 })
 export class CategoryUpdateComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(
     private categoryService: CategoryServicce,
-    private router: Router) { }
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   model: categoryDTO;
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.categoryService.getById(params.id).subscribe(genre => {
-        this.model = genre;
-      })
-    });
+    this.model = this.data.element
   }
 
-  saveChanges(categoryCreationDTO: categoryCreationDTO){
+  saveChanges(categoryCreationDTO: categoryCreationDTO) {
     this.categoryService.edit(this.model.id, categoryCreationDTO)
-    .subscribe(() => {
-      this.router.navigate(["/categories"]);
-    });
+      .subscribe(() => {
+
+      });
   }
 
 }

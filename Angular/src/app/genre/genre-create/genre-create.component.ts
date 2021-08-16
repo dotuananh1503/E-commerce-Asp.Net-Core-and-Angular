@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { genreCreationDTO } from '../genre.model';
 import { GenresService } from '../genre.service';
 
@@ -10,15 +11,19 @@ import { GenresService } from '../genre.service';
 })
 export class GenreCreateComponent implements OnInit {
 
-  constructor(private router: Router, private genresService: GenresService) { }
+  constructor(private toastr: ToastrService, private genresService: GenresService) { }
 
   ngOnInit(): void {
-   
+
   }
 
-  saveChanges(genreCreationDTO: genreCreationDTO){
+  showCreateToastr() {
+    this.toastr.success("Tạo thành công", "Thông báo");
+  }
+
+  saveChanges(genreCreationDTO: genreCreationDTO) {
     this.genresService.create(genreCreationDTO).subscribe(() => {
-      this.router.navigate(['/genres']);
+      this.showCreateToastr();
     });
   }
 

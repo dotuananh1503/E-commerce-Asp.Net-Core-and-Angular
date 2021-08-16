@@ -13,15 +13,17 @@
                       </div>
                   </div>
                   <div class="product__detail__button">
-                      <a class="product__detail__to__cart" (click)="addItemToCart()">Thêm vào giỏ hàng</a>
-                      <a class="product__detail__pre__order" href="">{{ releaseDate > today? 'Đặt mua' : 'Mua ngay'}}</a>
+                      <a *ngIf="book.quantity > 0" class="product__detail__to__cart" (click)="addItemToCart()">Thêm vào giỏ hàng</a>
+                      <a *ngIf="book.quantity > 0" class="product__detail__pre__order">{{ releaseDate > today? 'Đặt mua' : 'Mua ngay'}}</a>
+                      <a *ngIf="book.quantity == 0" class="product__detail__to__cart disabled">Thêm vào giỏ hàng</a>
+                      <a *ngIf="book.quantity == 0" class="product__detail__pre__order disabled">{{ releaseDate > today? 'Đặt mua' : 'Mua ngay'}}</a>
                   </div>
               </div>
           </div>
           <div class="col-lg-7 col-md-12 col-sm-12">
               <div class="product__info__holder">
                   <div class="product__detail__name">
-                      {{book.name}}
+                      {{book.name}}  {{book.soldQuantity}}
                   </div>
                   <div class="product__info__wrapper">
                       <div class="first__info">
@@ -55,7 +57,7 @@
                   <div class="product__address">
                       <span>Giao hàng đến </span><span><strong>Phường 3, Quận 8</strong></span>
                   </div>
-                  <div class="product__view__quantity__box">
+                  <div *ngIf="book.quantity > 0" class="product__view__quantity__box">
                     <div class="d-flex align-items-center">
                       <i (click)="decrementItemQuantity()" class="fa fa-minus-circle text-warning mr-2"
                           style="cursor: pointer; font-size: 2em;"></i>
@@ -66,13 +68,17 @@
                           style="cursor: pointer; font-size: 2em;"></i>
                       </div>
                   </div>
+                  <span *ngIf="book.quantity < 10 || book.quantity == 10">Chỉ còn {{book.quantity - leftProduct}} sản phẩm trong hệ thống</span>
+                  <span *ngIf="book.quantity == 0" class="sold__out">
+                    Sản phẩm này đã hết hàng
+                  </span>
                   <div class="product__order__policy">
                       <h4>Ưu đãi dành cho người mua hàng trên website:</h4>
                       <ul>
-                          <li>Sản phẩm được dùng thử nếu mua tại cửa hàng.</li>
-                          <li>Sản phẩm còn đủ tem mác, chưa qua sử dụng.</li>
-                          <li>Sản phẩm nguyên giá được đổi trong 30 ngày trên toàn hệ thống.</li>
-                          <li>Sản phẩm được giao hàng trên toàn quốc</li>                     
+                          <li>Có thể nhận hàng tại shop.</li>
+                          <li>Giao hàng toàn quốc. Thời gian giao hàng từ 3 - 7 ngày</li>
+                          <li>Tặng bao bảo vệ cho mọi sản phẩm.</li>
+                          <li>Bọc plastic miễn phí cho Light Novel đặt mua trước ngày phát hành dự kiến.</li>                     
                       </ul>
                   </div>
               </div>
@@ -131,8 +137,13 @@
      </tbody>
   </table>
   <hr>
-  <div [innerHTML]="book.content" class="product__content__wrapper">
+  <div class="product__content__wrapper">
+    <div [innerHTML]="book.content" [ngClass]="{'limitTextHeight': isReadMore}">
       
+    </div>
+    <a class="btn-seemore" (click)="showText()">
+        {{ isReadMore ? 'Xem thêm': 'Rút gọn' }}
+      </a>
   </div>
 </div>
 <div *ngIf="relatedBook" class="container-fluid body-wrapper">
@@ -146,11 +157,41 @@
             <h2><a href="">Đánh giá sản phẩm</a></h2>
         </div>
         <div id="rating" *ngIf="book">
-            <section class="rating__wrapper" *ngFor="let rate of book.ratings">
-                <star-rating *ngIf="rate" value={{rate.rate}} checkedcolor="gold" uncheckedcolor="gray" size="24px"></star-rating>
-                bởi {{rate.userName}} - {{rate.comment}} 
-                <br>
-                lúc {{rate.ratingDate | date: 'dd/MM/yyyy'}}
+            <div class="rating__totals">
+                <div class="rating__score">
+                    <div class="rating__number">
+                        <span>{{book.averageVote | number: '1.0-1' }}</span>/<span>5</span>
+                        <star-rating value={{book.averageVote}} checkedcolor="gold" uncheckedcolor="gray" size="24px"></star-rating>
+                        ({{book.ratings.length}} đánh giá)
+                    </div>
+                </div>
+                <div  *ngIf="ratingValue"  class="rating__progress">
+                    <div *ngFor="let rateValue of ratingValue"  class="rating__percent">
+                        <span>{{rateValue.star}} sao</span>
+                        <div class="percent__wrapper">
+                            <div [ngStyle]="{width: rateValue.value + '%'}" class="percent__value">
+
+                            </div>
+                        </div>
+                        <div class="percent__value__number"><span>{{rateValue.value | number: '1.0-0'}}%</span></div>
+                    </div>
+                </div>
+                <div class="rating__button">
+                    <a routerLink="/cart">Viết nhận xét</a>
+                </div>
+            </div>
+            <hr>
+            <section class="container" *ngFor="let rate of book.ratings">
+                <div class="rating__wrapper">
+                    <div class="rating__user">
+                        <p>{{rate.userName}}</p>
+                        <p>{{rate.ratingDate | date: 'dd/MM/yyyy'}}</p>
+                    </div>
+                    <div class="rating__value">
+                        <star-rating *ngIf="rate" value={{rate.rate}} checkedcolor="gold" uncheckedcolor="gray" size="24px"></star-rating>
+                        <p>{{rate.comment}}</p>
+                    </div>
+                </div>
             </section>
             <div *ngIf="!isAuthorized" class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">

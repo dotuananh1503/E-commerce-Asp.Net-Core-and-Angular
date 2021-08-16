@@ -67,6 +67,10 @@
   .product__detail__pre__order:hover {
     color: var(--text-color);
   }
+  .product__detail__to__cart.disabled,
+  .product__detail__pre__order.disabled{
+    pointer-events: none;
+  }
   .product__info__holder {
     margin-top: 100px;
   }
@@ -196,6 +200,131 @@
     width: 50%;
   }
 
+
+  .limitTextHeight {
+    height: 30px;
+    overflow: hidden;
+}
+
+.btn-seemore{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  width: 130px;
+  height: 50px;
+  padding: 0 20px;
+  cursor: pointer;
+  border: 1px solid var(--gradient-color-1);
+  color: var(--gradient-color-1);
+}
+
+.btn-seemore:hover{
+  color: var(--gradient-color-1);
+}
+
+.sold__out{
+  display: block;
+  width: 100%;
+  color: red;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 10px 20px;
+  background-color: rgba(230,16,56,0.2);
+}
+
+.rating__totals{
+  display: flex;
+  align-items: center;
+  padding: 0 30px 8px;
+}
+
+.rating__score span{
+    font-weight: 600;
+    line-height: 57px;
+    color: #333333;
+}
+
+.rating__score span:nth-child(1)
+{
+  font-size: 52px;
+}
+
+.rating__score span:nth-child(2){
+  font-size: 26px;
+}
+
+.rating__progress{
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.rating__percent{
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
+.rating__percent span{
+  font-size: 17px;
+}
+.percent__wrapper{
+  width: 225px;
+  height: 7px;
+  background-color: whitesmoke;
+  margin: 0 10px
+}
+.percent__value{
+  height: 7px;
+  background-color: var(--gradient-color-1);
+}
+.percent__value__number span{
+  font-size: 17px;
+}
+.rating__button{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating__button a{
+  display: block;
+  text-align: center;
+  padding: 10px 100px;
+  border: 2px solid var(--gradient-color-1);
+  border-radius: 10px;
+  color: var(--gradient-color-1);
+  font-weight: bold;
+}
+
+.rating__wrapper{
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.rating__user{
+  flex-basis: 20%;
+  margin-top: 9px;
+}
+
+.rating__user p:nth-child(1){
+  font-weight: bold;
+}
+
+.rating__user p:nth-child(2){
+  color: gray;
+}
+
+.rating__value{
+  flex-basis: 80%;
+}
+
+.rating__value p{
+  text-align: justify;
+}
   @media screen and (max-width: 900px) {
     .product__detail__button {
       flex-direction: column;

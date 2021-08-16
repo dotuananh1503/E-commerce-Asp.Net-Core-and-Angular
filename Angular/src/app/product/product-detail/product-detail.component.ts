@@ -6,6 +6,8 @@ import { bookDTO } from 'src/app/book/book.model';
 import { CartService } from 'src/app/cart/cart.service';
 import { ViewportScroller } from '@angular/common';
 import { SecurityService } from 'src/app/security/security.service';
+import Swal from 'sweetalert2';
+import { RatingService } from 'src/app/utilities/rating.service';
 
 
 @Component({
@@ -17,8 +19,10 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   id: number;
   quantity = 1;
+  ratingValue: any;
   book: bookDTO;
   relatedBook;
+  leftProduct = 0;
   isAuthorized;
   releaseDate: Date;
   today: Date = new Date();
@@ -27,7 +31,8 @@ export class ProductDetailComponent implements OnInit {
     private booksService: BookService,
     private cartService: CartService,
     private viewportScroller: ViewportScroller,
-    public securityService: SecurityService
+    public securityService: SecurityService,
+    private ratingService: RatingService
   ) { }
 
 
@@ -41,8 +46,17 @@ export class ProductDetailComponent implements OnInit {
       this.booksService.getRelatedProducts(params.id).subscribe((books) => {
         this.relatedBook = books;
       })
+      this.ratingService.getRateValue(params.id).subscribe(response => {
+        this.ratingValue = response;
+      })
       this.isAuthorized = this.securityService.isAuthenticated();
     })
+  }
+
+  isReadMore = true
+
+  showText() {
+    this.isReadMore = !this.isReadMore
   }
 
   public onClick(elementId: string): void {
@@ -50,12 +64,19 @@ export class ProductDetailComponent implements OnInit {
   }
 
   incrementItemQuantity() {
-    this.quantity++;
+    if (this.book.quantity - this.leftProduct > 0) {
+      this.quantity++;
+      this.leftProduct++;
+    }
+    else {
+      Swal.fire("Cảnh báo", "Bạn không thể thêm sản phẩm này nữa <3", "warning");
+    }
   }
 
   decrementItemQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
+      this.leftProduct--;
     }
   }
 

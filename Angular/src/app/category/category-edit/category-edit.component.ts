@@ -17,19 +17,19 @@ import { CategoryServicce } from '../category.service';
 export class CategoryEditComponent implements OnInit {
 
   loadedCategory: categoryCreationDTO[] = [
-    
+
   ];
   listdata: MatTableDataSource<any>;
   searchKey: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['id', 'name','actions'];
+  displayedColumns: string[] = ['id', 'name', 'actions'];
   isFetching = false;
   page = 1;
   nameSearch: string = '';
   categoryForm: FormGroup;
-  constructor(private formBuilder: FormBuilder ,
-    private categoryService: CategoryServicce, private http: HttpClient, 
+  constructor(private formBuilder: FormBuilder,
+    private categoryService: CategoryServicce, private http: HttpClient,
     private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
@@ -46,12 +46,12 @@ export class CategoryEditComponent implements OnInit {
     });
   }
 
-  showUpdateToastr(){
-    this.toastr.success("Cập nhật thành công","Thông báo");
+  showUpdateToastr() {
+    this.toastr.success("Cập nhật thành công", "Thông báo");
   }
 
-  showCreateToastr(){
-    this.toastr.success("Thao tác thành công","Thông báo");
+  showCreateToastr() {
+    this.toastr.success("Thao tác thành công", "Thông báo");
   }
 
   onSearchClear() {
@@ -63,59 +63,52 @@ export class CategoryEditComponent implements OnInit {
     this.listdata.filter = this.searchKey.trim().toLowerCase();
   }
 
-
-  selectedFile: File = null;
-  onFileSelected(event){
-    this.selectedFile = <File>event.target.files[0];
-    console.log(this.selectedFile)
-  }
-
-  onAddCate(){
-      this.categoryService.create(this.categoryForm.value).subscribe(() => {
-        console.log("Đã post lên server thành công");
-     });
+  onAddCate() {
+    this.categoryService.create(this.categoryForm.value).subscribe(() => {
+      console.log("Đã post lên server thành công");
+    });
     this.showCreateToastr();
   }
 
-  saveChanges(category: categoryCreationDTO){
+  saveChanges(category: categoryCreationDTO) {
     this.categoryService.create(category).subscribe(() => {
       this.router.navigate(['/categories']);
     })
   }
 
 
- /*  onCreateProduct(){
-    this.onAddProducts();
-    this.productService.createProducts(this.loadedProduct);
-    this.initForm();
-  } */
+  /*  onCreateProduct(){
+     this.onAddProducts();
+     this.productService.createProducts(this.loadedProduct);
+     this.initForm();
+   } */
 
 
-/*   temp: News[] = [];
-  onSaveNews(){
-    this.newsService.saveNews(this.loadedNews).subscribe(loadedProduct => {
-      console.log(loadedProduct);
-      this.onFetchNews();
-    });
-  }
-
-  onFetchNews(){
-    this.isFetching = true;
-    this.newsService.fetchNews().subscribe(productData => {
-      this.loadedNews = productData;
-      this.listdata = new MatTableDataSource(this.loadedNews);
-      console.log(this.listdata)
-      this.listdata.paginator = this.paginator;
-      this.isFetching = false;
-    });
-  } */
+  /*   temp: News[] = [];
+    onSaveNews(){
+      this.newsService.saveNews(this.loadedNews).subscribe(loadedProduct => {
+        console.log(loadedProduct);
+        this.onFetchNews();
+      });
+    }
+  
+    onFetchNews(){
+      this.isFetching = true;
+      this.newsService.fetchNews().subscribe(productData => {
+        this.loadedNews = productData;
+        this.listdata = new MatTableDataSource(this.loadedNews);
+        console.log(this.listdata)
+        this.listdata.paginator = this.paginator;
+        this.isFetching = false;
+      });
+    } */
 
   @ViewChild('name') name: ElementRef;
 
-  editmode:boolean = false;
+  editmode: boolean = false;
   editIndex: number;
 
-  onEditItem(index: number){
+  onEditItem(index: number) {
     this.editmode = true;
     this.editIndex = index;
     this.categoryForm.setValue({
@@ -124,22 +117,22 @@ export class CategoryEditComponent implements OnInit {
 
   }
 
-  
 
-/*   onClearNews(){
-    this.newsService.deleteNews().subscribe(() => {
-      this.loadedNews = [];
-      this.onFetchNews();
-    });
-  } */
 
-/*   onDeleteItem(id){
-    if(confirm("Bạn có muốn xóa danh mục này không?")){
-      this.loadedCategory.splice(id ,1);
-      this.onSaveNews();
-      this.onFetchNews();
-      this.showCreateToastr();
-    }
-  } */
+  /*   onClearNews(){
+      this.newsService.deleteNews().subscribe(() => {
+        this.loadedNews = [];
+        this.onFetchNews();
+      });
+    } */
+
+  /*   onDeleteItem(id){
+      if(confirm("Bạn có muốn xóa danh mục này không?")){
+        this.loadedCategory.splice(id ,1);
+        this.onSaveNews();
+        this.onFetchNews();
+        this.showCreateToastr();
+      }
+    } */
 
 }

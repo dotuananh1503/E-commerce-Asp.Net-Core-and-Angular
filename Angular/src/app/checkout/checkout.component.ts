@@ -136,6 +136,7 @@ export class CheckoutComponent implements OnInit {
       this.showToastr();
       this.cartService.deleteLocalCart(cart.id);
       console.log(order);
+
     });
   }
 

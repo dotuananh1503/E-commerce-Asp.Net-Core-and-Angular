@@ -29,6 +29,7 @@ export interface bookDTO {
     cover: string;
     pages: string;
     quantity: number;
+    soldQuantity: number;
     content: string;
     translators: string;
     author: string;

@@ -1,11 +1,13 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { publisherCreationDTO, publisherDTO } from '../publisher.model';
+import { PublisherCreateComponent } from '../publisher-create/publisher-create.component';
+import { PublisherEditComponent } from '../publisher-edit/publisher-edit.component';
+import { publisherDTO } from '../publisher.model';
 import { PublisherService } from '../publisher.service';
 
 @Component({
@@ -21,19 +23,20 @@ export class PublisherIndexComponent implements OnInit {
   searchKey: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['id', 'name', 'picture' , 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'picture', 'actions'];
   isFetching = false;
   page = 1;
   pageSize = 5;
   nameSearch: string = '';
   totalAmountOfRecords;
-  constructor(private publisherService: PublisherService, private http: HttpClient, private toastr: ToastrService) { }
+  constructor(private publisherService: PublisherService, private toastr: ToastrService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
-      this.loadData();
+    this.loadData();
   }
 
-  loadData(){
+  loadData() {
     this.publisherService.get(this.page, this.pageSize).subscribe((response: HttpResponse<publisherDTO[]>) => {
       this.loadedPublisher = response.body;
       console.log(this.loadedPublisher);
@@ -42,18 +45,45 @@ export class PublisherIndexComponent implements OnInit {
     });
   }
 
-  updatePagination(event: PageEvent){
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PublisherCreateComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchCat();
+    });
+  }
+
+  fetchCat() {
+    /*     this.publisherService.get().subscribe((response) => {
+          this.listdata = new MatTableDataSource(response);
+        }) */
+  }
+
+  openUpdateDialog(element) {
+    const dialogRef = this.dialog.open(PublisherEditComponent, {
+      width: '400px',
+      data: {
+        element
+      }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchCat();
+    });
+  }
+
+  updatePagination(event: PageEvent) {
     this.page = event.pageIndex + 1;
     this.pageSize = event.pageSize;
     this.loadData();
   }
 
-  showUpdateToastr(){
-    this.toastr.success("Cập nhật thành công","Thông báo");
+  showUpdateToastr() {
+    this.toastr.success("Cập nhật thành công", "Thông báo");
   }
 
-  showCreateToastr(){
-    this.toastr.success("Thao tác thành công","Thông báo");
+  showCreateToastr() {
+    this.toastr.success("Thao tác thành công", "Thông báo");
   }
 
   onSearchClear() {
@@ -65,13 +95,11 @@ export class PublisherIndexComponent implements OnInit {
     this.listdata.filter = this.searchKey.trim().toLowerCase();
   }
 
-  onDeleteItem(index){
-    if(confirm("Bạn có muốn xóa không?")){
-      this.publisherService.delete(index).subscribe(() => {
-          console.log("Bạn đã xóa thành công!!!");
-          this.loadData();
-      })
-    }
+  onDeleteItem(index) {
+    this.publisherService.delete(index).subscribe(() => {
+      console.log("Bạn đã xóa thành công!!!");
+      this.loadData();
+    })
   }
 
 }

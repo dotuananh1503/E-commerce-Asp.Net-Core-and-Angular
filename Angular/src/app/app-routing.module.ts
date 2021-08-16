@@ -11,14 +11,10 @@ import { BookEditComponent } from "./book/book-edit/book-edit.component";
 import { BookFilterComponent } from "./book/book-filter/book-filter.component";
 import { BookListComponent } from "./book/book-list/book-list.component";
 import { CartComponent } from "./cart/cart.component";
-import { CategoryEditComponent } from "./category/category-edit/category-edit.component";
 import { CategoryIndexComponent } from "./category/category-index/category-index.component";
-import { CategoryUpdateComponent } from "./category/category-update/category-update.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { ContactComponent } from "./contact/contact.component";
-import { SucccessComponent } from "./contact/succcess/succcess.component";
-import { GenreCreateComponent } from "./genre/genre-create/genre-create.component";
-import { GenreEditComponent } from "./genre/genre-edit/genre-edit.component";
+import { SucccessComponent } from "./succcess/succcess.component";
 import { GenreIndexComponent } from "./genre/genre-index/genre-index.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginAdminComponent } from "./security/login-admin/login-admin.component";
@@ -29,10 +25,7 @@ import { NewsComponent } from "./news/news.component";
 import { PermissionComponent } from "./permission/permission.component";
 import { ProductCollectorComponent } from "./product/product-collector/product-collector.component";
 import { ProductDetailComponent } from "./product/product-detail/product-detail.component";
-import { ProductListComponent } from "./product/product-list/product-list.component";
 import { ProfileComponent } from "./security/profile/profile.component";
-import { PublisherCreateComponent } from "./publisher/publisher-create/publisher-create.component";
-import { PublisherEditComponent } from "./publisher/publisher-edit/publisher-edit.component";
 import { PublisherIndexComponent } from "./publisher/publisher-index/publisher-index.component";
 import { RegisterAdminComponent } from "./security/register-admin/register-admin.component";
 import { RegisterComponent } from "./security/register/register.component";
@@ -73,14 +66,8 @@ const appRoutes: Routes = [
         children: [
             { path: 'admin', component: AdminComponent },
             { path: 'categories', component: CategoryIndexComponent, canActivate: [AdminGuardGuard] },
-            { path: 'categories/create', component: CategoryEditComponent },
-            { path: 'categories/update/:id', component: CategoryUpdateComponent },
-            { path: 'publishers/create', component: PublisherCreateComponent },
             { path: 'publishers', component: PublisherIndexComponent, canActivate: [AdminGuardGuard] },
-            { path: 'publishers/update/:id', component: PublisherEditComponent },
-            { path: 'genres/create', component: GenreCreateComponent },
             { path: 'genres', component: GenreIndexComponent, canActivate: [AdminGuardGuard] },
-            { path: 'genres/update/:id', component: GenreEditComponent },
             { path: 'books/create', component: BookCreateComponent, canActivate: [AdminGuardGuard] },
             { path: 'books/detail/:id', component: BookDetailComponent },
             { path: 'books', component: BookListComponent },

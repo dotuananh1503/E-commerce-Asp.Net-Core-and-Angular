@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { publisherCreationDTO, publisherDTO } from '../publisher.model';
 import { PublisherService } from '../publisher.service';
@@ -12,16 +13,15 @@ export class PublisherEditComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private publisherService: PublisherService,
-    private router: Router) { }
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   model: publisherDTO;
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.publisherService.getById(params.id).subscribe(publisher => this.model = publisher);
-    });
+    this.model = this.data.element
   }
 
-  saveChanges(publisherCreationDTO: publisherCreationDTO){
+  saveChanges(publisherCreationDTO: publisherCreationDTO) {
     console.log(publisherCreationDTO);
     this.publisherService.edit(this.model.id, publisherCreationDTO).subscribe(() => {
       this.router.navigate(['/publishers']);
