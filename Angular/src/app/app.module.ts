@@ -75,11 +75,17 @@ import { ProductSlideComponent } from './product/product-slide/product-slide.com
 import { SwiperModule } from 'swiper/angular';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
 import { ProductSlideItemComponent } from './product/product-slide-item/product-slide-item.component';
-import { AddressComponent } from './security/address/address.component';
 import { RatingComponent } from './utilities/rating/rating.component';
 import { NgxInputStarRatingModule } from 'ngx-input-star-rating';
 import { RatingModule } from 'ng-starrating';
 import { AddressFormComponent } from './security/address-form/address-form.component';
+import { ProfileDashboardComponent } from './_layout/profile-dashboard/profile-dashboard.component';
+import { AddressUpdateComponent } from './security/address-manage/address-update/address-update.component';
+import { AddressCreateComponent } from './security/address-manage/address-create/address-create.component';
+import { AddressIndexComponent } from './security/address-manage/address-index/address-index.component';
+import { AddressFormManageComponent } from './security/address-manage/address-form-manage/address-form-manage.component';
+import { OrderListComponent } from './security/order-manage/order-list/order-list.component';
+import { OrderDetailComponent } from './security/order-manage/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +93,7 @@ import { AddressFormComponent } from './security/address-form/address-form.compo
     BackLayoutComponent,
     FrontLayoutComponent,
     NonLayoutComponent,
+    ProfileDashboardComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
@@ -134,8 +141,13 @@ import { AddressFormComponent } from './security/address-form/address-form.compo
     ChangePasswordComponent,
     PhotoUploadComponent,
     GenericListComponent,
-    AddressComponent,
     AddressFormComponent,
+    AddressUpdateComponent,
+    AddressCreateComponent,
+    AddressIndexComponent,
+    AddressFormManageComponent,
+    OrderListComponent,
+    OrderDetailComponent,
     RatingComponent
   ],
   imports: [

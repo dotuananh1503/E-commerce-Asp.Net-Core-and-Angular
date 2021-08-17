@@ -1,0 +1,30 @@
+<div class="btn__add__new__address">
+  <a routerLink="create">Thêm địa chỉ mới</a>
+</div>
+<div *ngIf="addresses" class="address__list">
+  <div *ngFor="let address of addresses" class="address__item">
+    <div class="address__left">
+      <div class="address__name">
+        <span>{{ address.firstName + " " + address.lastName }}</span
+        ><span *ngIf="address.isMainAddress" class="text-success"
+          >Địa chỉ mặc định</span
+        >
+      </div>
+      <div class="address__address">
+        <span>Địa chỉ: </span
+        ><span
+          >{{ address.street }}, Phường {{ address.ward }}, Quận
+          {{ address.district }}, {{ address.city }},
+          {{ address.country }}</span
+        >
+      </div>
+      <div class="address__phone">
+        <span>Điện thoại: </span><span>{{ address.phone }}</span>
+      </div>
+    </div>
+    <div class="address__right">
+      <span [routerLink]="['update', address.id]">Chỉnh sửa</span
+      ><span *ngIf="!address.isMainAddress" class="text-danger">Xóa</span>
+    </div>
+  </div>
+</div>

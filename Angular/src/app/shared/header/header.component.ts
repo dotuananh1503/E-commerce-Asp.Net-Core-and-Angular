@@ -3,8 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Observable } from 'rxjs';
-import { ICart } from 'src/app/cart/cart.model';
+import { ICart, ICartTotals } from 'src/app/cart/cart.model';
 import { CartService } from 'src/app/cart/cart.service';
+import { SecurityService } from 'src/app/security/security.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -16,12 +17,14 @@ export class HeaderComponent implements OnInit {
 
   userSocial: SocialUser;
   loggedIn: boolean;
-  countTotal = 0;
   cart$: Observable<ICart>;
-  loadedCartItem = [];
   user;
   searchForm: FormGroup;
-  constructor(private cartService: CartService, private socialService: SocialAuthService, private router: Router) {
+  isAuthorized;
+  cartTotals$: Observable<ICartTotals>;
+  constructor(private cartService: CartService, private socialService: SocialAuthService, 
+    private router: Router,
+    public securityService: SecurityService) {
     this.socialService.authState.subscribe((user) => {
       this.userSocial = user;
       this.loggedIn = (user != null);
@@ -34,32 +37,13 @@ export class HeaderComponent implements OnInit {
     })
     this.cart$ = this.cartService.cart$;
     console.log(this.cart$);
+    this.isAuthorized = this.securityService.isAuthenticated();
+    this.cartTotals$ = this.cartService.cartTotal$;
+    console.log(this.isAuthorized);
   }
 
   onSearch() {
     this.router.navigate(['/product-collector'], { queryParams: { nameSearch: this.searchForm.get('nameSeach').value } });
-  }
-
-  countItem() {
-    this.loadedCartItem.forEach(() => {
-      this.countTotal += 1
-    })
-    console.log(this.countTotal);
-  }
-
-  cartItem: number = 0;
-  cartItemFunc() {
-    if (localStorage.getItem('localStore') != null) {
-      var cartCount = JSON.parse(localStorage.getItem('localStore'));
-      this.cartItem = cartCount.length;
-    }
-  }
-
-  loadItemFromCart() {
-    /*     this.cartService.fetchProducts().subscribe(productData => {
-          this.loadedCartItem = productData;
-          this.countItem();
-        }); */
   }
 
   onClickonicon() {

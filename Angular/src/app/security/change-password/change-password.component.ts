@@ -33,10 +33,6 @@ export class ChangePasswordComponent implements OnInit {
         validators: [Validators.required]
       }],
     });
-    this.securityService.getUserInfo().subscribe((response) => {
-      this.user = response;
-      console.log(this.user);
-    })
   }
 
   changePass(userChangePassword: userChangePassword) {

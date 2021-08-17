@@ -1,0 +1,94 @@
+<div *ngIf="order">
+  <div class="order__review">
+    <h5>Chi tiết đơn hàng</h5>
+    <span>{{ order.status }}</span>
+    <div class="order__date">
+      <span>Ngày đặt mua: </span
+      ><span>{{ order.orderDate | date: "dd/MM/yyyy" }}</span>
+    </div>
+    <div class="order__total">
+      <span>Tổng tiền: </span><span>{{ order.total | moneypipe }}</span>
+    </div>
+    <div class="order__note">
+      <span>Ghi chú: </span
+      ><span>{{ order.orderNote ? order.orderNote : "Không có" }}</span>
+    </div>
+  </div>
+  <hr />
+  <div class="order__detail">
+    <div class="order__receive">
+      <h5>Thông tin người nhận</h5>
+      <hr />
+      <div class="order__address">
+        <p>
+          {{
+            order.shipToAddress.firstName + " " + order.shipToAddress.lastName
+          }}
+        </p>
+        <p>{{ order.shipToAddress.street }}</p>
+        <p>
+          {{ order.shipToAddress.district }}, {{ order.shipToAddress.city }},
+          {{ order.shipToAddress.country }}
+        </p>
+        <p>Tel: {{ order.shipToAddress.phone }}</p>
+      </div>
+    </div>
+    <div class="order__deli__method">
+      <h5>Phương thức vận chuyển</h5>
+      <hr />
+      <div class="order__deli">
+        <p>{{ order.deliveryMethod }}</p>
+      </div>
+    </div>
+    <div class="order__payment__method">
+      <h5>Phương thức thanh toán</h5>
+      <hr />
+      <div class="order__payment">
+        <p>{{ order.paymentMethod }}</p>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="order__items">
+    <div class="order__total">
+      <span>Tổng tiền: </span><span>{{ order.total | moneypipe }}</span>
+    </div>
+    <div class="order__total">
+      <span>Số lượng: </span><span>{{ order.orderItems.length }}</span>
+    </div>
+    <table class="table table-responsive-sm table-borderless table-light">
+      <thead>
+        <tr>
+          <th scope="col">Hình ảnh</th>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col">Giá bán</th>
+          <th scope="col">Số lượng</th>
+          <th scope="col">Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.orderItems">
+          <td><img src="{{ item.productImage }}" width="80px" /></td>
+          <td id="row2">{{ item.productName }}</td>
+          <td>
+            {{ item.price | moneypipe }}
+          </td>
+          <td id="row4">{{ item.quantity }}</td>
+          <td id="row5">{{ item.quantity * item.price | moneypipe }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <div class="order__subtotal">
+      <p>
+        Thành tiền: <span>{{ order.subtotal | moneypipe }}</span>
+      </p>
+      <p>
+        Phí vận chuyển: <span>{{ order.shippingPrice | moneypipe }}</span>
+      </p>
+      <p>
+        Tổng tiền: <span>{{ order.total | moneypipe }}</span>
+      </p>
+    </div>
+  </div>
+</div>

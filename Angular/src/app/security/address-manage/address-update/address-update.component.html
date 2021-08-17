@@ -1,0 +1,7 @@
+<h5 style="text-align: center">Edit Category</h5>
+
+<app-address-form-manage
+  *ngIf="model"
+  [model]="model"
+  (onSaveChanges)="saveChanges($event)"
+></app-address-form-manage>

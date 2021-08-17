@@ -1,0 +1,28 @@
+<table class="table table-responsive-sm table-borderless table-light">
+  <thead>
+    <tr>
+      <th scope="col">Mã đơn hàng</th>
+      <th scope="col">Ngày mua</th>
+      <th scope="col">Người nhận</th>
+      <th scope="col">Tổng tiền</th>
+      <th scope="col">Trạng thái</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="orders">
+    <tr *ngFor="let order of orders; let i = index">
+      <td>{{ order.id }}</td>
+      <td id="row2">{{ order.orderDate | date: "dd/MM/yyyy" }}</td>
+      <td>
+        {{ order.shipToAddress.firstName + " " + order.shipToAddress.lastName }}
+      </td>
+      <td id="row4">{{ order.total | moneypipe }}</td>
+      <td id="row5">{{ order.status }}</td>
+      <td>
+        <a [routerLink]="['detail', order.id]" class="text-success"
+          >Xem chi tiết</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>

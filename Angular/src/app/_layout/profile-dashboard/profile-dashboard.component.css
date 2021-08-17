@@ -1,0 +1,10 @@
+.account__wrapper {
+  background-color: var(--white-smoke);
+}
+
+.right__content {
+  margin-top: 100px;
+  margin-bottom: 30px;
+  background-color: var(--text-color);
+  padding: 20px;
+}

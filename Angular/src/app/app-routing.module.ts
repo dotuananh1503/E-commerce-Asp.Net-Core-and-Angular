@@ -1,10 +1,8 @@
-import { identifierModuleUrl } from "@angular/compiler";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AboutComponent } from "./about/about.component";
 import { AdminGuardGuard } from "./admin-guard.guard";
 import { AdminComponent } from "./admin/admin.component";
-import { AppComponent } from "./app.component";
 import { BookCreateComponent } from "./book/book-create/book-create.component";
 import { BookDetailComponent } from "./book/book-detail/book-detail.component";
 import { BookEditComponent } from "./book/book-edit/book-edit.component";
@@ -20,7 +18,6 @@ import { HomeComponent } from "./home/home.component";
 import { LoginAdminComponent } from "./security/login-admin/login-admin.component";
 import { LoginComponent } from "./security/login/login.component";
 import { NewsDetailComponent } from "./news/news-detail/news-detail.component";
-import { NewsEditComponent } from "./news/news-edit/news-edit.component";
 import { NewsComponent } from "./news/news.component";
 import { PermissionComponent } from "./permission/permission.component";
 import { ProductCollectorComponent } from "./product/product-collector/product-collector.component";
@@ -35,7 +32,12 @@ import { FrontLayoutComponent } from "./_layout/front-layout/front-layout.compon
 import { NonLayoutComponent } from "./_layout/non-layout/non-layout.component";
 import { ChangePasswordComponent } from "./security/change-password/change-password.component";
 import { PhotoUploadComponent } from "./utilities/photo-upload/photo-upload.component";
-import { AddressComponent } from "./security/address/address.component";
+import { ProfileDashboardComponent } from "./_layout/profile-dashboard/profile-dashboard.component";
+import { AddressIndexComponent } from "./security/address-manage/address-index/address-index.component";
+import { AddressCreateComponent } from "./security/address-manage/address-create/address-create.component";
+import { AddressUpdateComponent } from "./security/address-manage/address-update/address-update.component";
+import { OrderListComponent } from "./security/order-manage/order-list/order-list.component";
+import { OrderDetailComponent } from "./security/order-manage/order-detail/order-detail.component";
 
 
 const appRoutes: Routes = [
@@ -45,7 +47,6 @@ const appRoutes: Routes = [
         children: [
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'login', component: LoginComponent },
-            { path: 'profile', component: ProfileComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'contact', component: ContactComponent },
             { path: 'cart', component: CartComponent },
@@ -57,7 +58,6 @@ const appRoutes: Routes = [
             { path: 'product-collector', component: ProductCollectorComponent },
             { path: 'news-detail/:id', component: NewsDetailComponent },
             { path: 'product-detail/:id', component: ProductDetailComponent },
-            { path: 'user/address', component: AddressComponent }
         ]
     },
     {
@@ -83,6 +83,18 @@ const appRoutes: Routes = [
             { path: 'admin/login', component: LoginAdminComponent },
             { path: 'admin/register', component: RegisterAdminComponent },
             { path: 'admin/changepassword', component: ChangePasswordComponent }
+        ]
+    },
+    {
+        path: '',
+        component: ProfileDashboardComponent,
+        children: [
+            { path: 'user/account', component: ProfileComponent},
+            { path: 'user/account/address', component: AddressIndexComponent },
+            { path: 'user/account/address/create', component: AddressCreateComponent },
+            { path: 'user/account/address/update/:id', component: AddressUpdateComponent },
+            { path: 'user/account/orders', component: OrderListComponent  },
+            { path: 'user/account/orders/detail/:id', component: OrderDetailComponent}
         ]
     },
     { path: '**', component: NotFoundComponent }

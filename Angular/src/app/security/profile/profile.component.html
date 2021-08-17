@@ -1,7 +1,5 @@
 <div class="container">
-  <div class="wrapping__header__home">
-    <h2><a href="">Thông tin tài khoản</a></h2>
-  </div>
+  <h5>Thông tin tài khoản</h5>
   <div *ngIf="userSocial" class="Social__profile">
     <div class="avaImg">
       <img src="{{ userSocial.photoUrl }}" alt="" />
@@ -30,5 +28,25 @@
       </div>
       <!--  <button style="width: 100%" [disabled]="!profileForm.valid" type="submit" mat-raised-button color="primary">Save</button> -->
     </form>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+      <form *ngIf="user" [formGroup]="userInfoForm">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Họ và tên</mat-label>
+          <input formControlName="displayName" matInput />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+        </mat-form-field>
+        <mat-radio-group class="full-width" formControlName="gender">
+          <mat-radio-button value="Nam">Nam</mat-radio-button>
+          <mat-radio-button style="margin-left: 20px" value="Nữ"
+            >Nữ</mat-radio-button
+          >
+        </mat-radio-group>
+      </form>
+    </div>
   </div>
 </div>

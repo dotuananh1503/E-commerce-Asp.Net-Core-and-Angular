@@ -19,6 +19,7 @@ export interface userChangePassword {
 
 export interface userInfo {
     id: string;
+    displayName: string;
     email: string;
     gender: string;
     profileImageURL: string;

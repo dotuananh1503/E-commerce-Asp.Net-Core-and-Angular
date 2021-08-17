@@ -1,26 +1,30 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.avaImg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.avaImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .avaImg img {
-    width: 100px;
-    border-radius: 100%;
+  width: 100px;
+  border-radius: 100%;
 }
 
 #lastName {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
-form.normal-form{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
+form.normal-form {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
 }

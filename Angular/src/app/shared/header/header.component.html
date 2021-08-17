@@ -1,75 +1,99 @@
 <div class="wrapper">
   <nav>
-    <input type="checkbox" id="show-search">
-    <input type="checkbox" id="show-menu">
+    <input type="checkbox" id="show-search" />
+    <input type="checkbox" id="show-menu" />
     <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
     <div class="content">
-          <div div class="logo"><a href="#">MangaStore</a></div>
-          <ul class="links">
-              <div class="user-warpper-mobile">
-                  <div class="user-icon-mobile">
-                      <i class="fas fa-user-circle fa-3x"></i>
-                  </div>
-                  <div class="user-function-mobile">
-                      <span><a href="">Đăng nhập</a> / <a href="">Đăng ký</a></span>
-                  </div>
-              </div>
-              <li><a href="admin.html">Trang chủ</a></li>
-              <li>
-                  <a href="#" class="desktop-link">Sản phẩm</a>
-                  <input type="checkbox" id="show-features">
-                  <label for="show-features">Sản phẩm</label>
-                  <ul>
-                      <li><a href="admin.html">Manga</a></li>
-                      <li><a href="#">Light Novel</a></li>
-                      <li><a href="#">Văn học</a></li>
-                      <li><a href="#">Quà lưu niệm</a></li>
-                  </ul>
-              </li>
-              <li><a href="#">Tin tức</a></li>
-              <li>
-                  <a href="#" class="desktop-link">Về chúng tôi</a>
-                  <input type="checkbox" id="show-features">
-                  <label for="show-features">Về chúng tôi</label>
-                  <ul>
-                      <li><a href="#">Giới thiệu</a></li>
-                      <li><a href="#">Liên hệ</a></li>
-                  </ul>
-              </li>
+      <div div class="logo"><a routerLink="">MangaStore</a></div>
+      <ul class="links">
+        <div class="user-warpper-mobile">
+          <div class="user-icon-mobile">
+            <i class="fas fa-user-circle fa-3x"></i>
+          </div>
+          <div class="user-function-mobile">
+            <span><a href="">Đăng nhập</a> / <a href="">Đăng ký</a></span>
+          </div>
+        </div>
+        <li><a href="admin.html">Trang chủ</a></li>
+        <li>
+          <a href="#" class="desktop-link">Sản phẩm</a>
+          <input type="checkbox" id="show-features" />
+          <label for="show-features">Sản phẩm</label>
+          <ul>
+            <li><a href="admin.html">Manga</a></li>
+            <li><a href="#">Light Novel</a></li>
+            <li><a href="#">Văn học</a></li>
+            <li><a href="#">Quà lưu niệm</a></li>
           </ul>
+        </li>
+        <li><a href="#">Tin tức</a></li>
+        <li>
+          <a href="#" class="desktop-link">Về chúng tôi</a>
+          <input type="checkbox" id="show-features" />
+          <label for="show-features">Về chúng tôi</label>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Liên hệ</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
     <div class="user-wrapper">
-        <div class="user-box">
-              <div class="user-icon">
-                  <i class="fas fa-user"></i>
-              </div>
-              <div class="user-function">
-                      <span class="first-span">Đăng nhập / Đăng ký</span>
-                      <div class="user-account">
-                          <span class="second-span">Tài khoản</span><i class="fas fa-sort-down"></i>
-                      </div>
-              </div>
-              <div class="user-loginRegister">
-                  <a href="">Đăng ký</a>
-                  <a href="">Đăng nhập</a>
-              </div>
+      <div class="user-box">
+        <div class="user-icon">
+          <i class="fas fa-user"></i>
         </div>
-        <div class="user-cart">
-          <div class="user-icon">
-              <i class="fas fa-shopping-cart"></i>
+        <div class="user-function">
+          <span class="first-span">{{
+            isAuthorized
+              ? securityService.getFieldFromJWT("email")
+              : "Đăng nhập / Đăng ký"
+          }}</span>
+          <div class="user-account">
+            <span class="second-span">Tài khoản</span
+            ><i class="fas fa-sort-down"></i>
           </div>
-          <div class="user-cart-text">
-              <a routerLink="cart"><span class="first-span">Giỏ hàng <span *ngIf="(cart$ | async) as cart">({{cart.items.length}})</span></span></a>
-              <div class="user-account">
-                  <span class="second-span">0đ</span>
-              </div>
+        </div>
+        <div class="user-loginRegister">
+          <a *ngIf="isAuthorized" routerLink="user/account"
+            >Thông tin tài khoản</a
+          >
+          <a *ngIf="isAuthorized" (click)="securityService.logout()"
+            >Đăng xuất</a
+          >
+          <a *ngIf="!isAuthorized" routerLink="register">Đăng ký</a>
+          <a *ngIf="!isAuthorized" routerLink="login">Đăng nhập</a>
+        </div>
+      </div>
+      <div class="user-cart">
+        <div class="user-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="user-cart-text">
+          <a routerLink="cart"
+            ><span class="first-span"
+              >Giỏ hàng
+              <span *ngIf="cart$ | async as cart"
+                >({{ cart.items.length }})</span
+              ></span
+            ></a
+          >
+          <div class="user-account">
+            <span *ngIf="cartTotals$ | async" class="second-span">{{
+              (cartTotals$ | async).total
+            }}</span>
           </div>
-       </div>
+        </div>
+      </div>
     </div>
-    <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+    <label for="show-search" class="search-icon"
+      ><i class="fas fa-search"></i
+    ></label>
     <form action="#" class="search-box">
-      <input type="text" placeholder="Nhập thông tin tìm kiếm..." required>
-      <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+      <input type="text" placeholder="Nhập thông tin tìm kiếm..." required />
+      <button type="submit" class="go-icon">
+        <i class="fas fa-long-arrow-alt-right"></i>
+      </button>
     </form>
   </nav>
 </div>

@@ -17,6 +17,7 @@ import { AuthorizeViewComponent } from '../security/authorize-view/authorize-vie
 import { FileUploadModule } from 'ng2-file-upload';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { OrderTotalsComponent } from './order-totals/order-totals.component';
         FooterBackComponent,
         NotFoundComponent,
         OrderTotalsComponent,
-        AuthorizeViewComponent
+        AuthorizeViewComponent,
+        SidebarComponent
     ],
     imports: [
         RouterModule,
@@ -48,7 +50,8 @@ import { OrderTotalsComponent } from './order-totals/order-totals.component';
         NotFoundComponent,
         FooterBackComponent,
         OrderTotalsComponent,
-        FooterComponent
+        FooterComponent,
+        SidebarComponent
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

@@ -1,0 +1,48 @@
+.side__bar {
+  background-color: var(--text-color);
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.sidebar__header {
+  padding: 30px 0 0 20px;
+}
+
+.sidebar__header h4 {
+  color: var(--gradient-color-1);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.side__bar ul {
+  padding: 10px;
+}
+
+.side__bar ul li {
+  display: block;
+  border-top: 1px solid var(--white-smoke);
+  border-bottom: 1px solid var(--white-smoke);
+  padding: 10px 0;
+}
+
+.side__bar ul li:last-child {
+  margin-bottom: 20px;
+}
+
+.side__bar ul li:first-child {
+  border-top: none;
+}
+
+.side__bar ul li a {
+  color: black;
+  transition: 0.2s;
+}
+
+.side__bar ul li a:active {
+  color: var(--gradient-color-1);
+}
+
+.side__bar ul li a:hover {
+  color: var(--text-hover-color);
+}

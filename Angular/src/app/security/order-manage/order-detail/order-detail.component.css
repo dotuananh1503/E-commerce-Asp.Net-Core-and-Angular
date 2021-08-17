@@ -1,0 +1,79 @@
+.order__review h5 {
+  text-transform: uppercase;
+  margin-bottom: 11px;
+}
+.order__review h5 ~ span {
+  background-color: rgba(77, 77, 255, 0.2);
+  display: block;
+  padding: 0 20px;
+  color: blue;
+  width: 120px;
+  border-radius: 20px;
+  font-size: 12px;
+  border: 1px solid rgba(77, 77, 255, 0.2);
+  margin: 11px 0;
+  text-align: center;
+}
+.order__date,
+.order__total,
+.order__note {
+  margin: 11px 0;
+}
+.order__date span:nth-child(1),
+.order__total span:nth-child(1),
+.order__note span:nth-child(1) {
+  margin-right: 8px;
+  font-size: 13px;
+}
+.order__date span:nth-child(2),
+.order__total span:nth-child(2),
+.order__note span:nth-child(2) {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.order__detail {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.order__receive,
+.order__deli__method,
+.order__payment__method {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid var(--white-smoke);
+  height: 170px;
+  width: 287px;
+  margin: 0 4px;
+}
+
+.order__receive h5,
+.order__deli__method h5,
+.order__payment__method h5 {
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 20px;
+  padding-top: 10px;
+}
+
+.order__address p,
+.order__deli p,
+.order__payment p {
+  font-size: 13px;
+}
+
+.order__subtotal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 14px;
+}
+.order__subtotal p {
+  margin-bottom: 10px;
+}
+.order__subtotal p span {
+  font-weight: bold;
+  padding-left: 10px;
+}
