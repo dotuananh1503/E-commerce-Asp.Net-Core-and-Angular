@@ -82,6 +82,18 @@ namespace MangaEcommerce.Controllers
                     j--;
                 }    
             }
+            else
+            {
+                for (int i = 0; i < ratingValue.Length; i++)
+                {
+                    ratingValue[i] = new RatingValuePercentageDTO()
+                    {
+                        Star = j,
+                        Value = 0
+                    };
+                    j--;
+                }
+            }    
 
             return ratingValue;
         }

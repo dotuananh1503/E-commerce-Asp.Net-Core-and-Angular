@@ -63,6 +63,7 @@ namespace MangaEcommerce
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
             services.AddHttpContextAccessor();
             services.AddAutoMapper(typeof(Startup));
             services.AddSingleton<IEmailSender, EmailSender>();

@@ -116,5 +116,15 @@ namespace MangaEcommerce.Services
             }    
             return order;
         }
+
+        public async Task<IReadOnlyList<Order>> GetAllOrdersAsync()
+        {
+            return await context.Orders
+                .Include(x => x.DeliveryMethod)
+                .Include(x => x.PaymentMethod)
+                .Include(x => x.OrderItems)
+                .OrderByDescending(x => x.OrderDate)
+                .ToListAsync();
+        }
     }
 }

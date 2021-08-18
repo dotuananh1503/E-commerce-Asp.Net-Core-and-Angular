@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MangaEcommerce.Models
+namespace MangaEcommerce.DTOs
 {
-    public class CustomerCart
+    public class CustomerCartDTO
     {
-        public CustomerCart()
-        {
-
-        }
-        public CustomerCart(string id)
-        {
-            Id = id;
-        }
         public string Id { get; set; }
-        public List<CartItem> Items { get; set; } = new List<CartItem>();
+        public List<CartItemDTO> Items { get; set; }
         public int? DeliveryMethodId { get; set; }
         public string ClientSecret { get; set; }
         public string PaymentIntentId { get; set; }

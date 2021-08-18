@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0NfH7Lho2fh5BkJRF32GwgxC2mI/tS87D5eS6PcwuTKO3tTBAjqmgAhoXB1YiLBKedGqpL7ItG5n/+aOBbGI+A==",
+  "dgSpecHash": "iNRcM2PmPCoey4upmm3surZ4zrmz52DcxX9v4VSPcYPl2SbTQmPoSeqREZm5PDQsJn1eg2w3RNbaqxS252ZM0A==",
   "success": true,
   "projectFilePath": "D:\\Angular_Huflit\\E-commerce-Asp.Net-Core-and-Angular\\MangaEcommerce\\MangaEcommerce.csproj",
   "expectedPackageFiles": [
@@ -71,6 +71,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Tuan Anh\\.nuget\\packages\\stackexchange.redis\\2.2.62\\stackexchange.redis.2.2.62.nupkg.sha512",
+    "C:\\Users\\Tuan Anh\\.nuget\\packages\\stripe.net\\39.63.0\\stripe.net.39.63.0.nupkg.sha512",
     "C:\\Users\\Tuan Anh\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\Tuan Anh\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\Tuan Anh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

@@ -42,6 +42,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "5.0.8",
           "Newtonsoft.Json": "13.0.1",
           "StackExchange.Redis": "2.2.62",
+          "Stripe.net": "39.63.0",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -986,6 +987,21 @@
           "lib/net5.0/StackExchange.Redis.dll": {}
         }
       },
+      "Stripe.net/39.63.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "5.0.0"
+        },
+        "runtime": {
+          "lib/net5.0/Stripe.net.dll": {
+            "assemblyVersion": "39.63.0.0",
+            "fileVersion": "39.63.0.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Stripe.net.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/5.6.3": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "3.0.0",
@@ -1140,6 +1156,9 @@
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.20.51904"
           }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         }
       },
       "System.Console/4.3.0": {
@@ -1211,6 +1230,9 @@
       "System.Drawing.Common/5.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "5.0.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Drawing.Common.dll": {}
         }
       },
       "System.Globalization/4.3.0": {
@@ -4007,6 +4029,13 @@
       "sha512": "sha512-rcIFo/dK67An3mO1Heov0GZj9TYLMd+YB4drA09vOQz9ZpdjMhxSVtlDATcGpC++EH0aUGGnRnzhq0R0oXBOXg==",
       "path": "stackexchange.redis/2.2.62",
       "hashPath": "stackexchange.redis.2.2.62.nupkg.sha512"
+    },
+    "Stripe.net/39.63.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TcNHcqXKO9/dALkPO7KhaFYjnVEV849gvJCZQzE3TY0NZ68Y2tLvwB9487N2qO5o0Spt8s96oemrWfhLy92Opw==",
+      "path": "stripe.net/39.63.0",
+      "hashPath": "stripe.net.39.63.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/5.6.3": {
       "type": "package",

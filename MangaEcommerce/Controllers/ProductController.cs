@@ -33,6 +33,20 @@ namespace MangaEcommerce.Controllers
             this.photoService = photoService;
         }
 
+        [HttpGet("all")]
+        public async Task<ActionResult<List<ProductDTO>>> GetAllProducts()
+        {
+            var products = await context.Products
+                .Include(x => x.ProductGenres).ThenInclude(x => x.Genre)
+                .Include(x => x.Category)
+                .Include(x => x.Publisher)
+                .Include(x => x.Ratings)
+                .Include(x => x.Photos)
+                .ToListAsync();
+
+            return Ok(mapper.Map<List<Product>, List<ProductDTO>>(products));
+        }
+
         [HttpGet]
         public async Task<ActionResult<HomeDTO>> Get()
         {

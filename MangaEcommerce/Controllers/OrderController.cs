@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,6 +69,14 @@ namespace MangaEcommerce.Controllers
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
             var orders = await orderService.GetOrdersForUserAsync(email);
+            return Ok(mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDTO>>(orders));
+        }
+
+
+        [HttpGet("all")]
+        public async Task<ActionResult<IReadOnlyList<OrderToReturnDTO>>> GetAllOrders()
+        {
+            var orders = await orderService.GetAllOrdersAsync();
             return Ok(mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDTO>>(orders));
         }
 

@@ -150,3 +150,4 @@ D:\Angular_Huflit\E-commerce-Asp.Net-Core-and-Angular\MangaEcommerce\obj\Debug\n
 D:\Angular_Huflit\E-commerce-Asp.Net-Core-and-Angular\MangaEcommerce\obj\Debug\net5.0\ref\MangaEcommerce.dll
 D:\Angular_Huflit\E-commerce-Asp.Net-Core-and-Angular\MangaEcommerce\obj\Debug\net5.0\MangaEcommerce.pdb
 D:\Angular_Huflit\E-commerce-Asp.Net-Core-and-Angular\MangaEcommerce\obj\Debug\net5.0\MangaEcommerce.genruntimeconfig.cache
+D:\Angular_Huflit\E-commerce-Asp.Net-Core-and-Angular\MangaEcommerce\bin\Debug\net5.0\Stripe.net.dll
