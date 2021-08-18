@@ -8,6 +8,9 @@ import { ViewportScroller } from '@angular/common';
 import { SecurityService } from 'src/app/security/security.service';
 import Swal from 'sweetalert2';
 import { RatingService } from 'src/app/utilities/rating.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RatingComponent } from 'src/app/utilities/rating/rating.component';
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 
 
 @Component({
@@ -26,13 +29,16 @@ export class ProductDetailComponent implements OnInit {
   isAuthorized;
   releaseDate: Date;
   today: Date = new Date();
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
   constructor(
     private route: ActivatedRoute,
     private booksService: BookService,
     private cartService: CartService,
     private viewportScroller: ViewportScroller,
     public securityService: SecurityService,
-    private ratingService: RatingService
+    private ratingService: RatingService,
+    public dialog: MatDialog
   ) { }
 
 
@@ -41,6 +47,7 @@ export class ProductDetailComponent implements OnInit {
       this.booksService.getById(params.id).subscribe((book) => {
         console.log(book);
         this.book = book;
+        this.galleryImages = this.getImages();
         this.releaseDate = new Date(book.releaseDate);
       })
       this.booksService.getRelatedProducts(params.id).subscribe((books) => {
@@ -51,12 +58,53 @@ export class ProductDetailComponent implements OnInit {
       })
       this.isAuthorized = this.securityService.isAuthenticated();
     })
+
+    this.galleryOptions = [
+      {
+        width: '300px',
+        height: '400px',
+        imagePercent: 100,
+        thumbnailsColumns: 3,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        preview: true
+      }
+    ]
+  }
+
+  getImages(): NgxGalleryImage[]{
+    const imageUrls = [];
+    for(const photo of this.book.photos){
+      imageUrls.push({
+        small: photo?.url,
+        medium: photo?.url,
+        big: photo?.url
+      })
+    }
+    return imageUrls;
   }
 
   isReadMore = true
 
   showText() {
     this.isReadMore = !this.isReadMore
+  }
+
+  openDialog(id: number): void{
+    const dialogRef = this.dialog.open(RatingComponent, {
+      width: '600px',
+      data: {
+        id,
+        editmode: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchRating();
+    });
+  }
+
+  fetchRating(){
+    
   }
 
   public onClick(elementId: string): void {

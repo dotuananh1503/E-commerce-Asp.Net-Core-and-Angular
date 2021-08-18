@@ -25,7 +25,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './security/profile/profile.component';
 import { SocialLoginModule } from 'angularx-social-login';
-import { CheckoutEditComponent } from './checkout/checkout-edit/checkout-edit.component';
 import { CheckoutService } from './checkout/checkout.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BackLayoutComponent } from './_layout/back-layout/back-layout.component';
@@ -65,8 +64,6 @@ import { PhotoUploadComponent } from './utilities/photo-upload/photo-upload.comp
 import { FileUploadModule } from 'ng2-file-upload';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
-import { FilterPipe } from './product/filter.pipe';
-import { MoneyPipe } from './product/money.pipe';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { ProductCollectorComponent } from './product/product-collector/product-collector.component';
 import { ProductItemComponent } from './product/product-item/product-item.component';
@@ -86,6 +83,8 @@ import { AddressIndexComponent } from './security/address-manage/address-index/a
 import { AddressFormManageComponent } from './security/address-manage/address-form-manage/address-form-manage.component';
 import { OrderListComponent } from './security/order-manage/order-list/order-list.component';
 import { OrderDetailComponent } from './security/order-manage/order-detail/order-detail.component';
+import { PipesModule } from './pipes/pipes.module';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 @NgModule({
   declarations: [
@@ -105,8 +104,6 @@ import { OrderDetailComponent } from './security/order-manage/order-detail/order
     ProductEditComponent,
     ProductSlideComponent,
     ProductSlideItemComponent,
-    MoneyPipe,
-    FilterPipe,
     ProductDetailComponent,
     NewsComponent,
     AboutComponent,
@@ -114,7 +111,6 @@ import { OrderDetailComponent } from './security/order-manage/order-detail/order
     SucccessComponent,
     AdminComponent,
     ProfileComponent,
-    CheckoutEditComponent,
     PermissionComponent,
     CategoryEditComponent,
     CategoryIndexComponent,
@@ -159,6 +155,8 @@ import { OrderDetailComponent } from './security/order-manage/order-detail/order
     NgxInputStarRatingModule,
     RatingModule,
     FormsModule,
+    NgxGalleryModule,
+    PipesModule,
     ReactiveFormsModule,
     MatExpansionModule,
     MatStepperModule,

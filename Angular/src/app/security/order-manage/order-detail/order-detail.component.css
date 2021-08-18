@@ -1,18 +1,31 @@
+th,
+td {
+  font-size: 14px;
+}
+
 .order__review h5 {
   text-transform: uppercase;
   margin-bottom: 11px;
 }
 .order__review h5 ~ span {
-  background-color: rgba(77, 77, 255, 0.2);
   display: block;
-  padding: 0 20px;
-  color: blue;
+  padding: 0 10px;
   width: 120px;
   border-radius: 20px;
   font-size: 12px;
-  border: 1px solid rgba(77, 77, 255, 0.2);
   margin: 11px 0;
   text-align: center;
+}
+
+.pendingSpan {
+  background-color: rgba(77, 77, 255, 0.2);
+  color: blue;
+  border: 1px solid rgba(77, 77, 255, 0.2);
+}
+.cancelSpan {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: red;
+  border: 1px solid rgba(255, 0, 0, 0.2);
 }
 .order__date,
 .order__total,

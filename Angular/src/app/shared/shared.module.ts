@@ -18,6 +18,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ],
     imports: [
         RouterModule,
+        PipesModule,
         MatBadgeModule,
         MatButtonModule,
         MatMenuModule,

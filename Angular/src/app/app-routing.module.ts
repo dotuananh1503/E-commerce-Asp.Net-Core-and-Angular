@@ -73,6 +73,7 @@ const appRoutes: Routes = [
             { path: 'books', component: BookListComponent },
             { path: 'books/update/:id', component: BookEditComponent },
             { path: 'books/filter', component: BookFilterComponent },
+            { path: 'books/list', component: BookListComponent},
             { path: 'books/:id/Photos', component: PhotoUploadComponent }
         ]
     },

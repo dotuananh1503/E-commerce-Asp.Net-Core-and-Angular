@@ -3,17 +3,11 @@
     <div class="col-lg-5 col-md-12 col-sm-12">
       <div class="product__image__holder">
         <div class="product__detail__image">
-          <div class="product__side__image">
-            <div
-              *ngFor="let photo of book.photos"
-              class="product__side__img__holder"
-            >
-              <img src="{{ photo.url }}" />
-            </div>
-          </div>
-          <div class="product__main__image">
-            <img src="{{ book.productImage }}" alt="" />
-          </div>
+          <ngx-gallery
+            [options]="galleryOptions"
+            [images]="galleryImages"
+            style="display: inline-block; margin-bottom: 20px"
+          ></ngx-gallery>
         </div>
         <div class="product__detail__button">
           <a
@@ -73,7 +67,7 @@
           </a>
         </div>
         <div class="product__price__flavor">
-          <p>{{ book.price | moneypipe }}</p>
+          <p>{{ book.price | currency: "VND":"symbol" }}</p>
           <div class="price__flavor__icon">
             <i class="fas fa-heart"></i>
           </div>
@@ -231,7 +225,12 @@
           </ng-container>
         </div>
         <div class="rating__button">
-          <a routerLink="/cart">Viết nhận xét</a>
+          <a *ngIf="isAuthorized" (click)="openDialog(book.id)"
+            >Viết nhận xét</a
+          >
+          <span *ngIf="!isAuthorized"
+            >Chỉ có thành viên mới thực hiện được chức năng này.</span
+          >
         </div>
       </div>
       <hr />
@@ -253,16 +252,6 @@
           </div>
         </div>
       </section>
-      <div *ngIf="!isAuthorized" class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          Chỉ có thành viên mới được thực hiện chức năng này.
-        </div>
-      </div>
-      <div *ngIf="isAuthorized" class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <app-rating [bookId]="book.id"></app-rating>
-        </div>
-      </div>
     </div>
   </div>
 </div>

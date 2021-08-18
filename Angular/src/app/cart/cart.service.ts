@@ -19,11 +19,21 @@ export class CartService {
   shipping = 0;
   constructor(private http: HttpClient) { }
 
+  createPaymentIntent(){
+    return this.http.post(this.apiURL + '/payments/' + this.getCurrentCartValue().id, {})
+    .pipe(
+      map((cart: ICart) => {
+        this.cartSource.next(cart);
+      })
+    )
+  }
+
   getCart(id: string) {
     return this.http.get(this.apiURL + '/carts?id=' + id)
       .pipe(
         map((cart: ICart) => {
           this.cartSource.next(cart);
+          this.shipping = cart.shippingPrice;
           this.calculateTotals();
         })
       );
@@ -141,9 +151,4 @@ export class CartService {
     this.calculateTotals();
     this.setCart(cart);
   }
-
-
-
-
-
 }

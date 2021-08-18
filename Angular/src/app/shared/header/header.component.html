@@ -14,16 +14,42 @@
             <span><a href="">Đăng nhập</a> / <a href="">Đăng ký</a></span>
           </div>
         </div>
-        <li><a href="admin.html">Trang chủ</a></li>
+        <li><a routerLink="">Trang chủ</a></li>
         <li>
-          <a href="#" class="desktop-link">Sản phẩm</a>
+          <a [routerLink]="['/product-collector']" class="desktop-link"
+            >Sản phẩm</a
+          >
           <input type="checkbox" id="show-features" />
           <label for="show-features">Sản phẩm</label>
           <ul>
-            <li><a href="admin.html">Manga</a></li>
-            <li><a href="#">Light Novel</a></li>
-            <li><a href="#">Văn học</a></li>
-            <li><a href="#">Quà lưu niệm</a></li>
+            <li>
+              <a
+                [routerLink]="['/product-collector']"
+                [queryParams]="{ categoryId: 2 }"
+                >Manga</a
+              >
+            </li>
+            <li>
+              <a
+                [routerLink]="['/product-collector']"
+                [queryParams]="{ categoryId: 1 }"
+                >Light Novel</a
+              >
+            </li>
+            <li>
+              <a
+                [routerLink]="['/product-collector']"
+                [queryParams]="{ categoryId: 3 }"
+                >Văn học</a
+              >
+            </li>
+            <li>
+              <a
+                [routerLink]="['/product-collector']"
+                [queryParams]="{ categoryId: 4 }"
+                >Quà lưu niệm</a
+              >
+            </li>
           </ul>
         </li>
         <li><a href="#">Tin tức</a></li>
@@ -80,7 +106,7 @@
           >
           <div class="user-account">
             <span *ngIf="cartTotals$ | async" class="second-span">{{
-              (cartTotals$ | async).total
+              (cartTotals$ | async).total | moneypipe
             }}</span>
           </div>
         </div>

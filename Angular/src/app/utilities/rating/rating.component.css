@@ -1,7 +1,25 @@
-checked{
-    color: orange;
+checked {
+  color: orange;
 }
 
 mat-icon {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.rating {
+  text-align: center;
+  margin: 15px 0;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  display: block;
+  margin-left: auto;
 }

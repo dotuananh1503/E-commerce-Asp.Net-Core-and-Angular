@@ -11,6 +11,12 @@ import { OrderService } from '../order.service';
 export class OrderDetailComponent implements OnInit {
 
   order: IOrder;
+  isPending = false;
+  isAccepted = false;
+  isShipping = false;
+  isPaymentComplete = false;
+  isPaymentFailed = false;
+  isCancel = false;
   constructor(private orderService: OrderService,
     private activateRoute: ActivatedRoute) { }
 
@@ -18,7 +24,12 @@ export class OrderDetailComponent implements OnInit {
     this.activateRoute.params.subscribe((params) => {
       this.orderService.getOrderByIdForUser(params.id).subscribe(order => {
         this.order = order;
-        console.log(this.order);
+        if(this.order.status == "Đã hủy"){
+          this.isCancel = true
+        }
+        else if(this.order.status == "Chờ xác nhận"){
+          this.isPending = true
+        }
       })
     })
   }

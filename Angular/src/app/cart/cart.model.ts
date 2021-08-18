@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 export interface ICart {
     id: string;
     items: ICartItem[];
+    clientSecret?: string;
+    paymentIntentId?: string;
     deliveryMethodId?: number;
     paymentMethodId?: number;
     orderNote?: string;

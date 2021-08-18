@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -27,9 +28,10 @@ export class CheckoutComponent implements OnInit {
   deliveryMethods: IDeliveryMethod[];
   paymentMethods: IPaymentMethod;
   cartTotals$: Observable<ICartTotals>;
+  cart$: Observable<ICart>;
   constructor(private checkoutService: CheckoutService, private toastService: ToastrService,
     private cartService: CartService, public authService: AuthService,
-    private socialService: SocialAuthService,
+    private socialService: SocialAuthService, private router: Router,
     public dialog: MatDialog,
     private securityService: SecurityService,
     private fb: FormBuilder) {
@@ -37,6 +39,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.createCheckoutForm();
+    this.getDeliveryMethodValue();
     this.checkoutService.getDeliveryMethods().subscribe((dm: IDeliveryMethod[]) => {
       this.deliveryMethods = dm;
     }, error => {
@@ -46,6 +49,7 @@ export class CheckoutComponent implements OnInit {
       this.paymentMethods = response;
     });
     this.fetchAddress();
+    this.cart$ = this.cartService.cart$;
     this.cartTotals$ = this.cartService.cartTotal$;
   }
 
@@ -118,10 +122,25 @@ export class CheckoutComponent implements OnInit {
     console.log(this.checkoutForm.get('addressForm').value)
   }
 
+  getDeliveryMethodValue() {
+    const cart = this.cartService.getCurrentCartValue();
+    if(cart.deliveryMethodId != null){
+      this.checkoutForm.get('deliveryForm').get('deliveryMethod').patchValue(cart.deliveryMethodId.toString())
+    }
+  }
+
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
     this.cartService.setShippingPrice(deliveryMethod);
   }
 
+
+  createPaymentIntent(){
+    return this.cartService.createPaymentIntent().subscribe((resonse: any) => {
+      this.toastService.success("Payment intent created");
+    }, error => {
+      console.log(error);
+    })
+  }
 
 
   showToastr() {
@@ -136,7 +155,7 @@ export class CheckoutComponent implements OnInit {
       this.showToastr();
       this.cartService.deleteLocalCart(cart.id);
       console.log(order);
-
+      this.router.navigate(['/success']);
     });
   }
 

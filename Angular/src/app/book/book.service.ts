@@ -16,6 +16,10 @@ export class BookService {
   }
   private apiURL = environment.apiURL + '/products';
 
+  public getAllBooks(): Observable<bookDTO> {
+    return this.http.get<bookDTO>(`${this.apiURL}/all`);
+  }
+
   public getHomePageBooks(): Observable<homeDTO> {
     return this.http.get<homeDTO>(this.apiURL);
   }

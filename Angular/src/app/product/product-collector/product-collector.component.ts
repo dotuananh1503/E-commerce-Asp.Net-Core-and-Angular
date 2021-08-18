@@ -12,6 +12,7 @@ import { genreDTO } from 'src/app/genre/genre.model';
 import { categoryDTO } from 'src/app/category/category.model';
 import { publisherDTO } from 'src/app/publisher/publisher.model';
 import { multipleSelectorModel } from 'src/app/utilities/multiple-selector/multiple-selector.model';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -42,14 +43,15 @@ export class ProductCollectorComponent implements OnInit {
   initialFormValues: any;
   page = 1;
   pageSize = 5;
+  totalAmountOfRecords;
 
-  sortSelection: multipleSelectorModel[] = [
-    { key: 1, value: "nameatoz" },
-    { key: 2, value: "nameztoa" },
-    { key: 3, value: "priceatoz" },
-    { key: 4, value: "priceztoa" },
-    { key: 5, value: "dateatoz" },
-    { key: 6, value: "dateztoa" }
+  sortSelection = [
+    { key: 1, value: "nameatoz", name: "Tên: A - Z" },
+    { key: 2, value: "nameztoa", name: "Tên: Z - A" },
+    { key: 3, value: "priceatoz", name: "Giá: Thấp - Cao" },
+    { key: 4, value: "priceztoa", name: "Giá: Cao - Thấp" },
+    { key: 5, value: "dateatoz", name: "Cũ nhất" },
+    { key: 6, value: "dateztoa", name: "Mới nhất" }
   ]
 
   ngOnInit(): void {
@@ -107,8 +109,6 @@ export class ProductCollectorComponent implements OnInit {
 
     });
 
-
-
   }
 
   filterBooks(values: any) {
@@ -116,7 +116,7 @@ export class ProductCollectorComponent implements OnInit {
     values.recordsPerPage = this.recordsPerPage;
     this.bookService.filter(values).subscribe((response: HttpResponse<bookDTO[]>) => {
       this.books = response.body;
-
+      this.totalAmountOfRecords = response.headers.get("totalAmountOfRecords");
     })
   }
 
@@ -153,16 +153,23 @@ export class ProductCollectorComponent implements OnInit {
       }
 
 
-      /*       if (params.page){
-              this.currentPage = params.page;
-            }
-      
-            if (params.recordsPerPage){
-              this.recordsPerPage = params.recordsPerPage;
-            } */
+      if (params.page){
+        this.currentPage = params.page;
+      }
+
+      if (params.recordsPerPage){
+        this.recordsPerPage = params.recordsPerPage;
+      }
 
       this.form.patchValue(obj);
     });
+  }
+
+  paginatorUpdate(event: PageEvent){
+    this.currentPage = event.pageIndex + 1;
+    this.recordsPerPage = event.pageSize;
+    this.writeParametersInURL();
+    this.filterBooks(this.form.value);
   }
 
   private writeParametersInURL() {
@@ -191,25 +198,23 @@ export class ProductCollectorComponent implements OnInit {
     }
 
     if (formValues.filterPrice2) {
-      queryStrings.push(`priceFilter2=150000,300000`);
+      queryStrings.push("priceFilter2=150000,300000");
     }
 
     if (formValues.filterPrice3) {
-      queryStrings.push(`priceFilter3=300000,500000`);
+      queryStrings.push("priceFilter3=300000,500000");
     }
 
     if (formValues.filterPrice4) {
       queryStrings.push(`priceFilter4=500000,700000`);
     }
 
+    queryStrings.push(`page=${this.currentPage}`);
+    queryStrings.push(`recordsPerPage=${this.recordsPerPage}`); 
+
     this.location.replaceState('product-collector', queryStrings.join('&'));
 
-    /*     queryStrings.push(`page=${this.currentPage}`);
-        queryStrings.push(`recordsPerPage=${this.recordsPerPage}`); */
-
   }
-
-
 
   clearForm() {
     this.form.patchValue(this.initialFormValues);

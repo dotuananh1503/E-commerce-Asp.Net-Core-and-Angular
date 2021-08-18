@@ -1,3 +1,65 @@
-<p>
-  book-list works!
-</p>
+<div class="container">
+  <table
+    *ngIf="books"
+    class="table table-responsive-sm table-borderless table-light"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Sản phẩm</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Đã bán</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Ngày phát hành</th>
+        <th scope="col">Thông tin</th>
+        <th>Tác vụ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td id="row1">
+          <div class="image__name__author">
+            <img src="{{ book.productImage }}" height="120px" />
+            <div class="name__author">
+              <p>{{ book.name }}</p>
+              <p>
+                Tác giả: <span>{{ book.author }}</span>
+              </p>
+              <p>
+                Nhà xuất bản: <span>{{ book.publisherName }}</span>
+              </p>
+              <p>
+                Danh mục: <span>{{ book.categoryName }}</span>
+              </p>
+            </div>
+          </div>
+        </td>
+        <td id="row2">{{ book.quantity }}</td>
+        <td id="row2">{{ book.soldQuantity }}</td>
+        <td>
+          <span class="price">{{ book.price | moneypipe }}</span>
+        </td>
+        <td id="row4">{{ book.releaseDate | date: "dd/MM/yyyy" }}</td>
+        <td id="row5">
+          <div class="sub__info">
+            <p>
+              Kích thước: <span>{{ book.size }}</span>
+            </p>
+            <p>
+              Số trang: <span>{{ book.pages }}</span>
+            </p>
+            <p>
+              Dịch giả: <span>{{ book.translators }}</span>
+            </p>
+          </div>
+        </td>
+        <td>
+          <div class="list__action">
+            <a [routerLink]="['/books/update', book.id]"> Cập nhật </a>
+            <a [routerLink]="['/books', book.id, 'Photos']"> Thêm ảnh </a>
+            <a href=""> Xóa </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
