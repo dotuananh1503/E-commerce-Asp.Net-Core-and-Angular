@@ -12,7 +12,7 @@ namespace MangaEcommerce.Models.OrderAggregate
 
         }
         public Order(IReadOnlyList<OrderItem> orderItems, string buyerEmail, Address shipToAddress, 
-            DeliveryMethod deliveryMethod, PaymentMethod paymentMethod ,int subtotal, string orderNote)
+            DeliveryMethod deliveryMethod, PaymentMethod paymentMethod ,int subtotal, string orderNote, string paymentIntentId)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAddress;
@@ -21,6 +21,7 @@ namespace MangaEcommerce.Models.OrderAggregate
             OrderNote = orderNote;
             OrderItems = orderItems;
             Subtotal = subtotal;
+            PaymentIntendId = paymentIntentId;
         }
 
         public int Id { get; set; }

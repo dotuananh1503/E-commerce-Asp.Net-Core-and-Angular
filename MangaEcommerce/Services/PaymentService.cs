@@ -1,6 +1,8 @@
 ﻿using MangaEcommerce.DatabaseContext;
 using MangaEcommerce.Interface;
 using MangaEcommerce.Models;
+using MangaEcommerce.Models.OrderAggregate;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Stripe;
 using System;
@@ -27,7 +29,10 @@ namespace MangaEcommerce.Services
         public async Task<CustomerCart> CreateOrUpdatePaymentIntent(string cartId)
         {
             StripeConfiguration.ApiKey = config["StripeSettings:SecretKey"];
+
             var cart = await cartRepository.GetBasketAsync(cartId);
+
+            if (cart == null) return null;
             var shippingPrice = 0m;
 
             if(cart.DeliveryMethodId.HasValue)
@@ -73,6 +78,33 @@ namespace MangaEcommerce.Services
 
             await cartRepository.UpdateBasketAsync(cart);
             return cart;
+        }
+
+        public async Task<Models.OrderAggregate.Order> UpdateOrderPaymentFailed(string paymentIntentId)
+        {
+            var order = context.Orders.FirstOrDefault(x => x.PaymentIntendId == paymentIntentId);
+
+            if (order == null) return null;
+
+            order.Status = OrderStatus.PaymentFailed;
+
+            await context.SaveChangesAsync();
+            return order;
+        }
+
+        public async Task<Models.OrderAggregate.Order> UpdateOrderPaymentSucceeded(string paymentIntentId)
+        { 
+            var order = context.Orders.FirstOrDefault(x => x.PaymentIntendId == paymentIntentId);
+
+            if (order == null) return null;
+
+            order.Status = OrderStatus.PaymentReceived;
+
+            context.Attach(order);
+            context.Entry(order).State = EntityState.Modified;
+
+            await context.SaveChangesAsync();
+            return order;
         }
     }
 }
