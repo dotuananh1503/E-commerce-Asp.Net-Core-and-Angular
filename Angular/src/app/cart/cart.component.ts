@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { ICart, ICartItem } from './cart.model';
+import { ICart, ICartItem, ICartTotals } from './cart.model';
 import { CartService } from './cart.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { CartService } from './cart.service';
 export class CartComponent implements OnInit {
 
   cart$: Observable<ICart>;
+  cartTotals$: Observable<ICartTotals>;
   today: Date = new Date();
   cartItems = [
 
@@ -38,6 +39,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.CartDetails();
     this.cart$ = this.cartService.cart$;
+    this.cartTotals$ = this.cartService.cartTotal$;
     console.log(this.cart$);
   }
 

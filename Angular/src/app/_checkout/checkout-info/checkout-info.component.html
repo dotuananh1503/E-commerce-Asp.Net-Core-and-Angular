@@ -1,0 +1,146 @@
+<ng-container [formGroup]="checkoutForm">
+  <div class="checkout__content">
+    <h5>Địa chỉ giao hàng</h5>
+    <hr />
+    <div
+      class="checkout__address"
+      *ngFor="let address of addresses; let i = index"
+    >
+      <div class="checkout__address__info">
+        <input
+          name="address"
+          (change)="onSelected($event)"
+          type="radio"
+          [value]="address.id"
+        />
+        <label for=""
+          ><span>{{ address.firstName + " " + address.lastName }}</span>
+          <span
+            >{{ address.street }}, Phường {{ address.ward }}, Quận
+            {{ address.district }}, {{ address.city }},
+            {{ address.country }}</span
+          >
+          <span>Điện thoại: {{ address.phone }}</span></label
+        >
+      </div>
+      <div class="checkout__address__edit">
+        <span (click)="openDialog(address)" class="text-success"
+          >Sửa địa chỉ</span
+        >
+        <span
+          *ngIf="!address.isMainAddress"
+          [swal]="{
+            title: 'Xác nhận!',
+            text: 'Bạn có muốn xóa địa chỉ này?',
+            showCancelButton: true
+          }"
+          (confirm)="onDeleteAddress(address.id)"
+          class="text-danger"
+          >Xóa</span
+        >
+      </div>
+    </div>
+    <span (click)="openDialogCreate()" class="add-address"
+      >Giao hàng đến địa chỉ khác</span
+    >
+    <form style="display: none" formGroupName="addressForm">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input type="text" formControlName="firstName" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input type="text" formControlName="lastName" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input type="text" formControlName="phone" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <input type="text" formControlName="country" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Street</mat-label>
+        <input type="text" formControlName="street" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <input type="text" formControlName="city" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ward</mat-label>
+        <input type="text" formControlName="ward" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>District</mat-label>
+        <input type="text" formControlName="district" matInput />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="checkout__content" formGroupName="deliveryForm">
+    <h5>Phương thức vận chuyển</h5>
+    <hr />
+    <div class="checkout__delivery" *ngFor="let delivery of deliveryMethods">
+      <input
+        (click)="setShippingPrice(delivery)"
+        formControlName="deliveryMethod"
+        type="radio"
+        id="delivery.id"
+        name="deliveryMethod"
+        [value]="delivery.id"
+      /><label for="{{ delivery.id }}"
+        >{{ delivery.description }}: {{ delivery.price | moneypipe }}</label
+      >
+    </div>
+  </div>
+  <div class="checkout__content" formGroupName="paymentMethodForm">
+    <h5>Phương thức thanh toán</h5>
+    <hr />
+    <div class="checkout__payment" *ngFor="let payment of paymentMethods">
+      <input
+        type="radio"
+        name="paymentMethod"
+        formControlName="paymentMethod"
+        [value]="payment.id"
+      />
+      {{ payment.description }}
+    </div>
+  </div>
+  <div class="checkout__content">
+    <h5>Thông tin khác</h5>
+    <hr />
+    <div class="checkout__payment">
+      <input type="checkbox" name="note" /> Ghi chú
+      <div class="note__wrapper" formGroupName="noteForm">
+        <input
+          type="text"
+          name="orderNote"
+          formControlName="orderNote"
+          placeholder="Ghi chú của bạn"
+        />
+      </div>
+    </div>
+  </div>
+</ng-container>
+<div
+  class="float-none d-flex justify-content-between flex-column flex-lg-row mb-5"
+>
+  <button class="btn btn-outline-primary" routerLink="/cart">
+    <i class="fa fa-angle-left"></i> Quay lại giỏ hàng
+  </button>
+  <button
+    [disabled]="checkoutForm.get('addressForm').invalid"
+    class="btn btn-primary"
+    (click)="createPaymentIntent()"
+  >
+    Đến phần thanh toán <i class="fa fa-angle-right"></i>
+  </button>
+</div>

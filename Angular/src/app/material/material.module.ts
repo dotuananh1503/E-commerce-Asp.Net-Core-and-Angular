@@ -19,6 +19,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatChipsModule } from '@angular/material/chips'
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [],
@@ -41,7 +42,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatChipsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatStepperModule
   ],
   imports: [
     CommonModule

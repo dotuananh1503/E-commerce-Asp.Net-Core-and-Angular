@@ -1,26 +1,22 @@
 <div class="sidebar__cart">
-  <div class="cart__order__sum" *ngIf="cartTotals$ | async">
+  <div class="cart__order__sum">
     <h2 class="order__summary__title">Thông tin đơn hàng</h2>
     <div class="summary__total">
       <p>
         Thành tiền:
-        <span>{{ (cartTotals$ | async).subtotal | moneypipe }}</span>
+        <span>{{ subtotal | moneypipe }}</span>
       </p>
     </div>
     <div class="summary__total">
       <p>
         Phí vận chuyển:
-        <span>{{ (cartTotals$ | async).shipping | moneypipe }}</span>
+        <span>{{ shippingPrice | moneypipe }}</span>
       </p>
     </div>
     <div class="summary__total">
       <p>
-        Tổng số tiền: <span>{{ (cartTotals$ | async).total | moneypipe }}</span>
+        Tổng số tiền: <span>{{ total | moneypipe }}</span>
       </p>
-    </div>
-    <div class="summary__action">
-      <p>Bạn có thể nhập mã giảm giá ở trang thanh toán</p>
-      <a routerLink="/checkout" class="checkout__btn">THANH TOÁN</a>
     </div>
   </div>
 </div>

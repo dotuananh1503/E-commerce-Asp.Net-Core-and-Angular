@@ -13,7 +13,7 @@ import { NewsComponent } from './news/news.component';
 import { NewsModule } from './news/news.module';
 import { NewsService } from './news/news.service';
 import { AboutComponent } from './about/about.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutComponent } from './_checkout/checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -25,7 +25,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './security/profile/profile.component';
 import { SocialLoginModule } from 'angularx-social-login';
-import { CheckoutService } from './checkout/checkout.service';
+import { CheckoutService } from './_checkout/checkout.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BackLayoutComponent } from './_layout/back-layout/back-layout.component';
 import { FrontLayoutComponent } from './_layout/front-layout/front-layout.component';
@@ -85,6 +85,10 @@ import { OrderListComponent } from './security/order-manage/order-list/order-lis
 import { OrderDetailComponent } from './security/order-manage/order-detail/order-detail.component';
 import { PipesModule } from './pipes/pipes.module';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { CheckoutInfoComponent } from './_checkout/checkout-info/checkout-info.component';
+import { CheckoutPaymentComponent } from './_checkout/checkout-payment/checkout-payment.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -144,7 +148,9 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     AddressFormManageComponent,
     OrderListComponent,
     OrderDetailComponent,
-    RatingComponent
+    RatingComponent,
+    CheckoutInfoComponent,
+    CheckoutPaymentComponent
   ],
   imports: [
     BrowserModule,

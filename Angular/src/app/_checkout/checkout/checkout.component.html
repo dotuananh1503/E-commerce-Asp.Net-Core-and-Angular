@@ -1,0 +1,71 @@
+<div class="checkout__wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-sm-12">
+        <div class="checkout__container">
+          <div class="checkout__content">
+            <app-stepper [linearModeSelected]="false" #appStepper>
+              <cdk-step
+                [label]="'Info'"
+                [completed]="checkoutForm.get('addressForm').valid"
+              >
+                <app-checkout-info
+                  [checkoutForm]="checkoutForm"
+                  [appStepper]="appStepper"
+                ></app-checkout-info>
+              </cdk-step>
+              <cdk-step [label]="'Payment'">
+                <app-checkout-payment
+                  [checkoutForm]="checkoutForm"
+                ></app-checkout-payment>
+              </cdk-step>
+            </app-stepper>
+            <h5>Kiểm tra lại giỏ hàng</h5>
+            <hr />
+            <table
+              *ngIf="cart$ | async"
+              class="table table-responsive-sm table-borderless table-light"
+            >
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of (cart$ | async).items">
+                  <td>
+                    <img src="{{ item.productImage }}" width="100px" />
+                  </td>
+                  <td id="row2">
+                    {{ item.productName }}
+                  </td>
+                  <td>
+                    <span class="price">{{ item.price | moneypipe }}</span>
+                  </td>
+                  <td id="row4">{{ item.quantity }}</td>
+                  <td id="row5">{{ item.price * item.quantity }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12">
+        <div class="checkout__container">
+          <app-order-totals
+            *ngIf="cartTotals$ | async"
+            [shippingPrice]="(cartTotals$ | async).shipping"
+            [subtotal]="(cartTotals$ | async).subtotal"
+            [total]="(cartTotals$ | async).total"
+          >
+          </app-order-totals>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

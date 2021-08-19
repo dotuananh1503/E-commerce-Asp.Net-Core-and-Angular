@@ -1,3 +1,11 @@
 <div class="container success_box">
   <h3><i class="far fa-check-circle text-success"></i> Đặt hàng thành công</h3>
+  <br />
+  <button
+    *ngIf="order"
+    routerLink="/user/account/orders/detail/{{ order?.id }}"
+    class="btn btn-outline-success"
+  >
+    View your order
+  </button>
 </div>

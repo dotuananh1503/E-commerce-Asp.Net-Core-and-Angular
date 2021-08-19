@@ -1,9 +1,14 @@
 <div *ngIf="order">
   <div class="order__review">
     <h5>Chi tiết đơn hàng</h5>
-    <span [ngClass]="{ pendingSpan: isPending, cancelSpan: isCancel }">{{
-      order.status
-    }}</span>
+    <span
+      [ngClass]="{
+        pendingSpan: isPending,
+        cancelSpan: isCancel,
+        succeedSpan: isPaymentComplete
+      }"
+      >{{ order.status }}</span
+    >
     <div class="order__date">
       <span>Ngày đặt mua: </span
       ><span>{{ order.orderDate | date: "dd/MM/yyyy" }}</span>

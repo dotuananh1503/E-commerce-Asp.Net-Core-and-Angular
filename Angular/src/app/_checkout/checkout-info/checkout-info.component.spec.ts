@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CheckoutEditComponent } from './checkout-edit.component';
+import { CheckoutInfoComponent } from './checkout-info.component';
 
-describe('CheckoutEditComponent', () => {
-  let component: CheckoutEditComponent;
-  let fixture: ComponentFixture<CheckoutEditComponent>;
+describe('CheckoutInfoComponent', () => {
+  let component: CheckoutInfoComponent;
+  let fixture: ComponentFixture<CheckoutInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckoutEditComponent ]
+      declarations: [ CheckoutInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckoutEditComponent);
+    fixture = TestBed.createComponent(CheckoutInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

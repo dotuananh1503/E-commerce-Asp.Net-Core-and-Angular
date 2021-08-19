@@ -10,7 +10,7 @@ td {
 .order__review h5 ~ span {
   display: block;
   padding: 0 10px;
-  width: 120px;
+  width: fit-content;
   border-radius: 20px;
   font-size: 12px;
   margin: 11px 0;
@@ -26,6 +26,11 @@ td {
   background-color: rgba(255, 0, 0, 0.2);
   color: red;
   border: 1px solid rgba(255, 0, 0, 0.2);
+}
+.succeedSpan {
+  background-color: rgba(30, 255, 0, 0.2);
+  color: green;
+  border: 1px solid rgba(30, 255, 0, 0.2);
 }
 .order__date,
 .order__total,

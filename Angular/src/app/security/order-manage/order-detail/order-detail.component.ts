@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IOrder } from 'src/app/checkout/checkout.model';
+import { IOrder } from 'src/app/_checkout/checkout.model';
 import { OrderService } from '../order.service';
 
 @Component({
@@ -29,6 +29,9 @@ export class OrderDetailComponent implements OnInit {
         }
         else if(this.order.status == "Chờ xác nhận"){
           this.isPending = true
+        }
+        else if(this.order.status == "Giao hàng thành công"){
+          this.isPaymentComplete = true;
         }
       })
     })

@@ -19,6 +19,8 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig } f
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { StepperComponent } from './stepper/stepper.component';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { PipesModule } from '../pipes/pipes.module';
         NotFoundComponent,
         OrderTotalsComponent,
         AuthorizeViewComponent,
-        SidebarComponent
+        SidebarComponent,
+        StepperComponent
     ],
     imports: [
         RouterModule,
@@ -44,7 +47,8 @@ import { PipesModule } from '../pipes/pipes.module';
         CommonModule,
         FormsModule,
         FileUploadModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CdkStepperModule
     ],
     exports: [
         HeaderComponent,
@@ -53,7 +57,9 @@ import { PipesModule } from '../pipes/pipes.module';
         FooterBackComponent,
         OrderTotalsComponent,
         FooterComponent,
-        SidebarComponent
+        SidebarComponent,
+        StepperComponent,
+        CdkStepperModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

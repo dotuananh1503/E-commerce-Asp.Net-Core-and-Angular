@@ -10,7 +10,7 @@ import { BookFilterComponent } from "./book/book-filter/book-filter.component";
 import { BookListComponent } from "./book/book-list/book-list.component";
 import { CartComponent } from "./cart/cart.component";
 import { CategoryIndexComponent } from "./category/category-index/category-index.component";
-import { CheckoutComponent } from "./checkout/checkout.component";
+import { CheckoutComponent } from "./_checkout/checkout/checkout.component";
 import { ContactComponent } from "./contact/contact.component";
 import { SucccessComponent } from "./succcess/succcess.component";
 import { GenreIndexComponent } from "./genre/genre-index/genre-index.component";

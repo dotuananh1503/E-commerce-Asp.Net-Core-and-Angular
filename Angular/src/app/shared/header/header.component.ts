@@ -36,14 +36,13 @@ export class HeaderComponent implements OnInit {
       'nameSearch': new FormControl(null, Validators.required)
     })
     this.cart$ = this.cartService.cart$;
-    console.log(this.cart$);
     this.isAuthorized = this.securityService.isAuthenticated();
     this.cartTotals$ = this.cartService.cartTotal$;
-    console.log(this.isAuthorized);
   }
 
-  onSearch() {
-    this.router.navigate(['/product-collector'], { queryParams: { nameSearch: this.searchForm.get('nameSeach').value } });
+  onSearch(value: any) {
+    console.log(value);
+    this.router.navigate(['/product-collector'], { queryParams: { name: value.nameSearch }});
   }
 
   onClickonicon() {

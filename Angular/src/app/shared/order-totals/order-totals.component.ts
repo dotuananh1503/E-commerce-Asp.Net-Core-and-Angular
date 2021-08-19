@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICart, ICartTotals } from 'src/app/cart/cart.model';
 import { CartService } from 'src/app/cart/cart.service';
@@ -10,11 +10,12 @@ import { CartService } from 'src/app/cart/cart.service';
 })
 export class OrderTotalsComponent implements OnInit {
 
-  cartTotals$: Observable<ICartTotals>;
+  @Input() shippingPrice: number;
+  @Input() subtotal: number;
+  @Input() total: number;
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.cartTotals$ = this.cartService.cartTotal$;
   }
 
 }

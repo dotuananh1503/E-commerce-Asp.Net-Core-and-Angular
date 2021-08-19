@@ -5,7 +5,8 @@ import { Cart, ICart, ICartItem, ICartTotals } from "./cart.model";
 import { environment } from "src/environments/environment";
 import { BehaviorSubject } from "rxjs";
 import { bookDTO } from "../book/book.model";
-import { IDeliveryMethod, IPaymentMethod } from "../checkout/checkout.model";
+import { IDeliveryMethod } from "../_checkout/checkout.model";
+
 
 
 @Injectable()

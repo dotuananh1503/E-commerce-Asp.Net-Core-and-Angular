@@ -1,0 +1,19 @@
+.checkout__btn {
+  display: block;
+  background-color: rgb(0, 0, 0);
+  color: var(--text-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px 5px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 0;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.checkout__btn:hover {
+  text-decoration: none;
+  color: var(--text-color);
+}

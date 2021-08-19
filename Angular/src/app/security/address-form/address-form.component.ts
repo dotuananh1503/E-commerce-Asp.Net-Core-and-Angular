@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CheckoutComponent } from 'src/app/checkout/checkout.component';
+import { CheckoutComponent } from 'src/app/_checkout/checkout/checkout.component';
 import Swal from 'sweetalert2';
 import { userAddress, userAddressCreation } from '../security.model';
 import { SecurityService } from '../security.service';

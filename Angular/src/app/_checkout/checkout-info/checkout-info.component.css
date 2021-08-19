@@ -5,8 +5,21 @@
   margin-bottom: 10px;
 }
 
+.checkout__address__info {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
 .checkout__address__info label {
   margin-left: 10px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout__address__info label span:nth-child(1) {
+  font-weight: bold;
 }
 
 .checkout__address__edit {
@@ -21,6 +34,7 @@
   margin: 0 10px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .add-address {
@@ -109,25 +123,6 @@
   padding-left: 10px;
 }
 
-.checkout__btn {
-  display: block;
-  background-color: rgb(0, 0, 0);
-  color: var(--text-color);
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 10px 5px;
-  text-align: center;
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 0;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.checkout__btn:hover {
-  text-decoration: none;
-  color: var(--text-color);
-}
 .checkout__wrapper {
   width: 100%;
   height: 100%;
